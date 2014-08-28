@@ -89,9 +89,8 @@
 		} //end while 
 
 		//add comment 
-		$q ="INSERT INTO comment (article_id, page, date, time, username, ip, contact, subject, comment)  
-			VALUES (NULL,'".$_POST['page']."', '".$_POST['date']."','".$_POST['time']."', '".addslashes(htmlspecialchars($_POST['username']))."',  
-		'".$_SERVER['REMOTE_ADDR']."', '".addslashes(htmlspecialchars($_POST['contact']))."', 
+		$q ="INSERT INTO comment (username, contact, subject, comment)  
+			VALUES ('".addslashes(htmlspecialchars($_POST['username']))."','".addslashes(htmlspecialchars($_POST['contact']))."', 
 		'".addslashes(htmlspecialchars($_POST['subject']))."', '".addslashes(htmlspecialchars(nl2br($_POST['comment'])))."')"; 
 
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q2); 
