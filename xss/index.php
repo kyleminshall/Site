@@ -28,7 +28,7 @@
 		{     
 			echo '<tr>';    
 			echo '<td>"'.stripslashes($info2->subject).'" by: <a href="'.$info2->contact.'">'.stripslashes($info2->username).'</a> 
-				</td> <td><div align="right"> @ '.date('h:i:s a', $info2->time).' on '.$info2->date.'</div></td>'; 
+				</td>'; 
 			echo '</tr><tr>'; 
 			echo '<td colspan="2"> '.stripslashes($info2->comment).' </td>'; 
 			echo '</tr>'; 
