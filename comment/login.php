@@ -31,7 +31,7 @@
 				<form method="post" action="">
 					<img class="profile-img" src="css/avatar_2x.png" alt="">
 					<p>
-						<input class="form" id="Username" name="username" type="email" placeholder="Username" ><br>
+						<input class="form" id="Username" name="username" type="text" placeholder="Username" ><br>
 						<input class="form" id="Password" name="password" type="password" placeholder="Password"><br>
 						<button type="submit" name="submit" class="btn btn-4 btn-4a icon-arrow-right">Login</button>
 					</p>
