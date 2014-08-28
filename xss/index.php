@@ -112,6 +112,8 @@
 	else 
 	{  //display form 
 		?> 
+		<br>
+		<br>
 		<form name="comments" action="" method="post"> 
 
 			<table width="90%" border="0" cellspacing="0" cellpadding="0"> 
