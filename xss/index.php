@@ -41,25 +41,49 @@
 		echo 'No comments for this page. Feel free to be the first <br>'; 
 	}
 
-	if(isset($_POST['submit'])) { 
-		if(!addslashes($_POST['username'])) die('<u>ERROR:</u> you must enter a username to add a comment.'); 
-		if(!addslashes($_POST['contact']))  die('<u>ERROR:</u> enter contact method in contact field.'); 
-		if(!addslashes($_POST['subject']))  die('<u>ERROR:</u> enter a subject to your comment.'); 
-		if(!addslashes($_POST['comment']))  die('<u>ERROR:</u> cannot add comment if you do not enter one!?'); 
+	if(isset($_POST['submit'])) 
+	{ 
+		if(!addslashes($_POST['username']))
+		{
+			trigger_error(mysql_error());
+			die('<u>ERROR:</u> you must enter a username to add a comment.'); 
+		} 
+		if(!addslashes($_POST['contact']))  
+		{
+			trigger_error(mysql_error());
+			die('<u>ERROR:</u> enter contact method in contact field.'); 
+		}
+		if(!addslashes($_POST['subject'])) 
+		{
+			trigger_error(mysql_error());
+			die('<u>ERROR:</u> enter a subject to your comment.'); 
+		}
+		if(!addslashes($_POST['comment'])) 
+		{
+			trigger_error(mysql_error());
+			die('<u>ERROR:</u> cannot add comment if you do not enter one!?'); 
+		}
 
 
 		//this is for a valid contact  
 		if(substr($_POST['contact'],0,7) != 'mailto:' && !strstr($_POST['contact'],'//')) { 
-			if(strstr($_POST['contact'],'@')) 
+			if(strstr($_POST['contact'],'@'))
+			{ 
 				$_POST['contact'] = "mailto:".$_POST['contact'].""; 
+			}
 			else 
+			{
 				$_POST['contact'] = "http://".$_POST['contact'].""; 
+			}
 		} //end valid contact 
 
 		//try to prevent multiple posts and flooding... 
 		$c = "SELECT * from `comments` WHERE ip = '".$_SERVER['REMOTE_ADDR']."'"; 
-		$c2 = mysql_query($c); 
-		while($c3 = mysql_fetch_object($c2)) { 
+		
+		$c2 = mysql_query($c) or trigger_error(mysql_error()." ".$c2);
+		
+		while($c3 = mysql_fetch_object($c2))
+		{ 
 			$difference = time() - $c3->time; 
 			if($difference < 300) die('<u>ALERT:</u> '.$c3->username.', You have already commented earlier; if you have a question, try the forums!<BR>'); 
 		} //end while 
@@ -70,8 +94,12 @@
 		'".$_SERVER['REMOTE_ADDR']."', '".addslashes(htmlspecialchars($_POST['contact']))."', 
 		'".addslashes(htmlspecialchars($_POST['subject']))."', '".addslashes(htmlspecialchars(nl2br($_POST['comment'])))."')"; 
 
-		$q2 = mysql_query($q); 
-		if(!$q2) die(mysql_error()); 
+		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q2); 
+		if(!$q2) 
+		{
+			trigger_error(mysql_error());
+			die(mysql_error()); 
+		}
 
 		//refresh page so they can see new comment 
 		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_POST['page'] . "#comments"); 
@@ -80,11 +108,11 @@
 	else 
 	{  //display form 
 		?> 
-		<form name="comments" action="<? $_SERVER['PHP_SELF']; ?>" method="post"> 
+		<form name="comments" action="" method="post"> 
 
-			<input type="hidden" name="page" value="<? echo($_SERVER['REQUEST_URI']); ?>"> 
-			<input type="hidden" name="date" value="<? echo(date("F j, Y.")); ?>"> 
-			<input type="hidden" name="time" value="<? echo(time()); ?>"> 
+			<input type="hidden" name="page" value="<?php echo ($_SERVER['REQUEST_URI']); ?>"> 
+			<input type="hidden" name="date" value="<?php echo(date("F j, Y.")); ?>"> 
+			<input type="hidden" name="time" value="<?php echo(time()); ?>"> 
 
 			<table width="90%" border="0" cellspacing="0" cellpadding="0"> 
 				<tr>  
