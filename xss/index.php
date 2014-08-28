@@ -118,20 +118,21 @@
 		<form name="comments" action="" method="post"> 
 			<table width="90%" border="0" cellspacing="0" cellpadding="0"> 
 				<tr align="center">  
-					<td>
+					<td colspan="2">
 						<div align="center">Username:
 							<input name="username" type="text" size="30" value="">
 						</div>
 					</td> 
 				</tr> 
-					<td>
+				<tr align="center">
+					<td colspan="2">
 						<div align="center">Subject:
 							<input type="text" name="subject" size="30" value="">
 						</div>
 					</td> 
 				</tr> 
-				<tr> 
-					<td>
+				<tr align="center"> 
+					<td colspan="2">
 						<div align="right">Comment:
 							<textarea name="comment" cols="45" rows="5" wrap="VIRTUAL"></textarea>
 						</div>
