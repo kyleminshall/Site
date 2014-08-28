@@ -112,41 +112,29 @@
 	else 
 	{  //display form 
 		?> 
-		<center>
 		<br>
 		<br>
 		<form name="comments" action="" method="post"> 
+
 			<table width="90%" border="0" cellspacing="0" cellpadding="0"> 
-				<tr align="center">  
-					<td colspan="2">
-						<div align="center">Username:
-							<input name="username" type="text" size="30" value="">
-						</div>
-					</td> 
-				</tr> 
-				<tr align="center">
-					<td colspan="2">
-						<div align="center">Subject:
-							<input type="text" name="subject" size="30" value="">
-						</div>
-					</td> 
-				</tr> 
-				<tr align="center"> 
-					<td colspan="2">
-						<div align="right">Comment:
-							<textarea name="comment" cols="45" rows="5" wrap="VIRTUAL"></textarea>
-						</div>
-					</td> 
-				</tr> 
 				<tr>  
-					<td></td> 
-					<td colspan="2"><input type="reset" value="Reset Fields">      
-						<input type="submit" name="submit" value="Add Comment">
-					</td> 
+					<td><div align="right">Username:   </div></td>  
+					<td><input name="username" type="text" size="30" value=""></td> 
+				</tr> 
+				<td><div align="right">Subject:   </div></td> 
+				<td><input type="text" name="subject" size="30" value=""></td> 
+			</tr> 
+			<tr> 
+				<td><div align="right">Comment:   </div></td> 
+				<td><textarea name="comment" cols="45" rows="5" wrap="VIRTUAL"></textarea></td> 
+			</tr> 
+			<tr>  
+				<td></td> 
+				<td colspan="2"><input type="reset" value="Reset Fields">      
+					<input type="submit" name="submit" value="Add Comment"></td> 
 				</tr> 
 			</table> 
 		</form> 
-		</center>
 		<?php
 	} // end else 
 	?> 
