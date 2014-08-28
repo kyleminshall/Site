@@ -1,4 +1,5 @@
 <?php
+
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
 
@@ -8,7 +9,8 @@
 	
 	//query comments for this page of this article 
 	$inf = "SELECT * FROM comments WHERE page = " . stripslashes($_SERVER['REQUEST_URI']) . " ORDER BY time ASC"; 
-	$info = mysql_query($inf); 
+	
+	$info = mysql_query($inf) or trigger_error(mysql_error()." ".$inf); 
 	
 	if(!$info)
 	{
@@ -69,7 +71,9 @@
 		//refresh page so they can see new comment 
 		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_POST['page'] . "#comments"); 
 
-	} else {  //display form 
+	} 
+	else 
+	{  //display form 
 		?> 
 		<form name="comments" action="<? $_SERVER['PHP_SELF']; ?>" method="post"> 
 
