@@ -114,6 +114,7 @@
 		?> 
 		<br>
 		<br>
+		<center>
 		<form name="comments" action="" method="post"> 
 
 			<table width="90%" border="0" cellspacing="0" cellpadding="0"> 
@@ -134,7 +135,8 @@
 					<input type="submit" name="submit" value="Add Comment"></td> 
 				</tr> 
 			</table> 
-		</form> 
+		</form>
+	</center> 
 		<?php
 	} // end else 
 	?> 
