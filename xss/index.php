@@ -96,7 +96,7 @@
 		
 		//add comment 
 		$q ="INSERT INTO comments (username, contact, subject, comment)  
-			VALUES ('".addslashes(htmlspecialchars($_POST['username']))."', NULL, 
+			VALUES ('".addslashes(htmlspecialchars($_POST['username']))."', 'NULL', 
 		'".addslashes(htmlspecialchars($_POST['subject']))."', '".addslashes(nl2br($_POST['comment'], false))."')"; 
 
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q2); 
