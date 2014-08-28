@@ -71,6 +71,7 @@
 			echo '</tr><tr>'; 
 			echo '<td colspan="2"> <p text-align="center">'.stripslashes($info2->comment).'</p> </td>'; 
 			echo '</tr>'; 
+			echo '<br>';
 		}//end while 
 		echo '</table>'; 
 		echo '</div>';
