@@ -83,7 +83,7 @@
 		}
 
 		//refresh page so they can see new comment 
-		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_POST['page']); 
+		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
 
 	} 
 	else 
