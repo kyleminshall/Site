@@ -78,7 +78,7 @@
 		} //end valid contact 
 		
 		//add comment 
-		$q ="INSERT INTO comment (username, contact, subject, comment)  
+		$q ="INSERT INTO comments (username, contact, subject, comment)  
 			VALUES ('".addslashes(htmlspecialchars($_POST['username']))."','".addslashes(htmlspecialchars($_POST['contact']))."', 
 		'".addslashes(htmlspecialchars($_POST['subject']))."', '".addslashes(htmlspecialchars(nl2br($_POST['comment'])))."')"; 
 
