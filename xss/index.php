@@ -61,6 +61,7 @@
 		echo '<script language="javascript">document.write("<b>You have been to this page "+gettimes()+" before.</b>");</script>';
 		echo '<script language="javascript">checkCookie()</script>';
 		echo '<center><h3>Hi! <script language="javascript">document.write(getName())</script></h3></center>';
+		echo '<div align="center">';
 		echo '<h2>Comments:</h2>'; 
 		echo '<table width="95%">'; 
 		while($info2 = mysql_fetch_object($info)) 
@@ -72,6 +73,7 @@
 			echo '</tr>'; 
 		}//end while 
 		echo '</table>'; 
+		echo '</div>';
 		echo '<hr width="95%" noshade>'; 
 	} 
 	else 
