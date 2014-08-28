@@ -13,7 +13,7 @@
 	//query comments for this page of this article
 	$query = "SELECT * FROM `comments` WHERE page = '".stripslashes($_SERVER['REQUEST_URI'])."' ORDER BY time ASC";
 
-	$info = mysql_query($inf);
+	$info = mysql_query($query) or trigger_error(mysql_error()." ".$query);
 
 	if(!$info)
 	{
