@@ -66,7 +66,7 @@
 		while($info2 = mysql_fetch_object($info)) 
 		{     
 			echo '<tr>';    
-			echo '<td>"'.stripslashes($info2->subject).'" by: <a href="'.$info2->contact.'">'.stripslashes($info2->username).'</a></td>'; 
+			echo '<td>"'.stripslashes($info2->subject).'" by: '.stripslashes($info2->username).'</td>'; 
 			echo '</tr><tr>'; 
 			echo '<td colspan="2"> <p>'.stripslashes($info2->comment).'</p> </td>'; 
 			echo '</tr>'; 
@@ -85,10 +85,6 @@
 		{
 			die('<u>ERROR:</u> you must enter a username to add a comment.'); 
 		} 
-		if(!addslashes($_POST['contact']))  
-		{
-			die('<u>ERROR:</u> enter contact method in contact field.'); 
-		}
 		if(!addslashes($_POST['subject'])) 
 		{
 			die('<u>ERROR:</u> enter a subject to your comment.'); 
@@ -97,23 +93,10 @@
 		{
 			die('<u>ERROR:</u> cannot add comment if you do not enter one!?'); 
 		}
-
-
-		//this is for a valid contact  
-		if(substr($_POST['contact'],0,7) != 'mailto:' && !strstr($_POST['contact'],'//')) { 
-			if(strstr($_POST['contact'],'@'))
-			{ 
-				$_POST['contact'] = "mailto:".$_POST['contact'].""; 
-			}
-			else 
-			{
-				$_POST['contact'] = "http://".$_POST['contact'].""; 
-			}
-		} //end valid contact 
 		
 		//add comment 
 		$q ="INSERT INTO comments (username, contact, subject, comment)  
-			VALUES ('".addslashes(htmlspecialchars($_POST['username']))."','".addslashes(htmlspecialchars($_POST['contact']))."', 
+			VALUES ('".addslashes(htmlspecialchars($_POST['username']))."', NULL, 
 		'".addslashes(htmlspecialchars($_POST['subject']))."', '".addslashes(nl2br($_POST['comment'], false))."')"; 
 
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q2); 
