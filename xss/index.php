@@ -57,6 +57,7 @@
 			var user = getCookie("username");
 			return user;
 		}</script>
+		<body font-family="helvetica">
 		<?php
 		echo '<script language="javascript">document.write("<b>You have been to this page "+gettimes()+" before.</b>");</script>';
 		echo '<script language="javascript">checkCookie()</script>';
