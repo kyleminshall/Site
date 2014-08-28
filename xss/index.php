@@ -112,6 +112,7 @@
 	else 
 	{  //display form 
 		?> 
+		<center>
 		<br>
 		<br>
 		<form name="comments" action="" method="post"> 
@@ -135,6 +136,7 @@
 				</tr> 
 			</table> 
 		</form> 
+		</center>
 		<?php
 	} // end else 
 	?> 
