@@ -1,9 +1,17 @@
 <?php
 
 	require_once($_SERVER['DOCUMENT_ROOT'].'/database_connect.php');
+	
+	$con=mysql_connect("localhost","KyleM","Minshall1!");
+	$db_selected = mysql_select_db('Site', $con);
+	
+	if(mysql_connect_errno()) 
+	{
+	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
 
 	//query comments for this page of this article
-	$inf = "SELECT * FROM `comments` WHERE page = '".stripslashes($_SERVER['REQUEST_URI'])."' ORDER BY time ASC";
+	$query = "SELECT * FROM `comments` WHERE page = '".stripslashes($_SERVER['REQUEST_URI'])."' ORDER BY time ASC";
 
 	$info = mysql_query($inf);
 
