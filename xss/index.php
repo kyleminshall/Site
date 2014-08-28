@@ -2,6 +2,8 @@
 
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
+	
+	echo '<script language="javascript">document.write("<b>You have been to this page "+gettimes()+" before.</b>");</script>';
 
 	//connect to your database 
 	$con=mysql_connect("localhost","KyleM","Minshall1!");
