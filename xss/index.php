@@ -119,10 +119,6 @@
 					<td><div align="right">Username:   </div></td>  
 					<td><input name="username" type="text" size="30" value=""></td> 
 				</tr> 
-				<tr>  
-					<td><div align="right">Contact:   </div></td> 
-					<td><input type="text" name="contact" size="30" value=""> <i>(email or url)</i></td> 
-				</tr> 
 				<td><div align="right">Subject:   </div></td> 
 				<td><input type="text" name="subject" size="30" value=""></td> 
 			</tr> 
