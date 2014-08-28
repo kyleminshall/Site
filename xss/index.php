@@ -5,7 +5,7 @@
 	$con=mysql_connect("localhost","KyleM","Minshall1!");
 	$db_selected = mysql_select_db('Site', $con);
 	
-	if(mysql_connect_errno()) 
+	if(mysqli_connect_errno()) 
 	{
 	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
