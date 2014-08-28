@@ -2,8 +2,6 @@
 
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
-	
-	echo '<script language="javascript">document.write("<b>You have been to this page "+gettimes()+" before.</b>");</script>';
 
 	//connect to your database 
 	$con=mysql_connect("localhost","KyleM","Minshall1!");
@@ -23,6 +21,7 @@
 	
 	if($info_rows > 0) 
 	{ 
+		echo '<script language="javascript">document.write("<b>You have been to this page "+gettimes()+" before.</b>");</script>';
 		echo '<h5>Comments:</h5>'; 
 		echo '<table width="95%">'; 
 		while($info2 = mysql_fetch_object($info)) 
