@@ -1,5 +1,4 @@
 <?
-	
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
 
@@ -11,15 +10,19 @@
 	$inf = "SELECT * FROM comments WHERE page = '".stripslashes($_SERVER['REQUEST_URI'])."' ORDER BY time ASC"; 
 	$info = mysql_query($inf); 
 	
-	if(!$info) die(mysql_error()); 
+	if(!$info)
+	{
+		die(mysql_error()); 
+	}
 
 	$info_rows = mysql_num_rows($info); 
 	
-	if($info_rows > 0) { 
+	if($info_rows > 0) 
+	{ 
 		echo '<h5>Comments:</h5>'; 
 		echo '<table width="95%">'; 
-    
-		while($info2 = mysql_fetch_object($info)) {     
+		while($info2 = mysql_fetch_object($info)) 
+		{     
 			echo '<tr>';    
 			echo '<td>"'.stripslashes($info2->subject).'" by: <a href="'.$info2->contact.'">'.stripslashes($info2->username).'</a> 
 				</td> <td><div align="right"> @ '.date('h:i:s a', $info2->time).' on '.$info2->date.'</div></td>'; 
