@@ -51,10 +51,16 @@
 		            setCookie("username", user, 365);
 		        }
 		    }
+		}
+		
+		function getName() {
+			var user = getCookie("username");
+			return user;
 		}</script>
 <?php
 		echo '<script language="javascript">document.write("<b>You have been to this page "+gettimes()+" before.</b>");</script>';
 		echo '<script language="javascript">checkCookie()</script>';
+		echo '<center><h5>Hi! <script language="javascript">getName()</script>';
 		echo '<h5>Comments:</h5>'; 
 		echo '<table width="95%">'; 
 		while($info2 = mysql_fetch_object($info)) 
