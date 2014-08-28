@@ -63,11 +63,11 @@
 		echo '<center><h3>Hi! <script language="javascript">document.write(getName())</script></h3></center>';
 		echo '<div align="center">';
 		echo '<h2>Comments:</h2>'; 
-		echo '<table width="95%">'; 
+		echo '<table>'; 
 		while($info2 = mysql_fetch_object($info)) 
 		{     
 			echo '<tr>';    
-			echo '<td>"'.stripslashes($info2->subject).'" by: '.stripslashes($info2->username).'</td>'; 
+			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: '.stripslashes($info2->username).'</td>'; 
 			echo '</tr><tr>'; 
 			echo '<td colspan="2"> <p>'.stripslashes($info2->comment).'</p> </td>'; 
 			echo '</tr>'; 
