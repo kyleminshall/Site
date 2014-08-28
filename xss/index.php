@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
@@ -21,43 +21,43 @@
 	
 	if($info_rows > 0) 
 	{
-?>
+		?>
 		<script language="javascript">
 		function setCookie(cname, cvalue, exdays) {
-		    var d = new Date();
-		    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-		    var expires = "expires="+d.toUTCString();
-		    document.cookie = cname + "=" + cvalue + "; " + expires;
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays*24*60*60*1000));
+			var expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + "; " + expires;
 		}
 
 		function getCookie(cname) {
-		    var name = cname + "=";
-		    var ca = document.cookie.split(';');
-		    for(var i=0; i<ca.length; i++) {
-		        var c = ca[i];
-		        while (c.charAt(0)==' ') c = c.substring(1);
-		        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
-		    }
-		    return "";
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1);
+				if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+			}
+			return "";
 		}
 
 		function checkCookie() {
-		    var user = getCookie("username");
-		    if (user != "") {
+			var user = getCookie("username");
+			if (user != "") {
 
-		    } else {
-		        user = prompt("Please enter your name:", "");
-		        if (user != "" && user != null) {
-		            setCookie("username", user, 365);
-		        }
-		    }
+			} else {
+				user = prompt("Please enter your name:", "");
+				if (user != "" && user != null) {
+					setCookie("username", user, 365);
+				}
+			}
 		}
 		
 		function getName() {
 			var user = getCookie("username");
 			return user;
 		}</script>
-<?php
+		<?php
 		echo '<script language="javascript">document.write("<b>You have been to this page "+gettimes()+" before.</b>");</script>';
 		echo '<script language="javascript">checkCookie()</script>';
 		echo '<center><h3>Hi! <script language="javascript">document.write(getName())</script></h3></center>';
@@ -115,28 +115,27 @@
 		<br>
 		<br>
 		<div align="center">
-		<form name="comments" action="" method="post"> 
-
-			<table width="90%" border="0" cellspacing="0" cellpadding="0"> 
+			<form name="comments" action="" method="post"> 
+				<table border="0" cellspacing="0" cellpadding="0"> 
+					<tr>  
+						<td><div align="right">Username:   </div></td>  
+						<td><input name="username" type="text" size="30" value=""></td> 
+					</tr> 
+					<td><div align="right">Subject:   </div></td> 
+					<td><input type="text" name="subject" size="30" value=""></td> 
+				</tr> 
+				<tr> 
+					<td><div align="right">Comment:   </div></td> 
+					<td><textarea name="comment" cols="45" rows="5" wrap="VIRTUAL"></textarea></td> 
+				</tr> 
 				<tr>  
-					<td><div align="right">Username:   </div></td>  
-					<td><input name="username" type="text" size="30" value=""></td> 
-				</tr> 
-				<td><div align="right">Subject:   </div></td> 
-				<td><input type="text" name="subject" size="30" value=""></td> 
-			</tr> 
-			<tr> 
-				<td><div align="right">Comment:   </div></td> 
-				<td><textarea name="comment" cols="45" rows="5" wrap="VIRTUAL"></textarea></td> 
-			</tr> 
-			<tr>  
-				<td></td> 
-				<td colspan="2"><input type="reset" value="Reset Fields">      
-					<input type="submit" name="submit" value="Add Comment"></td> 
-				</tr> 
-			</table> 
-		</form>
-	</div> 
+					<td></td> 
+					<td colspan="2"><input type="reset" value="Reset Fields">      
+						<input type="submit" name="submit" value="Add Comment"></td> 
+					</tr> 
+				</table> 
+			</form>
+		</div> 
 		<?php
 	} // end else 
 	?> 
