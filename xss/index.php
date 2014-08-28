@@ -70,7 +70,7 @@
 			echo '<tr>';    
 			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: <b>'.stripslashes($info2->username).'</b></td>'; 
 			echo '</tr><tr>'; 
-			echo '<td colspan="2"> <p text-align="center" style="font-size:16px">'.stripslashes($info2->comment).'</p><br></td>'; 
+			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
 			echo '</tr>'; 
 		}//end while 
 		echo '</table>'; 
@@ -119,7 +119,7 @@
 		<br>
 		<div align="center">
 			<form name="comments" action="" method="post"> 
-				<table border="0" cellspacing="0" cellpadding="0"> 
+				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
 					<tr>  
 						<td><div align="right">Username:   </div></td>  
 						<td><input name="username" type="text" size="30" value=""></td> 
