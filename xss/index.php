@@ -14,7 +14,6 @@
 	
 	if(!$info)
 	{
-		trigger_error(mysql_error()." ".$inf);
 		die(mysql_error()); 
 	}
 
@@ -44,22 +43,18 @@
 	{ 
 		if(!addslashes($_POST['username']))
 		{
-			trigger_error(mysql_error());
 			die('<u>ERROR:</u> you must enter a username to add a comment.'); 
 		} 
 		if(!addslashes($_POST['contact']))  
 		{
-			trigger_error(mysql_error());
 			die('<u>ERROR:</u> enter contact method in contact field.'); 
 		}
 		if(!addslashes($_POST['subject'])) 
 		{
-			trigger_error(mysql_error());
 			die('<u>ERROR:</u> enter a subject to your comment.'); 
 		}
 		if(!addslashes($_POST['comment'])) 
 		{
-			trigger_error(mysql_error());
 			die('<u>ERROR:</u> cannot add comment if you do not enter one!?'); 
 		}
 
@@ -84,23 +79,18 @@
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q2); 
 		if(!$q2) 
 		{
-			trigger_error(mysql_error());
 			die(mysql_error()); 
 		}
 
 		//refresh page so they can see new comment 
-		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_POST['page'] . "#comments"); 
+		header('Location: http://' . $_SERVER['HTTP_HOST']); 
 
 	} 
 	else 
 	{  //display form 
 		?> 
 		<form name="comments" action="" method="post"> 
-
-			<input type="hidden" name="page" value="<?php echo ($_SERVER['REQUEST_URI']); ?>"> 
-			<input type="hidden" name="date" value="<?php echo(date("F j, Y.")); ?>"> 
-			<input type="hidden" name="time" value="<?php echo(time()); ?>"> 
-
+			
 			<table width="90%" border="0" cellspacing="0" cellpadding="0"> 
 				<tr>  
 					<td><div align="right">Username:   </div></td>  
