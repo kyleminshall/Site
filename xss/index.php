@@ -68,9 +68,9 @@
 		while($info2 = mysql_fetch_object($info)) 
 		{     
 			echo '<tr>';    
-			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: '.stripslashes($info2->username).'</td>'; 
+			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: <b>'.stripslashes($info2->username).'</b></td>'; 
 			echo '</tr><tr>'; 
-			echo '<td colspan="2"> <p text-align="center">'.stripslashes($info2->comment).'</p><br></td>'; 
+			echo '<td colspan="2"> <p text-align="center" style="font-size:16px">'.stripslashes($info2->comment).'</p><br></td>'; 
 			echo '</tr>'; 
 		}//end while 
 		echo '</table>'; 
