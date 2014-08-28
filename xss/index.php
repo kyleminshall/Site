@@ -4,10 +4,10 @@
 
 	//connect to your database 
 	$con=mysql_connect("localhost","KyleM","Minshall1!");
-	$db_selected = mysql_select_db('Site', $con);
+	$db_selected = mysql_select_db("Site", $con);
 	
 	//query comments for this page of this article 
-	$inf = "SELECT * FROM comments WHERE page = '".stripslashes($_SERVER['REQUEST_URI'])."' ORDER BY time ASC"; 
+	$inf = "SELECT * FROM comments WHERE page = ".stripslashes($_SERVER['REQUEST_URI'])." ORDER BY time ASC"; 
 	$info = mysql_query($inf); 
 	
 	if(!$info)
