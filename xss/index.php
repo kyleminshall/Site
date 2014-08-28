@@ -22,7 +22,7 @@
 	
 	if($info_rows > 0) 
 	{ 
-		echo '<h5>Comments:</h5>'; 
+		echo __('<h5>Comments:</h5>'); 
 		echo '<table width="95%">'; 
 		while($info2 = mysql_fetch_object($info)) 
 		{     
