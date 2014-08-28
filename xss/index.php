@@ -28,7 +28,7 @@
 			echo '<tr>';    
 			echo '<td>"'.stripslashes($info2->subject).'" by: <a href="'.$info2->contact.'">'.stripslashes($info2->username).'</a></td>'; 
 			echo '</tr><tr>'; 
-			echo '<td colspan="2"> '.strip_tags($info2->comment).' </td>'; 
+			echo '<td colspan="2"> '.strip_tags(stripslashes($info2->comment)).' </td>'; 
 			echo '</tr>'; 
 		}//end while 
 		echo '</table>'; 
