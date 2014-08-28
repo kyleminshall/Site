@@ -83,14 +83,14 @@
 		}
 
 		//refresh page so they can see new comment 
-		header('Location: http://' . $_SERVER['HTTP_HOST']); 
+		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_POST['page']); 
 
 	} 
 	else 
 	{  //display form 
 		?> 
 		<form name="comments" action="" method="post"> 
-			
+
 			<table width="90%" border="0" cellspacing="0" cellpadding="0"> 
 				<tr>  
 					<td><div align="right">Username:   </div></td>  
