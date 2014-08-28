@@ -75,6 +75,8 @@
 		}//end while 
 		echo '</table>'; 
 		echo '</div>';
+		echo '<br>';
+		echo '<br>';
 		echo '<hr width="95%" noshade>'; 
 	} 
 	else 
