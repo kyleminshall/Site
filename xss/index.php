@@ -76,18 +76,7 @@
 				$_POST['contact'] = "http://".$_POST['contact'].""; 
 			}
 		} //end valid contact 
-
-		//try to prevent multiple posts and flooding... 
-		$c = "SELECT * from `comments` WHERE ip = '".$_SERVER['REMOTE_ADDR']."'"; 
 		
-		$c2 = mysql_query($c) or trigger_error(mysql_error()." ".$c2);
-		
-		while($c3 = mysql_fetch_object($c2))
-		{ 
-			$difference = time() - $c3->time; 
-			if($difference < 300) die('<u>ALERT:</u> '.$c3->username.', You have already commented earlier; if you have a question, try the forums!<BR>'); 
-		} //end while 
-
 		//add comment 
 		$q ="INSERT INTO comment (username, contact, subject, comment)  
 			VALUES ('".addslashes(htmlspecialchars($_POST['username']))."','".addslashes(htmlspecialchars($_POST['contact']))."', 
