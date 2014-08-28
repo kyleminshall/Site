@@ -14,6 +14,7 @@
 	
 	if(!$info)
 	{
+		trigger_error(mysql_error()." ".$inf);
 		die(mysql_error()); 
 	}
 
@@ -34,7 +35,11 @@
 		}//end while 
 		echo '</table>'; 
 		echo '<hr width="95%" noshade>'; 
-	} else echo 'No comments for this page. Feel free to be the first <br>'; 
+	} 
+	else 
+	{
+		echo 'No comments for this page. Feel free to be the first <br>'; 
+	}
 
 	if(isset($_POST['submit'])) { 
 		if(!addslashes($_POST['username'])) die('<u>ERROR:</u> you must enter a username to add a comment.'); 
