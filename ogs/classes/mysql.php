@@ -5,8 +5,13 @@ error_reporting(E_ALL);
 
 class Mysql {
 	
-	function verify($username, $password)
+	function verify($key, $fname, $lname, $username, $password, $cpassword)
 	{
+		if($password !== $cpassword)
+		{
+			return "Passwords do not match.";
+		}
+		
 		$con=mysql_connect("localhost","KyleM","Minshall1!");
 		$db_selected = mysql_select_db('Site', $con);
 		
@@ -15,22 +20,30 @@ class Mysql {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-		$query = "SELECT * FROM OGs WHERE username='$username'";
+		$valid = "SELECT * FROM pem WHERE key='$key' AND used=0";
 		
-		$result = mysql_query($query, $con) or trigger_error(mysql_error()." ".$query);
+		$result = mysql_query($valid, $con) or trigger_error(mysql_error()." ".$valid);
 		
 		$row = mysql_fetch_assoc($result);
 		
-		if($password === $row['password'])
+		if($row['key'] != $key)
 		{
 			mysql_close($con);
-			return $row['username'];
+			return "Please enter a valid permission key.";
 		}
-		else
+		
+		if($row['used']==1)
 		{
 			mysql_close($con);
-			return;
+			return "This permission key has already been used.";
 		}
+			
+		$insert = "INSERT INTO OGs (name, username, password) VALUES ('".$fname." ".$lname."', '$username', '$password')";
+		$return = mysql_query($insert, $con) or trigger_error(mysql_error()." ".$insert);
+		
+		$finish = mysql_query("UPDATE TABLE pem SET used=1 WHERE key='$key'", $con);
+		
+		return;
 	}
 }
 
