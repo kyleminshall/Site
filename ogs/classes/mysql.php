@@ -63,7 +63,7 @@ class Mysql {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-		$query = "SELECT password FROM OGs WHERE username='$username'";
+		$query = "SELECT * FROM OGs WHERE username='$username'";
 		
 		$result = mysql_query($query, $con) or trigger_error(mysql_error()." ".$query);
 		
@@ -72,7 +72,7 @@ class Mysql {
 		if($password === $row['password'])
 		{
 			mysql_close($con);
-			return $row['id']." ".$row['name'];
+			return $row['username'];
 		}
 		else
 		{
