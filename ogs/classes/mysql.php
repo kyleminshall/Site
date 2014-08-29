@@ -15,7 +15,7 @@ class Mysql {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-		$query = "SELECT password as pass FROM Users WHERE username='$username'";
+		$query = "SELECT password as pass FROM OGs WHERE username='$username'";
 		
 		$result = mysql_query($query, $con) or trigger_error(mysql_error()." ".$query);
 		
