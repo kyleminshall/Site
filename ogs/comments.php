@@ -66,10 +66,7 @@
 		
 		//add comment 
 		$q ="INSERT INTO comments (username, subject, comment, date)  
-			VALUES ('$username',
-					'".addslashes(htmlspecialchars($_POST['subject']))."', 
-					'".addslashes(nl2br($_POST['comment'], false))."', 
-					'$date'"; 
+			VALUES ('$username','".addslashes(htmlspecialchars($_POST['subject']))."', '".addslashes(nl2br($_POST['comment'], false))."','$date')"; 
 
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
 		if(!$q2) 
