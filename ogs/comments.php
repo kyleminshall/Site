@@ -86,12 +86,12 @@
 		echo '<tr>';    
 		$time = strtotime($info2->date);
 		$submitted = date("m/d/y \a\\t g:i A", $time);
-		echo '<td style="width:80%"><p text-align="left" style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
-		echo '<td style="width:10%"><p text-align="left" style="font-size:14px;color:000">Likes :<br>Comments :</p></td>'; 
-		echo '<td style="width:10%"><p text-align="left" style="font-size:14px;color:000">'.$info2->likes.'<br> 0 </p></td>';
+		echo '<td style="width:650%"><p style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
+		echo '<td style="width:30%"><p style="font-size:14px;color:000;text-align:right">Likes :<br>Comments :</p></td>'; 
+		echo '<td style="width:5%"><p style="font-size:14px;color:000">'.$info2->likes.'<br> 0 </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
-		echo '<td colspan="2"> <p text-align="center" style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
+		echo '<td colspan="2"> <pstyle="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
 		echo '</tr>';
 		echo '<tr>';
 		echo '<td style="padding:0px;"><textarea name="reply" placeholder="Reply..." style="width:500px;padding:0px;margin:0px;resize:none;" rows="2" wrap="physical"></textarea></textarea></td>';
