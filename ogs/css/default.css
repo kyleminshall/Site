@@ -78,3 +78,15 @@ p {
 	top: 50%;
 	margin-top: -215px;
 }
+
+tr:hover { 
+	background-color: yellow; 
+}
+
+tr.evenRow {
+	 background-color: #f6f6f6; 
+ }
+ 
+tr.oddRow { 
+	background: #dddddd; 
+}
