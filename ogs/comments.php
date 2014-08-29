@@ -57,13 +57,14 @@
 		<div align="center">
 			<form name="comments" action="" method="post"> 
 				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
-				<tr> 
-					<td><textarea name="comment" placeholder="Submit a post!"  cols="45" rows="5" wrap="VIRTUAL"></textarea></td> 
-				</tr> 
-				<tr>  
-					<td></td> 
-					<td colspan="2"><input type="reset" value="Reset Fields">      
-						<input type="submit" name="submit" value="Add Comment"></td> 
+					<tr> 
+						<td><textarea name="comment" placeholder="Submit a post!"  cols="45" rows="5" wrap="VIRTUAL"></textarea></td> 
+					</tr> 
+					<tr>  
+						<td>
+							<input type="reset" value="Reset Fields">      
+							<input type="submit" name="submit" value="Add Comment">
+						</td> 
 					</tr> 
 				</table> 
 			</form>
