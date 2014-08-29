@@ -22,6 +22,7 @@
 	
 	$username = $_SESSION['username'];
 	
+	echo '<title>Posts</title>';
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
 	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
@@ -96,8 +97,8 @@
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;">Like &nbsp;&nbsp;&nbsp; Comment</p></td>'; 
 		echo '</tr>';
-		echo '<tr>';
-		echo '<td style="padding:0px;"><textarea name="reply" placeholder="Reply..." style="width:500px;padding:0px;margin:0px;resize:none;" rows="2" wrap="physical"></textarea></textarea></td>';
+		echo '<tr style="background-color: #f6f6f6">';
+		echo '<td><textarea name="reply" placeholder="Reply..." style="width:500px;resize:none;border:none;padding:10px;background:transparent;font-size:14px" rows="2" wrap="physical"></textarea></textarea></td>';
 		echo '</tr>';
 		echo '</table>';
 		echo '<br><br>';
