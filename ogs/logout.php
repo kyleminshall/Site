@@ -1,5 +1,7 @@
 <?php
 
+	header("location: login.php");
+
 	if(isset($_SESSION))
 	{
 		session_destroy();
@@ -8,7 +10,5 @@
 		{
 			setcookie('PHPSESSID', '', time() - 10000);
 		}
-		
-		header("location: login.php");
 	}
 ?>
