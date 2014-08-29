@@ -71,7 +71,7 @@
 					'".addslashes(nl2br($_POST['comment'], false))."', 
 					'$date'"; 
 
-		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q2); 
+		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
 		if(!$q2) 
 		{
 			die(mysql_error()); 
