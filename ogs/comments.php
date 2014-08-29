@@ -58,7 +58,7 @@
 			<form name="comments" action="" method="post"> 
 				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
 					<tr> 
-						<td><textarea name="comment" placeholder="Submit a post!" wrap="VIRTUAL"></textarea></td> 
+						<td><textarea name="comment" placeholder="Submit a post!"  cols="45" rows="5" wrap="VIRTUAL"></textarea></td> 
 					</tr> 
 					<tr>  
 						<td>
