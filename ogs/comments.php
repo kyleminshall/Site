@@ -59,7 +59,7 @@
 				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
 					<tr style="background-color: #f6f6f6"> 
 						<td>
-							<textarea name="comment" placeholder="Submit a post!" style="width:500px;resize:none;border:none;padding:10px;background:transparent" rows="3" wrap="VIRTUAL"></textarea></textarea>
+							<textarea name="comment" placeholder="Submit a post!" style="width:500px;resize:none;border:none;padding:10px;background:transparent;font-size:18px" rows="3" wrap="VIRTUAL"></textarea></textarea>
 						</td> 
 					</tr> 
 					<tr align="right" style="background-color: #dddddd"> 
