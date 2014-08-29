@@ -28,10 +28,6 @@
 
 	if(isset($_POST['submit'])) 
 	{ 
-		if(!addslashes($_POST['subject'])) 
-		{
-			die('<u>ERROR:</u> enter a subject to your comment.'); 
-		}
 		if(!addslashes($_POST['comment'])) 
 		{
 			die('<u>ERROR:</u> cannot add comment if you do not enter one.'); 
@@ -40,8 +36,8 @@
 		$date = date("Y-m-d H:i:s");
 		
 		//add comment 
-		$q ="INSERT INTO comments (username, subject, comment, date)  
-			VALUES ('$username','".addslashes(htmlspecialchars($_POST['subject']))."', '".addslashes(nl2br($_POST['comment'], false))."','$date')"; 
+		$q ="INSERT INTO comments (username, comment, date)  
+			VALUES ('$username', '".addslashes(nl2br($_POST['comment'], false))."','$date')"; 
 
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
 		if(!$q2) 
@@ -60,12 +56,8 @@
 		<br>
 		<div align="center">
 			<form name="comments" action="" method="post"> 
-				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
-					<td><div align="right">Subject:   </div></td> 
-					<td><input type="text" name="subject" size="30" value=""></td> 
-				</tr> 
 				<tr> 
-					<td><div align="right">Comment:   </div></td> 
+					<td><div align="right">Post:   </div></td> 
 					<td><textarea name="comment" cols="45" rows="5" wrap="VIRTUAL"></textarea></td> 
 				</tr> 
 				<tr>  
@@ -93,7 +85,7 @@
 		{     
 			echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
 			echo '<tr style="border:1px solid black;">';    
-			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: <b>'.stripslashes($info2->username).'</b></td>'; 
+			echo '<td colspan="2"><b>'.stripslashes($info2->username).'</b></td>'; 
 			echo '</tr>';
 			echo '<tr style="border:1px solid black;">'; 
 			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
