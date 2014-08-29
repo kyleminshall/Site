@@ -22,10 +22,11 @@
 	
 	$username = $_SESSION['username'];
 	
+	echo '<body style="font-family:helvetica">';
+	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
+	
 	if($info_rows > 0) 
 	{
-		echo '<body style="font-family:helvetica">';
-		echo '<center><h3>Commenting as: '.$username.'</h3></center>';
 		echo '<div align="center">';
 		echo '<h2>Comments:</h2>'; 
 		echo '<table width="500px" cellpadding="10px">'; 
