@@ -38,8 +38,9 @@ class Mysql {
 		
 		$user = "SELECT * FROM OGs WHERE username='$username'";
 		$check = mysql_query($user, $con);
+		$row = mysql_fetch_assoc($result);
 		
-		if(!empty($check))
+		if(!empty($row))
 		{
 			return "This username has already been taken.";
 		}
