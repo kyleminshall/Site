@@ -36,7 +36,7 @@
 		$date = date("Y-m-d H:i:s");
 		
 		//add comment 
-		$q ="INSERT INTO comments (username, comment, date)  
+		$q ="INSERT INTO posts (username, comment, date)  
 			VALUES ('$username', '".addslashes(nl2br($_POST['comment'], false))."','$date')"; 
 
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
