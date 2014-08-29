@@ -21,9 +21,10 @@
 	$info_rows = mysql_num_rows($info); 
 	
 	$username = $_SESSION['username'];
-	
+	echo '<head>';
 	echo '<title>Posts</title>';
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
+	echo '</head>';
 	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
 
