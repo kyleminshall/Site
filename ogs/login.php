@@ -2,11 +2,6 @@
 	session_start();
 	
 	include('classes/membership.php');
-	
-	if(isset($_GET['status']) && $_GET['status'] == 'loggedout')
-	{
-		membership::logOut();
-	}
 
 	if($_POST && !empty($_POST['username']) && !empty($_POST['password']))
 	{
