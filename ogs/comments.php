@@ -76,36 +76,26 @@
 		<?php
 		echo '<hr width="50%" noshade>'; 
 	} // end else 
-	
-	if($info_rows > 0) 
-	{
-		echo '<div align="center">';
-		echo '<h2>Posts:</h2>'; 
-		while($info2 = mysql_fetch_object($info)) 
-		{     
-			echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
-			echo '<tr>';    
-			$time = strtotime($info2->date);
-			$submitted = date("m/d/y \a\\t g:i A", $time);
-			echo '<td colspan="2"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></td>'; 
-			echo '</tr>';
-			echo '<tr>'; 
-			echo '<td colspan="2"> <p text-align="center" style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
-			echo '</tr>';
-			echo '<tr>';
-			echo '<td style="padding:0px;"><textarea name="reply" placeholder="Reply..." style="width:500px;padding:0px;margin:0px;resize:none;" rows="2" wrap="physical"></textarea></textarea></td>';
-			echo '</tr>';
-			echo '</table>';
-			echo '<br><br>';
-		}//end while 
-		echo '</div>';
-		echo '<br>';
-		echo '<br>';
-	} 
-	else 
-	{
-		echo '<div align="center">';
-		echo "No comments for this page. Feel free to be the first <br>"; 
-		echo '</div>';
-	}
+	echo '<div align="center">';
+	echo '<h2>Posts:</h2>'; 
+	while($info2 = mysql_fetch_object($info)) 
+	{     
+		echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
+		echo '<tr>';    
+		$time = strtotime($info2->date);
+		$submitted = date("m/d/y \a\\t g:i A", $time);
+		echo '<td colspan="2"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></td>'; 
+		echo '</tr>';
+		echo '<tr>'; 
+		echo '<td colspan="2"> <p text-align="center" style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
+		echo '</tr>';
+		echo '<tr>';
+		echo '<td style="padding:0px;"><textarea name="reply" placeholder="Reply..." style="width:500px;padding:0px;margin:0px;resize:none;" rows="2" wrap="physical"></textarea></textarea></td>';
+		echo '</tr>';
+		echo '</table>';
+		echo '<br><br>';
+	}//end while 
+	echo '</div>';
+	echo '<br>';
+	echo '<br>';
 	?> 
