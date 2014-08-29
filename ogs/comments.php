@@ -25,32 +25,6 @@
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
 	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
-	
-	if($info_rows > 0) 
-	{
-		echo '<div align="center">';
-		echo '<h2>Comments:</h2>'; 
-		echo '<table width="500px" cellpadding="10px">'; 
-		while($info2 = mysql_fetch_object($info)) 
-		{     
-			echo '<tr>';    
-			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: <b>'.stripslashes($info2->username).'</b></td>'; 
-			echo '</tr><tr bgcolor="#F5F5F5">'; 
-			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
-			echo '</tr>'; 
-		}//end while 
-		echo '</table>'; 
-		echo '</div>';
-		echo '<br>';
-		echo '<br>';
-		echo '<hr width="50%" noshade>'; 
-	} 
-	else 
-	{
-		echo '<div align="center">';
-		echo "No comments for this page. Feel free to be the first <br>"; 
-		echo '</div>';
-	}
 
 	if(isset($_POST['submit'])) 
 	{ 
@@ -109,4 +83,30 @@
 		</div>
 		<?php
 	} // end else 
+	
+	if($info_rows > 0) 
+	{
+		echo '<div align="center">';
+		echo '<h2>Comments:</h2>'; 
+		echo '<table width="500px" cellpadding="10px">'; 
+		while($info2 = mysql_fetch_object($info)) 
+		{     
+			echo '<tr>';    
+			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: <b>'.stripslashes($info2->username).'</b></td>'; 
+			echo '</tr><tr bgcolor="#F5F5F5">'; 
+			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
+			echo '</tr>'; 
+		}//end while 
+		echo '</table>'; 
+		echo '</div>';
+		echo '<br>';
+		echo '<br>';
+		echo '<hr width="50%" noshade>'; 
+	} 
+	else 
+	{
+		echo '<div align="center">';
+		echo "No comments for this page. Feel free to be the first <br>"; 
+		echo '</div>';
+	}
 	?> 
