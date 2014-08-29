@@ -92,7 +92,7 @@
 		while($info2 = mysql_fetch_object($info)) 
 		{     
 			echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
-			echo '<tr style="border:1px solid blue;">';    
+			echo '<tr style="border:1px solid black;">';    
 			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: <b>'.stripslashes($info2->username).'</b></td>'; 
 			echo '</tr>';
 			echo '<tr style="border:1px solid black;">'; 
