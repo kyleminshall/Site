@@ -58,7 +58,7 @@
 			<form name="comments" action="" method="post"> 
 				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
 					<tr> 
-						<td><textarea name="comment" placeholder="Submit a post!" cols="70" rows="3" wrap="VIRTUAL"></textarea></textarea></td> 
+						<td><textarea name="comment" placeholder="Submit a post!" style="width:500px;" rows="3" wrap="VIRTUAL"></textarea></textarea></td> 
 					</tr> 
 					<tr>  
 						<td>
@@ -91,7 +91,7 @@
 			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
 			echo '</tr>';
 			echo '<tr align="right">';
-			echo '<td><textarea name="reply" placeholder="Reply..." style="width:500px; padding: 0px" rows="2" wrap="physical"></textarea></textarea></td>';
+			echo '<td style="padding:0px;"><textarea name="reply" placeholder="Reply..." style="width:500px;" rows="2" wrap="physical"></textarea></textarea></td>';
 			echo '</tr>';
 			echo '</table>';
 			echo '<br><br>';
