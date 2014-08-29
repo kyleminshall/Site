@@ -108,7 +108,7 @@
 	{     
 		echo '<table style="border-collapse:collapse;table-layout:fixed;" width="500px" cellpadding="10px">'; 
 		echo '<tr>';    
-		$post_number = $info2->$id;
+		$post_number = $info2->id;
 		$time = strtotime($info2->date);
 		$submitted = date("m/d/y \a\\t g:i A", $time);
 		echo '<td style="width:65%"><p style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
