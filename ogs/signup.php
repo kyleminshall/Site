@@ -49,7 +49,6 @@
 					</p>
 				</form>
 				<?php if(isset($response)) echo "<h4 class='alert'>" . $response . "</h4>";?>
-				<?php if($error) echo "<h4 class='alert'>Please fill in all fields.</h4>";?>
 			</div>
 		</div><!-- end signup --> 
 	</body>
