@@ -36,11 +36,11 @@ $membership->confirm();
 				<?php
 					if($is_admin)
 					{
-						echo $name.'is an admin!';
+						echo $name.' is an admin!';
 					}
 					else
 					{
-						echo $name.'is <b>not</b> an admin.';
+						echo $name.' is <b>not</b> an admin.';
 					}
 				?>
 			</p>

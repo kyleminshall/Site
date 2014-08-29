@@ -20,7 +20,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<title>Terrible Programmers</title>
+		<title>We're the OGs</title>
 		<link rel="stylesheet" type="text/css" href="css/default.css">
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>
@@ -29,7 +29,9 @@
 		<div id="login">
 			<div id="box">
 				<form method="post" action="">
-					<img class="profile-img" src="css/avatar_2x.png" alt="">
+					<a href="signup.php">
+						<img class="profile-img" src="css/avatar_2x.png" alt="">
+					</a>
 					<p>
 						<input class="form" id="Username" name="username" type="text" placeholder="Username" ><br>
 						<input class="form" id="Password" name="password" type="password" placeholder="Password"><br>
