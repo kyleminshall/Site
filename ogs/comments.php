@@ -62,12 +62,14 @@
 			die('<u>ERROR:</u> cannot add comment if you do not enter one.'); 
 		}
 		
+		$date = date("Y-m-d H:i:s");
+		
 		//add comment 
 		$q ="INSERT INTO comments (username, subject, comment, `date`)  
 			VALUES ('$username',
 					'".addslashes(htmlspecialchars($_POST['subject']))."', 
 					'".addslashes(nl2br($_POST['comment'], false))."', 
-					'".date ("Y-m-d H:i:s", $phptime)."'"; 
+					'$date'"; 
 
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q2); 
 		if(!$q2) 
