@@ -1,12 +1,11 @@
 <?php
 
 require_once 'classes/membership.php';
-$membership = New Membership();
 
 $con=mysql_connect("localhost","KyleM","Minshall1!");
 $db_selected = mysql_select_db('Site', $con);
 
-$membership->confirm();
+membership::confirm();
 
 ?>
 

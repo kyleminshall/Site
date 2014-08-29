@@ -1,6 +1,6 @@
 <?php
 	
-	header("location: index.php");
+	header("location: login.php");
 	
 	if(isset($_SESSION['status']))
 	{
