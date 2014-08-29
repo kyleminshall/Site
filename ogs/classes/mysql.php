@@ -26,7 +26,7 @@ class Mysql {
 		
 		$row = mysql_fetch_assoc($result);
 		
-		if($row['`key`'] != $key)
+		if($row['key'] != $key)
 		{
 			mysql_close($con);
 			return "Please enter a valid permission key.";
