@@ -20,7 +20,7 @@ class Mysql {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-		$valid = "SELECT * FROM pem WHERE key='$key' AND used=0";
+		$valid = "SELECT * FROM pem WHERE `key`='$key' AND used=0";
 		
 		$result = mysql_query($valid, $con) or trigger_error(mysql_error()." ".$valid);
 		
@@ -41,7 +41,7 @@ class Mysql {
 		$insert = "INSERT INTO OGs (name, username, password) VALUES ('".$fname." ".$lname."', '$username', '$password')";
 		$return = mysql_query($insert, $con) or trigger_error(mysql_error()." ".$insert);
 		
-		$finish = mysql_query("UPDATE pem SET used=1 WHERE key='$key'", $con);
+		$finish = mysql_query("UPDATE pem SET used=1 WHERE `key`='$key'", $con);
 		
 		return;
 	}
