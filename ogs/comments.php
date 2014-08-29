@@ -67,7 +67,7 @@
 			VALUES ('$username',
 					'".addslashes(htmlspecialchars($_POST['subject']))."', 
 					'".addslashes(nl2br($_POST['comment'], false))."', 
-					'".date("Y-m-d H:i:s")."'"; 
+					'".date ("Y-m-d H:i:s", $phptime)."'"; 
 
 		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q2); 
 		if(!$q2) 
