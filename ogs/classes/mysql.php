@@ -21,9 +21,7 @@ class Mysql {
 		}
 		
 		$valid = "SELECT * FROM pem WHERE `key`='$key'";
-		
 		$result = mysql_query($valid, $con) or trigger_error(mysql_error()." ".$valid);
-		
 		$row = mysql_fetch_assoc($result);
 		
 		if($row['key'] != $key)
@@ -36,6 +34,14 @@ class Mysql {
 		{
 			mysql_close($con);
 			return "This permission key has already been used.";
+		}
+		
+		$user = "SELECT * FROM OGs WHERE username='$username'";
+		$check = mysql_query($user, $con);
+		
+		if(isset($check))
+		{
+			return "This username has already been taken.";
 		}
 			
 		$insert = "INSERT INTO OGs (name, username, password) VALUES ('".$fname." ".$lname."', '$username', '$password')";
