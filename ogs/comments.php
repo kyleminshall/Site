@@ -90,7 +90,7 @@
 			echo '<tr style="border:1px solid black;">'; 
 			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
 			echo '</tr>';
-			echo '<tr>';
+			echo '<tr align="right">';
 			echo '<td><textarea name="reply" placeholder="Reply..." width="500px" rows="2" wrap="physical"></textarea></textarea></td>';
 			echo '</tr>';
 			echo '</table>';
