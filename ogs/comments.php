@@ -53,7 +53,7 @@
 	} 
 	else 
 	{  //display form 
-		?> 
+?> 
 		<div align="center">
 			<p style="font-size:22px; text-decoration:none">
 				<a style="text-decoration:none" href="index.php"><button class="turquoise-flat-button" style="background:#FC4144">Go Back</button></a>
@@ -77,7 +77,7 @@
 				</table> 
 			</form>
 		</div> 
-		<?php
+<?php
 		echo '<hr width="50%" noshade>'; 
 	} // end else 
 	echo '<div align="center">';
@@ -99,7 +99,7 @@
 		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:right">Like</p></td>'; 
 		echo '</tr>';
 		echo '<tr style="background-color: #f6f6f6">';
-		echo '<td colspan="3" style="padding:5px"><form id="myform" style="margin:0;" name="like" action="" method="post"><textarea name="reply" placeholder="Reply..." style="width:90%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea></textarea><span onclick="document.forms["myform"].submit()">Post</span></form></td>';
+		echo '<td colspan="3" style="padding:5px"><form id="myform" style="margin:0;" name="like" action="" method="post"><textarea name="reply" placeholder="Reply..." style="width:90%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea></textarea><span onclick="document.getElementById("myform").submit()">Post</span></form></td>';
 		echo '</tr>';
 		echo '</table>';
 		echo '<br><br>';
@@ -107,4 +107,4 @@
 	echo '</div>';
 	echo '<br>';
 	echo '<br>';
-	?> 
+?> 
