@@ -62,7 +62,7 @@
 					</tr> 
 					<tr>  
 						<td>
-							<input type="submit" name="submit" value="Add Comment">
+							<input type="submit" name="submit" value="Submit">
 						</td> 
 					</tr> 
 				</table> 
