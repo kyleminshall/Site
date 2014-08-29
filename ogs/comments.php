@@ -80,7 +80,7 @@
 	if($info_rows > 0) 
 	{
 		echo '<div align="center">';
-		echo '<h2>Comments:</h2>'; 
+		echo '<h2>Posts:</h2>'; 
 		while($info2 = mysql_fetch_object($info)) 
 		{     
 			echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
