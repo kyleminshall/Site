@@ -15,13 +15,13 @@ class Mysql {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-		$query = "SELECT password as pass FROM OGs WHERE username='$username'";
+		$query = "SELECT * FROM OGs WHERE username='$username'";
 		
 		$result = mysql_query($query, $con) or trigger_error(mysql_error()." ".$query);
 		
 		$row = mysql_fetch_assoc($result);
 		
-		if($password === $row['pass'])
+		if($password === $row['password'])
 		{
 			mysql_close($con);
 			return $row['id']." ".$row['name'];
