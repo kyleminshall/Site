@@ -57,10 +57,12 @@
 		<div align="center">
 			<form name="comments" action="" method="post"> 
 				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
-					<tr> 
-						<td><textarea name="comment" placeholder="Submit a post!" style="width:500px;resize:none;" rows="3" wrap="VIRTUAL"></textarea></textarea></td> 
+					<tr style="background-color: #FFF"> 
+						<td>
+							<textarea name="comment" placeholder="Submit a post!" style="width:500px;resize:none;" rows="3" wrap="VIRTUAL"></textarea></textarea>
+						</td> 
 					</tr> 
-					<tr>  
+					<tr style="background-color: #FFF"> 
 						<td>
 							<input type="submit" name="submit" value="Submit">
 						</td> 
