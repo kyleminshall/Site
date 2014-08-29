@@ -20,13 +20,13 @@ class Mysql {
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		
-		$valid = "SELECT * FROM pem WHERE `key`='$key' AND used=0";
+		$valid = "SELECT * FROM pem WHERE `key`='$key'";
 		
 		$result = mysql_query($valid, $con) or trigger_error(mysql_error()." ".$valid);
 		
 		$row = mysql_fetch_assoc($result);
 		
-		if($row['key'] != $key)
+		if($row['`key`'] != $key)
 		{
 			mysql_close($con);
 			return "Please enter a valid permission key.";
