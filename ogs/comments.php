@@ -89,7 +89,7 @@
 	{
 		echo '<div align="center">';
 		echo '<h2>Comments:</h2>'; 
-		echo '<table width="500px" cellpadding="10px">'; 
+		echo '<table style="border:1px solid black;border-collapse:collapse;" width="500px" cellpadding="10px">'; 
 		while($info2 = mysql_fetch_object($info)) 
 		{     
 			echo '<tr>';    
