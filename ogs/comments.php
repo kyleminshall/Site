@@ -95,10 +95,11 @@
 			echo '<tr style="border:1px solid blue;">';    
 			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: <b>'.stripslashes($info2->username).'</b></td>'; 
 			echo '</tr>';
-			echo '<tr>'; 
+			echo '<tr style="border:1px solid black;">'; 
 			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
 			echo '</tr>';
-			echo '</table>'; 
+			echo '</table>';
+			echo '<br><br>';
 		}//end while 
 		echo '</div>';
 		echo '<br>';
