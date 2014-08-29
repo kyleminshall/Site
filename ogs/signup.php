@@ -43,8 +43,8 @@
 						<input class="form" id="Password" name="firstName" type="text" placeholder="First Name" ><br>
 						<input class="form" id="Password" name="lastName" type="text" placeholder="Last Name" ><br>
 						<input class="form" id="Password" name="username" type="text" placeholder="Username" ><br>
-						<input class="form" id="Password" name="password" type="text" placeholder="Password"><br>
-						<input class="form" id="Password" name="cpassword" type="text" placeholder="Confirm Password"><br>
+						<input class="form" id="Password" name="password" type="password" placeholder="Password"><br>
+						<input class="form" id="Password" name="cpassword" type="password" placeholder="Confirm Password"><br>
 						<button type="submit" name="submit" class="btn btn-4 btn-4a icon-arrow-right" style="padding:10px 62px !important;">Sign Up!</button>
 					</p>
 				</form>
