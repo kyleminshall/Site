@@ -84,13 +84,13 @@
 		while($info2 = mysql_fetch_object($info)) 
 		{     
 			echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
-			echo '<tr style="border:1px solid black;">';    
+			echo '<tr>';    
 			echo '<td colspan="2"><b>'.stripslashes($info2->username).'</b> ('.$info2->date.')</td>'; 
 			echo '</tr>';
-			echo '<tr style="border:1px solid black;">'; 
+			echo '<tr>'; 
 			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
 			echo '</tr>';
-			echo '<tr style="border: 1px solid black;">';
+			echo '<tr>';
 			echo '<td style="padding:0px;"><textarea name="reply" placeholder="Reply..." style="width:500px;padding:0px;margin:0px" rows="2" wrap="physical"></textarea></textarea></td>';
 			echo '</tr>';
 			echo '</table>';
