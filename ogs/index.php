@@ -21,7 +21,7 @@ membership::confirm();
 		<div id="top">
 			<center>
 				<p>
-					Website version 0.1.1<br>
+					Website version 0.1.5<br>
 					The OG Social Network
 				</p>
 			</center>
@@ -29,7 +29,6 @@ membership::confirm();
 		<div id="main">
 			<p>
 				<?php 
-				
 					$username = $_SESSION['username'];
 					$name_row = mysql_fetch_assoc(mysql_query("SELECT name FROM OGs WHERE username='$username'"));
 					$name = $name_row['name'];
