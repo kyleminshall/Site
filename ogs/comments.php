@@ -82,6 +82,7 @@
 			</p>
 		</div>
 		<?php
+		echo '<hr width="50%" noshade>'; 
 	} // end else 
 	
 	if($info_rows > 0) 
@@ -101,7 +102,6 @@
 		echo '</div>';
 		echo '<br>';
 		echo '<br>';
-		echo '<hr width="50%" noshade>'; 
 	} 
 	else 
 	{
