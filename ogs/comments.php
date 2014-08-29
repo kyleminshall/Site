@@ -23,7 +23,7 @@
 	$username = $_SESSION['username'];
 	
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
-	echo '<body style="font-family:helvetica">';
+	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
 	
 	if($info_rows > 0) 
