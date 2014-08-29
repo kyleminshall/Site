@@ -86,8 +86,9 @@
 		echo '<tr>';    
 		$time = strtotime($info2->date);
 		$submitted = date("m/d/y \a\\t g:i A", $time);
-		echo '<td style="width:50%"><p text-align="left" style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
-		echo '<td style="width:50%"><p text-align="left" style="font-size:14px;color:000">Likes : '.$info2->likes.'<br>Comments :</p></td>'; 
+		echo '<td style="width:80%"><p text-align="left" style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
+		echo '<td style="width:10%"><p text-align="left" style="font-size:14px;color:000">Likes :<br>Comments :</p></td>'; 
+		echo '<td style="width:10%"><p text-align="left" style="font-size:14px;color:000">'.$info2->likes.'<br> 0 </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
 		echo '<td colspan="2"> <p text-align="center" style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
