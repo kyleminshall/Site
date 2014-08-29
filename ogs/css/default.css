@@ -83,10 +83,10 @@ tr:hover {
 	background-color: yellow; 
 }
 
-tr.evenRow {
+tr:nth-child(even) {
 	 background-color: #f6f6f6; 
  }
  
-tr.oddRow { 
+tr:nth-child(odd) { 
 	background: #dddddd; 
 }
