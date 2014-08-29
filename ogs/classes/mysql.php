@@ -42,7 +42,7 @@ class Mysql {
 		$return = mysql_query($insert, $con) or trigger_error(mysql_error()." ".$insert);
 		
 		$sql = "UPDATE pem SET used=1 WHERE `key`='$key'";
-		$finish = mysql_query($sql, $con);
+		$finish = mysql_query($sql, $con) or trigger_error(mysql_error()." ".$insert);
 		
 		return;
 	}
