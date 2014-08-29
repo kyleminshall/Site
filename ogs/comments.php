@@ -89,18 +89,17 @@
 	{
 		echo '<div align="center">';
 		echo '<h2>Comments:</h2>'; 
-		echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
 		while($info2 = mysql_fetch_object($info)) 
 		{     
+			echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
 			echo '<tr style="border:1px solid blue;">';    
 			echo '<td colspan="2">"'.stripslashes($info2->subject).'" by: <b>'.stripslashes($info2->username).'</b></td>'; 
 			echo '</tr>';
 			echo '<tr bgcolor="#F5F5F5; border:1px solid blue;">'; 
 			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
 			echo '</tr>';
-			echo '<tr><td><p><br><br></td></tr>'; 
+			echo '</table>'; 
 		}//end while 
-		echo '</table>'; 
 		echo '</div>';
 		echo '<br>';
 		echo '<br>';
