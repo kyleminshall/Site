@@ -40,7 +40,7 @@ class Mysql {
 		$check = mysql_query($user, $con);
 		$row = mysql_fetch_assoc($result);
 		
-		if(empty($row))
+		if(!empty($row))
 		{
 			return "This username has already been taken.";
 		}
