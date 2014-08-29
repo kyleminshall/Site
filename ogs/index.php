@@ -33,23 +33,8 @@ membership::confirm();
 					$username = $_SESSION['username'];
 					$name_row = mysql_fetch_assoc(mysql_query("SELECT name FROM OGs WHERE username='$username'"));
 					$name = $name_row['name'];
-					$admin_row = mysql_fetch_assoc(mysql_query("SELECT is_admin as admin FROM OGs WHERE username='$username'"));
-					$is_admin = $admin_row['admin']==1;
-				
 				?>
 				Successfully authenticated user: <h1><b> <?php echo $name ?> </b></h1>
-			</p>
-			<p>
-				<?php
-					if($is_admin)
-					{
-						echo $name.' is an admin!';
-					}
-					else
-					{
-						echo $name.' is <b>not</b> an admin.';
-					}
-				?>
 			</p>
 			<p style="font-size:22px; text-decoration:none">
 				<a style="text-decoration:none" href="comments.php"><button class="turquoise-flat-button">Comments</button></a>
