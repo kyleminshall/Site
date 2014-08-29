@@ -53,7 +53,7 @@ $membership->confirm();
 				?>
 			</p>
 			<p style="font-size:22px; text-decoration:none">
-				<a style="text-decoration:none" href="login.php?status=loggedout"><button class="turquoise-flat-button">Log Out</button></a>
+				<a style="text-decoration:none" href="logout.php"><button class="turquoise-flat-button">Log Out</button></a>
 			</p>
 		</div><!-- end main --> 
 	</body>
