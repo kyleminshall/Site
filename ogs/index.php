@@ -22,7 +22,7 @@ $membership->confirm();
 		<div id="top">
 			<center>
 				<p>
-					Website version 0.0.1<br>
+					Website version 0.0.2<br>
 					The OG Social Network
 				</p>
 			</center>
