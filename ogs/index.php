@@ -29,7 +29,6 @@ membership::confirm();
 		<div id="main">
 			<p>
 				<?php 
-				
 					$username = $_SESSION['username'];
 					$name_row = mysql_fetch_assoc(mysql_query("SELECT name FROM OGs WHERE username='$username'"));
 					$name = $name_row['name'];
@@ -41,6 +40,12 @@ membership::confirm();
 					
 					$last_login_row = mysql_fetch_assoc(mysql_query("SELECT last_login FROM OGs WHERE username='$username'"));
 					$last_login = $last_login_row['last_login'];
+					
+					$date = date("Y-m-d H:i:s");
+					$username = $_SESSION['username'];
+	
+					$q ="UPDATE OGs SET last_login = '$date' WHERE username='$username'"; 
+					$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
 				?>
 				Last login: <?php echo $last_login;?>
 			</p>
