@@ -91,7 +91,10 @@
 		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center">'.$info2->likes.'<br> 0 </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
-		echo '<td colspan="3"> <pstyle="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
+		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
+		echo '</tr>';
+		echo '<tr>'; 
+		echo '<td colspan="3">Like</td>'; 
 		echo '</tr>';
 		echo '<tr>';
 		echo '<td style="padding:0px;"><textarea name="reply" placeholder="Reply..." style="width:500px;padding:0px;margin:0px;resize:none;" rows="2" wrap="physical"></textarea></textarea></td>';
