@@ -65,7 +65,7 @@
 		$date = date("Y-m-d H:i:s");
 		
 		//add comment 
-		$q ="INSERT INTO comments (username, subject, comment, `date`)  
+		$q ="INSERT INTO comments (username, subject, comment, date)  
 			VALUES ('$username',
 					'".addslashes(htmlspecialchars($_POST['subject']))."', 
 					'".addslashes(nl2br($_POST['comment'], false))."', 
