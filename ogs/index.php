@@ -21,7 +21,7 @@ membership::confirm();
 		<div id="top">
 			<center>
 				<p>
-					Website version 0.1.6<br>
+					Website Version : 0.1.6<br>
 					The OG Social Network
 				</p>
 			</center>
