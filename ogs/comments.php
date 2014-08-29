@@ -55,6 +55,11 @@
 		<br>
 		<br>
 		<div align="center">
+			<p style="font-size:22px; text-decoration:none">
+				<a style="text-decoration:none" href="index.php"><button class="turquoise-flat-button" style="background:#FC4144">Go Back</button></a>
+			</p>
+		</div>
+		<div align="center">
 			<form name="comments" action="" method="post"> 
 				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
 					<tr style="background-color: #f6f6f6"> 
@@ -70,11 +75,6 @@
 				</table> 
 			</form>
 		</div> 
-		<div align="center">
-			<p style="font-size:22px; text-decoration:none">
-				<a style="text-decoration:none" href="index.php"><button class="turquoise-flat-button" style="background:#FC4144">Go Back</button></a>
-			</p>
-		</div>
 		<?php
 		echo '<hr width="50%" noshade>'; 
 	} // end else 
