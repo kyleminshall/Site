@@ -5,8 +5,9 @@
 	$db_selected = mysql_select_db('Site', $con);
 	
 	$date = date("Y-m-d H:i:s");
+	$username = $_SESSION['username'];
 	
-	$q ="INSERT INTO OGs (last_login) VALUES ('$date')"; 
+	$q ="INSERT INTO OGs (last_login) VALUES ('$date') WHERE username='$username'"; 
 	$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
 	
 	header("location: login.php");
