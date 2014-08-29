@@ -86,7 +86,7 @@
 			echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
 			echo '<tr>';    
 			$time = strtotime($info2->date);
-			$submitted = date("m/d/y at g:i", $time);
+			$submitted = date("m/d/y g:i", $time);
 			echo '<td colspan="2"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></td>'; 
 			echo '</tr>';
 			echo '<tr>'; 
