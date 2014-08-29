@@ -12,8 +12,21 @@
 		<div id="login">
 			<div id="box">
 				<p>
-					WIP Signin Page
+					Sign Up!
 				</p>
+				<form method="post" action="">
+					<a href="signup.php">
+						<img class="profile-img" src="css/avatar_2x.png" alt="">
+					</a>
+					<p>
+						<input class="form" id="number" name="number" type="text" placeholder="Permission Key" ><br>
+						<input class="form" id="Username" name="firstName" type="text" placeholder="First Name" ><br>
+						<input class="form" id="Username" name="lastName" type="text" placeholder="Last Name" ><br>
+						<input class="form" id="Password" name="password" type="password" placeholder="Password"><br>
+						<input class="form" id="Password" name="password" type="password" placeholder="Confirm Password"><br>
+						<button type="submit" name="submit" class="btn btn-4 btn-4a icon-arrow-right">Sign Up</button>
+					</p>
+				</form>
 			</div>
 		</div><!-- end signup --> 
 	</body>
