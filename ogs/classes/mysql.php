@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 class Mysql {
 	
-	function signup($key, $fname, $lname, $username, $password, $cpassword)
+	static function signup($key, $fname, $lname, $username, $password, $cpassword)
 	{
 		if($password !== $cpassword)
 		{
@@ -56,7 +56,7 @@ class Mysql {
 		return;
 	}
 	
-	function verify($username, $password)
+	static function verify($username, $password)
 	{
 		$con=mysql_connect("localhost","KyleM","Minshall1!");
 		$db_selected = mysql_select_db('Site', $con);

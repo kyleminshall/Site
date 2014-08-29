@@ -3,16 +3,15 @@
 	$error = false;
 	
 	include('classes/membership.php');
-	$membership = new Membership();
 	
 	if(isset($_GET['status']) && $_GET['status'] == 'loggedout')
 	{
-		$membership->logOut();
+		membership::logOut();
 	}
 
 	if($_POST && !empty($_POST['key']) && !empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['cpassword']))
 	{
-		$response = $membership->signup($_POST['key'], $_POST['firstName'], $_POST['lastName'], $_POST['username'], $_POST['password'], $_POST['cpassword']);
+		$response = membership::signup($_POST['key'], $_POST['firstName'], $_POST['lastName'], $_POST['username'], $_POST['password'], $_POST['cpassword']);
 		$error = false;	
 	}
 	else

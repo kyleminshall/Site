@@ -2,16 +2,15 @@
 	session_start();
 	
 	include('classes/membership.php');
-	$membership = new Membership();
 	
 	if(isset($_GET['status']) && $_GET['status'] == 'loggedout')
 	{
-		$membership->logOut();
+		membership::logOut();
 	}
 
 	if($_POST && !empty($_POST['username']) && !empty($_POST['password']))
 	{
-		$response = $membership->validateUser($_POST['username'], $_POST['password']);	
+		$response = membership::validateUser($_POST['username'], $_POST['password']);	
 	}
 ?>
 

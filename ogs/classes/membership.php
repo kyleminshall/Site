@@ -4,10 +4,9 @@ include('mysql.php');
 
 class Membership 
 {
-	function signup($key, $fname, $lname, $username, $password, $cpassword)
+	static function signup($key, $fname, $lname, $username, $password, $cpassword)
 	{
-		$mysql = New Mysql();
-		$ensure_credentials = $mysql->signup($key, $fname, $lname, $username, $password, $cpassword);
+		$ensure_credentials = mysql::signup($key, $fname, $lname, $username, $password, $cpassword);
 		
 		if(is_null($ensure_credentials))
 		{
@@ -19,7 +18,7 @@ class Membership
 		}
 	}
 	
-	function logOut()
+	static function logOut()
 	{
 		if(isset($_SESSION['status']))
 		{
@@ -33,7 +32,7 @@ class Membership
 		}
 	}
 	
-	function confirm()
+	static function confirm()
 	{
 		session_start();
 		if($_SESSION['status'] != 'authorized')
@@ -42,11 +41,10 @@ class Membership
 		}
 	}
 	
-	function validateUser($username, $password)
+	static function validateUser($username, $password)
 	{
-		$mysql = New Mysql();
 		$password = md5($password);
-		$ensure_credentials = $mysql->verify($username, $password);
+		$ensure_credentials = mysql::verify($username, $password);
 		
 		if(!is_null($ensure_credentials))
 		{
