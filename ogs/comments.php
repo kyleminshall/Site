@@ -31,7 +31,7 @@
 	{ 
 		if(!addslashes($_POST['comment'])) 
 		{
-			die('<u>ERROR:</u> cannot add comment if you do not enter one.'); 
+			die('<u>ERROR:</u> cannot post if you don\'t enter anything.'); 
 		}
 		
 		$date = date("Y-m-d H:i:s");
@@ -49,6 +49,29 @@
 		//refresh page so they can see new comment 
 		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
 
+	} 
+	else if(isset($_POST['comment'])) 
+	{ 
+		if(!addslashes($_POST['reply'])) 
+		{
+			die('<u>ERROR:</u> cannot add comment if you don\'t enter anything'); 
+		}
+		
+		$post_num = $_POST['post']; //Knowing which post the user replied to
+		$date = date("Y-m-d H:i:s");
+		
+		//add comment 
+		$q ="INSERT INTO replies (post, username, reply, date)  
+			VALUES ('$post_num', '$username', '".addslashes(nl2br($_POST['reply'], false))."','$date')"; 
+
+		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
+		if(!$q2) 
+		{
+			die(mysql_error()); 
+		}
+
+		//refresh page so they can see new comment 
+		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
 	} 
 	else 
 	{  //display form 
@@ -85,6 +108,7 @@
 	{     
 		echo '<table style="border-collapse:collapse;table-layout:fixed;" width="500px" cellpadding="10px">'; 
 		echo '<tr>';    
+		$post_number = $info2->$id;
 		$time = strtotime($info2->date);
 		$submitted = date("m/d/y \a\\t g:i A", $time);
 		echo '<td style="width:65%"><p style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
@@ -98,7 +122,13 @@
 		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:left">Like</p></td>'; 
 		echo '</tr>';
 		echo '<tr style="background-color: #f6f6f6">';
-		echo '<td colspan="3" style="padding:5px"><form style="margin:0;" name="like" action="" method="post"><textarea name="reply" placeholder="Reply..." style="width:90%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea><input style="vertical-align:top;" type="submit" value="Post"></form></td>';
+		echo '<td colspan="3" style="padding:5px">
+				<form style="margin:0;" name="like" action="" method="post">
+					<textarea name="reply" placeholder="Reply..." style="width:90%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea>
+					<input type="hidden" name="post" value="'.$post_number.'">
+					<input style="vertical-align:top;" type="submit" name="comment" value="Post">
+				</form>
+			  </td>';
 		echo '</tr>';
 		echo '</table>';
 		echo '<br><br>';
