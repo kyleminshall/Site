@@ -49,7 +49,8 @@ class Membership
 		if(!is_null($ensure_credentials))
 		{
 			$_SESSION['status'] = 'authorized';
-			header("location: index.php?user=". $ensure_credentials . "");
+			$_SESSION['username'] = $username;
+			header("location: index.php");
 		} 
 		else 
 		{

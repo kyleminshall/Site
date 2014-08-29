@@ -31,7 +31,7 @@ $membership->confirm();
 			<p>
 				<?php 
 				
-					$username = $_GET['user'];
+					$username = $_SESSION['username'];
 					$name_row = mysql_fetch_assoc(mysql_query("SELECT name FROM OGs WHERE username='$username'"));
 					$name = $name_row['name'];
 					$admin_row = mysql_fetch_assoc(mysql_query("SELECT is_admin as admin FROM OGs WHERE username='$username'"));
