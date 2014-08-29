@@ -14,6 +14,6 @@
 		    );
 		}
 	}
-	
+	$_SESSION['status'] = 'unauthorized';
 	session_destroy();
 ?>
