@@ -45,6 +45,7 @@ class Membership
 	function validateUser($username, $password)
 	{
 		$mysql = New Mysql();
+		$password = md5($password);
 		$ensure_credentials = $mysql->verify($username, $password);
 		
 		if(!is_null($ensure_credentials))
