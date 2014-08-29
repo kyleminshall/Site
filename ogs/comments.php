@@ -97,8 +97,8 @@
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;">Like &nbsp;&nbsp;&nbsp; Comment</p></td>'; 
 		echo '</tr>';
-		echo '<tr style="background-color: #f6f6f6">';
-		echo '<td><textarea name="reply" placeholder="Reply..." style="width:500px;resize:none;border:none;padding:10px;background:transparent;font-size:14px" rows="2" wrap="physical"></textarea></textarea></td>';
+		echo '<tr colspan="3" style="background-color: #f6f6f6">';
+		echo '<td><textarea name="reply" placeholder="Reply..." style="width:500px;resize:none;border:none;background:transparent;font-size:12px" rows="2" wrap="physical"></textarea></textarea></td>';
 		echo '</tr>';
 		echo '</table>';
 		echo '<br><br>';
