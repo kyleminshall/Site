@@ -85,7 +85,7 @@
 		{     
 			echo '<table style="border-collapse:collapse;" width="500px" cellpadding="10px">'; 
 			echo '<tr style="border:1px solid black;">';    
-			echo '<td colspan="2"><b>'.stripslashes($info2->name).'</b> ('.$info2->date.')</td>'; 
+			echo '<td colspan="2"><b>'.stripslashes($info2->username).'</b> ('.$info2->date.')</td>'; 
 			echo '</tr>';
 			echo '<tr style="border:1px solid black;">'; 
 			echo '<td colspan="2"> <p text-align="center" style="font-size:18px">'.stripslashes($info2->comment).'</p><br></td>'; 
