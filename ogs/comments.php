@@ -62,7 +62,6 @@
 					</tr> 
 					<tr>  
 						<td>
-							<input type="reset" value="Reset Fields">      
 							<input type="submit" name="submit" value="Add Comment">
 						</td> 
 					</tr> 
