@@ -22,6 +22,7 @@
 	
 	$username = $_SESSION['username'];
 	
+	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
 	echo '<body style="font-family:helvetica">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
 	
@@ -101,6 +102,11 @@
 				</table> 
 			</form>
 		</div> 
+		<div align="left">
+			<p style="font-size:22px; text-decoration:none">
+				<a style="text-decoration:none" href="index.php"><button class="turquoise-flat-button" style="background:#FC4144">Go Back</button></a>
+			</p>
+		</div>
 		<?php
 	} // end else 
 	?> 
