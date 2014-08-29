@@ -36,6 +36,14 @@ membership::confirm();
 				?>
 				Successfully authenticated user: <h1><b> <?php echo $name ?> </b></h1>
 			</p>
+			<p>
+				<?php
+					
+					$last_login_row = mysql_fetch_assoc(mysql_query("SELECT last_login FROM OGs WHERE username='$username'"));
+					$last_login = $last_login_row['last_login'];
+				?>
+				Last login: <?php echo $last_login;?>
+			</p>
 			<p style="font-size:22px; text-decoration:none">
 				<a style="text-decoration:none" href="comments.php"><button class="turquoise-flat-button">Comments</button></a>
 			</p>
