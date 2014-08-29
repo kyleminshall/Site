@@ -93,9 +93,6 @@
 		echo '<td colspan="2"> <p text-align="center" style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
 		echo '</tr>';
 		echo '<tr>';
-		echo '<td>Likes : '.($info2->likes).'</td>';
-		echo '</tr>';
-		echo '<tr>';
 		echo '<td style="padding:0px;"><textarea name="reply" placeholder="Reply..." style="width:500px;padding:0px;margin:0px;resize:none;" rows="2" wrap="physical"></textarea></textarea></td>';
 		echo '</tr>';
 		echo '</table>';
