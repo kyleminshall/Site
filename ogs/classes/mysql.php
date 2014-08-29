@@ -24,7 +24,7 @@ class Mysql {
 		if($password === $row['password'])
 		{
 			mysql_close($con);
-			return $row['id']." ".$row['name'];
+			return $row['username'];
 		}
 		else
 		{
