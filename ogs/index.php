@@ -52,7 +52,6 @@ membership::confirm();
 				?>
 			</p>
 			<p style="font-size:22px; text-decoration:none">
-				Don't touch this yet. <br>
 				<a style="text-decoration:none" href="comments.php"><button class="turquoise-flat-button">Comments</button></a>
 			</p>
 			<p style="font-size:22px; text-decoration:none">
