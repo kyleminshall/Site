@@ -12,7 +12,7 @@
 		<div id="login">
 			<div id="box">
 				<p>
-					<h1>Sign Up!</h1>
+					<h1 style="color:#494949">Sign Up!</h1>
 				</p>
 				<form method="post" action="">
 					<p>
