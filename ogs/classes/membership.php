@@ -7,7 +7,7 @@ class Membership
 	function signup($key, $fname, $lname, $username, $password, $cpassword)
 	{
 		$mysql = New Mysql();
-		$ensure_credentials = $mysql->verify($key, $fname, $lname, $username, $password, $cpassword);
+		$ensure_credentials = $mysql->signup($key, $fname, $lname, $username, $password, $cpassword);
 		
 		if(is_null($ensure_credentials))
 		{
@@ -39,6 +39,22 @@ class Membership
 		if($_SESSION['status'] != 'authorized')
 		{
 			header("location: login.php");
+		}
+	}
+	
+	function validateUser($username, $password)
+	{
+		$mysql = New Mysql();
+		$ensure_credentials = $mysql->verify($username, $password);
+		
+		if(!is_null($ensure_credentials))
+		{
+			$_SESSION['status'] = 'authorized';
+			header("location: index.php?user=". $ensure_credentials . "");
+		} 
+		else 
+		{
+			return "Incorrect Username or Password";
 		}
 	}
 }
