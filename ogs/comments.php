@@ -37,31 +37,22 @@
 	{ 
 		$comment = addslashes(nl2br($_POST['comment']));
 		
+		//Request post submit
 		submit::post($username,$comment);
 	
 		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
 	} 
 	else if(isset($_POST['comment'])) 
 	{ 
-		if(!addslashes($_POST['reply'])) 
-		{
-			die('<u>ERROR:</u> cannot add comment if you don\'t enter anything'); 
-		}
+		$reply = addslashes($_POST['reply']);
 		
-		$post_num = $_POST['post']; //Knowing which post the user replied to
-		$date = date("Y-m-d H:i:s");
+		//Knowing which post the user replied to
+		$post_num = $_POST['post']; 
 		
-		//add comment 
-		$q ="INSERT INTO replies (post, username, reply, date)  
-			VALUES ('$post_num', '$username', '".addslashes(nl2br($_POST['reply'], false))."','$date')"; 
+		//Add comment 
+		submit::comment($username, $post_num, $reply);
 
-		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
-		if(!$q2) 
-		{
-			die(mysql_error()); 
-		}
-
-		//refresh page so they can see new comment 
+		//Refresh page so they can see new comment 
 		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
 	} 
 	else 

@@ -6,7 +6,7 @@
 		{
 			if(!addslashes($comment)) 
 			{
-				return false; //breaks because of an error
+				return; //breaks because of an error
 			}
 			
 			$con=mysql_connect("localhost","KyleM","Minshall1!");
@@ -23,8 +23,29 @@
 			{
 				die(mysql_error()); 
 			}
+		}
+		
+		static function comment($username, $post, $reply)
+		{
+			if($reply) 
+			{
+				return; 
+			}
 			
-			return true; //successful submission
+			$date = date("Y-m-d H:i:s");
+			
+			$con=mysql_connect("localhost","KyleM","Minshall1!");
+			$db_selected = mysql_select_db("Site", $con);
+			
+			$q ="INSERT INTO replies (post, username, reply, date)  
+				VALUES ('$post', '$username', '$reply','$date')"; 
+			
+			$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
+			
+			if(!$q2) 
+			{
+				die(mysql_error()); 
+			}
 		}
 	}
 
