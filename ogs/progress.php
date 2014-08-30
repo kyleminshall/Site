@@ -29,14 +29,14 @@ membership::confirm();
 		<div id="main" style="width:500px;margin-left:-250px;">
 			<p>
 				<br><br><br><br><br>
-				Current features that are being worked on:<br>
+				<b>Current features that are being worked on:</b><br>
 				<br>
 				- Bug Fixes (This site is young. Lots of bugs.)<br>
-				- Security enhancements (Prepared statements for SQL, XSS protection)
+				- Security enhancements (Prepared statements for SQL, XSS protection)<br>
 				- Detecting hyperlinks for commented/posted links.<br>
-				- Ability to delete posts
-				- Ability to delete comments
-				- Ability to edit posts (Not going to allow comments being edited)
+				- Ability to delete posts<br>
+				- Ability to delete comments<br>
+				- Ability to edit posts (Not going to allow comments being edited)<br>
 			</p>
 			<p style="font-size:22px; text-decoration:none">
 				<a style="text-decoration:none" href="index.php"><button class="turquoise-flat-button" style="background:#FC4144">Go Back</button></a>
