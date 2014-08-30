@@ -17,10 +17,10 @@ function like_get(post_id) {
 
 function like_update(post_id)
 {
-    if ($('#like_'+$post_id).html() == 'Like') {
-        $('#like_'+$post_id)('Unlike');
+    if ($('#like_'+$post_id).text() == 'Like') {
+        $('#like_'+$post_id).text('Unlike');
     }
     else {
-        $('#like_'+$post_id).html('Like');
+        $('#like_'+$post_id).text('Like');
     }
 }
