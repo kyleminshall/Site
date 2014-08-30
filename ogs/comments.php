@@ -84,6 +84,7 @@
 		echo '<hr width="50%" noshade>'; 
 	} // end else 
 	echo '<div align="center">';
+	echo '<br><br>';
 	while($info2 = mysql_fetch_object($info)) 
 	{     
 		echo '<table style="border-collapse:collapse;table-layout:fixed;box-shadow: 0px 0px 5px #484848;" width="500px" cellpadding="10px">'; 
