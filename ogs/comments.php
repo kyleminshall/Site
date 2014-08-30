@@ -135,7 +135,7 @@
 		$replies = mysql_query($rep) or trigger_error(mysql_error())." ".$rep;
 		while($replies2 = mysql_fetch_object($replies)) 
   		echo '<tr>'; 
-  		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes($replies->reply).'</p><br></td>'; 
+  		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes($replies2->reply).'</p><br></td>'; 
   		echo '</tr>';
 		echo '</tr>';
 		echo '</table>';
