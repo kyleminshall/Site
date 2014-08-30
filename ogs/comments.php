@@ -30,6 +30,8 @@
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
 	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
+	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
+	echo '<script type="text/javascript" src="js/like.js"></script>';
 
 	if(isset($_POST['submit'])) 
 	{ 
@@ -103,7 +105,7 @@
 		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
 		echo '</tr>';
 		echo '<tr>'; 
-		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:left">Like</p></td>'; 
+		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:left"><a class="Like" href="#" onclick="like_add(',$post_number,')">Like</a></p></td>'; 
 		echo '</tr>';
 		while($replies2 = mysql_fetch_object($replies)) 
 		{
