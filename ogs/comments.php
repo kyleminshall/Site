@@ -4,9 +4,6 @@
 	require_once 'classes/membership.php';
 	membership::confirm();
 
-	ini_set('display_errors',1);
-	error_reporting(E_ALL);
-
 	//connect to your database 
 	$con=mysql_connect("localhost","KyleM","Minshall1!");
 	$db_selected = mysql_select_db("Site", $con);
