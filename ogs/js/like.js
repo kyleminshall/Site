@@ -6,12 +6,10 @@ function like_add(post_id){
 			alert(data);
 		}
 	});
-	return false;
 }
 
 function like_get(post_id) {
 	$.post('classes/like_get.php', {post_id:post_id}, function(data) {
 		$('#post_'+post_id+'_likes').text(data);
 	});
-	return false;
 }
