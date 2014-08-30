@@ -41,7 +41,8 @@
 		
 		if(!$no_error)
 		{
-			alert("You can't post without writing anything!");
+			$message = "You can't post without writing anything!";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else
 		{
