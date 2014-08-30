@@ -27,7 +27,7 @@
 		
 		static function comment($username, $post, $reply)
 		{
-			if($reply) 
+			if(!addslashes($reply)) 
 			{
 				return; 
 			}
