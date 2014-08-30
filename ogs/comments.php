@@ -30,11 +30,11 @@
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
 	echo '<script>
 			$(".like").click(function(e) {
-			    if ($(this).text() == "Like") {
-			        $(this).text("Unlike");
+			    if ($(this).html() == "Like") {
+			        $(this).html("Unlike");
 			    }
 			    else {
-			        $(this).text("Like");
+			        $(this).html("Like");
 			    }
 			    return false;
 			});
