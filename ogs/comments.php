@@ -10,6 +10,8 @@
 	
 	//query comments for this page of this article 
 	$inf = "SELECT * FROM posts ORDER BY date DESC"; 
+
+	
 	
 	$info = mysql_query($inf) or trigger_error(mysql_error()." ".$inf); 
 	
@@ -129,6 +131,12 @@
 					<input style="vertical-align:top;" type="submit" name="comment" value="Post">
 				</form>
 			  </td>';
+		$rep = "SELECT * FROM replies WHERE post='$post_number'";
+		$replies = mysql_query($rep) or trigger_error(mysql_error())." ".$rep;
+		while($replies2 = mysql_fetch_object($replies)) 
+  		echo '<tr>'; 
+  		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes($replies->reply).'</p><br></td>'; 
+  		echo '</tr>';
 		echo '</tr>';
 		echo '</table>';
 		echo '<br><br>';
