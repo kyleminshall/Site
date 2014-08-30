@@ -1,3 +1,3 @@
 <?php
-	return '22';	
+	echo '22';	
 ?>
