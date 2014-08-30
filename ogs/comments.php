@@ -43,8 +43,7 @@
 		{
 			echo '<script language="javascript">';
 			echo 'alert("You can\'t post without writing anything!")';
-			echo '</script>';
-			header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
+			echo '</script>'; 
 		}
 		else
 		{
