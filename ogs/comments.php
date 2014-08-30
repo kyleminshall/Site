@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	
+
+	require_once 'classes/membership.php';
 	membership::confirm();
 
 	ini_set('display_errors',1);
