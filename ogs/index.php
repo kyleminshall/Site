@@ -18,14 +18,6 @@ membership::confirm();
 		<link rel="stylesheet" type="text/css" href="css/default.css">
 	</head>
 	<body style="background-image: none;">
-		<div id="top">
-			<center>
-				<p>
-					Website Version : 0.2.0<br>
-					The OG Social Network
-				</p>
-			</center>
-		</div>
 		<div id="main">
 			<p>
 				<?php 
