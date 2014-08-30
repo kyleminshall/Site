@@ -105,7 +105,21 @@
 		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
 		echo '</tr>';
 		echo '<tr>'; 
-		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:left"><span id="like_button"><a style="text-decoration:none;color:#1F80C9;" class="Like" href="#" onclick="like_add('.$post_number.'); return false;">Like</span></a></p></td>'; 
+		echo '<td colspan="3" style="padding-left: 10px;">
+				<p style="font-size:12px;padding:0;text-align:left">
+					<span id="like_button">
+						<a class="pushme" style="text-decoration:none;color:#1F80C9;" class="Like" href="#" onclick="like_add('.$post_number.'); return false;">Like
+						</a>
+					    <script>
+					        $(".pushme").click(function () {
+					            $(this).text(function(i, v){
+					               return v === "Like" ? "Unlike" : "Like"
+					            })
+					        });
+					    </script>
+					</span>
+				</p>
+			  </td>'; 
 		echo '</tr>';
 		while($replies2 = mysql_fetch_object($replies)) 
 		{
