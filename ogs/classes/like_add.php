@@ -1,3 +1,3 @@
 <?php
-	echo 'success';
+	return 'success';
 ?>
