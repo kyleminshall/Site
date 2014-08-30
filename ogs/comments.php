@@ -113,7 +113,7 @@
 					    <script>
 					        $(".pushme").click(function () {
 					            $(this).text(function(i, v){
-					               return v === "Like" ? "Unlike" : "Like"
+					               return v == "Like" ? "Unlike" : "Like";
 					            })
 					        });
 					    </script>
