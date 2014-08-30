@@ -37,14 +37,8 @@
 	{ 
 		$comment = addslashes(nl2br($_POST['comment']));
 		
-		$no_error = submit::post($username,$comment);
-		
-		if(!$no_error)
-		{
-			echo '<script language="javascript">';
-			echo 'alert("You can\'t post without writing anything!")';
-			echo '</script>'; 
-		}
+		submit::post($username,$comment);
+	
 		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
 	} 
 	else if(isset($_POST['comment'])) 
