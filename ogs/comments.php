@@ -101,6 +101,7 @@
 				</table> 
 			</form>
 		</div> 
+		<br>
 		<?php
 		echo '<hr width="50%" noshade>'; 
 	} // end else 
