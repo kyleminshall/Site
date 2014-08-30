@@ -2,6 +2,7 @@
 	session_start();
 	
 	require_once 'classes/membership.php';
+	require_once 'classes/submit.php';
 	membership::confirm();
 
 	ini_set('display_errors',1);
@@ -34,26 +35,18 @@
 
 	if(isset($_POST['submit'])) 
 	{ 
-		if(!addslashes($_POST['comment'])) 
-		{
-			die('<u>ERROR:</u> cannot post if you don\'t enter anything.'); 
-		}
+		$comment = addslashes(nl2br($_POST['comment']));
 		
-		$date = date("Y-m-d H:i:s");
+		$no_error = submit::post($username,$comment);
 		
-		//add comment 
-		$q ="INSERT INTO posts (username, comment, date)  
-			VALUES ('$username', '".addslashes(nl2br($_POST['comment'], false))."','$date')"; 
-
-		$q2 = mysql_query($q) or trigger_error(mysql_error()." ".$q); 
-		if(!$q2) 
+		if(!$no_error)
 		{
-			die(mysql_error()); 
+			alert("You can't post without writing anything!");
 		}
-
-		//refresh page so they can see new comment 
-		header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
-
+		else
+		{
+			header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
+		}
 	} 
 	else if(isset($_POST['comment'])) 
 	{ 
