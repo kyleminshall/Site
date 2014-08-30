@@ -113,8 +113,11 @@
 		$post_number = $info2->id;
 		$time = strtotime($info2->date);
 		$submitted = date("m/d/y \a\\t g:i A", $time);
+		$rep = "SELECT * FROM replies WHERE post='$info2->id'";
+		$replies = mysql_query($rep) or trigger_error(mysql_error())." ".$rep;
+		$count = mysql_num_rows($replies);
 		echo '<td style="width:65%"><p style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
-		echo '<td style="width:30%;padding:0;"><p style="font-size:14px;color:000;text-align:right">Likes :<br>Comments :</p></td>'; 
+		echo '<td style="width:30%;padding:0;"><p style="font-size:14px;color:000;text-align:right">Likes :<br>Comments : '.$count.'</p></td>'; 
 		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center">'.$info2->likes.'<br> 0 </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
@@ -123,8 +126,6 @@
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:left">Like</p></td>'; 
 		echo '</tr>';
-		$rep = "SELECT * FROM replies WHERE post='$info2->id'";
-		$replies = mysql_query($rep) or trigger_error(mysql_error())." ".$rep;
 		while($replies2 = mysql_fetch_object($replies)) 
 		{
   		echo '<tr style="background-color:#f6f6f6;">'; 
