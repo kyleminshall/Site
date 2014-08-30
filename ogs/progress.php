@@ -26,8 +26,9 @@ membership::confirm();
 				</p>
 			</center>
 		</div>
-		<div id="main">
+		<div id="main" style="width:500px;margin-left:-250px;">
 			<p>
+				<br><br><br><br><br>
 				Current features that are being worked on:<br>
 				<br>
 				- Bug Fixes (This site is young. Lots of bugs.)<br>
