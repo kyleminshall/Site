@@ -43,6 +43,7 @@
 		{
 			$message = "You can't post without writing anything!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
+			header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']); 
 		}
 		else
 		{
