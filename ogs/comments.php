@@ -15,8 +15,6 @@
 	//query comments for this page of this article 
 	$inf = "SELECT * FROM posts ORDER BY date DESC"; 
 
-	
-	
 	$info = mysql_query($inf) or trigger_error(mysql_error()." ".$inf); 
 	
 	if(!$info)
