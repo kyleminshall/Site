@@ -17,11 +17,11 @@ function like_get(post_id) {
 
 function like_update(post_id)
 {
-    if ($(this).html() == 'Like') {
-        $(this).html('Unlike');
+    if ($('#like_'+$post_id).html() == 'Like') {
+        $('#like_'+$post_id)('Unlike');
     }
     else {
-        $(this).html('Like');
+        $('#like_'+$post_id).html('Like');
     }
     return false;
 }
