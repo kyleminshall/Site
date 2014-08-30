@@ -23,5 +23,4 @@ function like_update(post_id)
     else {
         $('#like_'+$post_id).html('Like');
     }
-    return false;
 }
