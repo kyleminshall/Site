@@ -47,6 +47,9 @@ membership::confirm();
 				<a style="text-decoration:none" href="comments.php"><button class="turquoise-flat-button">Comments</button></a>
 			</p>
 			<p style="font-size:22px; text-decoration:none">
+				<a style="text-decoration:none" href="progress.php"><button class="turquoise-flat-button">Work in Progress</button></a>
+			</p>
+			<p style="font-size:22px; text-decoration:none">
 				<a style="text-decoration:none" href="logout.php"><button class="turquoise-flat-button" style="background:#FC4144">Log Out</button></a>
 			</p>
 		</div><!-- end main --> 
