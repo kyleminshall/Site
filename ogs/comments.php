@@ -25,13 +25,26 @@
 	$info_rows = mysql_num_rows($info); 
 	
 	$username = $_SESSION['username'];
-	
+	echo '<head>';
 	echo '<title>Posts</title>';
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
+	echo '<script>
+			$(".like").click(function(e) {
+			    if ($(this).html() == "Like") {
+			        $(this).html("Unlike");
+			    }
+			    else {
+			        $(this).html("Like");
+			    }
+			    return false;
+			});
+	      </script>';
+  	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
+  	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
+	echo '</head>';
 	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
-	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
-	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
+
 
 	if(isset($_POST['submit'])) 
 	{ 
@@ -109,17 +122,6 @@
 				<p style="font-size:12px;padding:0;text-align:left">
 					<span id="like_button">
 						<a class="like" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.'); return false;">Like</a>
-					    	<script>
-								$(".like").click(function(e) {
-								    if ($(this).html() == "Like") {
-								        $(this).html("Unlike");
-								    }
-								    else {
-								        $(this).html("Like");
-								    }
-								    return false;
-								});
-						    </script>
 					</span>
 				</p>
 			  </td>'; 
