@@ -28,17 +28,6 @@
 	echo '<head>';
 	echo '<title>Posts</title>';
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
-	echo '<script>
-			$(".like").click(function(e) {
-			    if ($(this).html() == "Like") {
-			        $(this).html("Unlike");
-			    }
-			    else {
-			        $(this).html("Like");
-			    }
-			    return false;
-			});
-	      </script>';
   	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
   	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
 	echo '</head>';
@@ -121,7 +110,7 @@
 		echo '<td colspan="3" style="padding-left: 10px;">
 				<p style="font-size:12px;padding:0;text-align:left">
 					<span id="like_button">
-						<a class="like" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.'); return false;">Like</a>
+						<a class="like_'.$post_number.'" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.');like_update('.$post_number.');return false;">Like</a>
 					</span>
 				</p>
 			  </td>'; 
