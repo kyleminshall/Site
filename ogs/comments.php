@@ -121,7 +121,6 @@
 							    return false;
 							});
 					    </script>
-					</span>
 				</p>
 			  </td>'; 
 		echo '</tr>';
