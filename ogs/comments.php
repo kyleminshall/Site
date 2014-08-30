@@ -87,7 +87,7 @@
 	echo '<h2>Posts:</h2>'; 
 	while($info2 = mysql_fetch_object($info)) 
 	{     
-		echo '<table style="border-collapse:collapse;table-layout:fixed;box-shadow: 0px 10px 20px #484848;" width="500px" cellpadding="10px">'; 
+		echo '<table style="border-collapse:collapse;table-layout:fixed;box-shadow: 0px 0px 5px #484848;" width="500px" cellpadding="10px">'; 
 		echo '<tr>';    
 		$post_number = $info2->id;
 		$time = strtotime($info2->date);
