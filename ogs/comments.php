@@ -108,14 +108,18 @@
 		echo '<td colspan="3" style="padding-left: 10px;">
 				<p style="font-size:12px;padding:0;text-align:left">
 					<a style="text-decoration:none;color:#1F80C9;" class="Like" href="#" onclick="like_add('.$post_number.'); return false;">
-						<span class="pushme" id="like_button">Like<span>
+						<span class="like" id="like_button">Like<span>
 						</a>
 					    <script>
-					        $(".pushme").click(function () {
-					            $(this).text(function(i, v){
-					               return v == "Like" ? "Unlike" : "Like";
-					            })
-					        });
+							$(".like").click(function(e) {
+							    if ($(this).html() == "Like") {
+							        $(this).html("Unlike");
+							    }
+							    else {
+							        $(this).html("Like");
+							    }
+							    return false;
+							});
 					    </script>
 					</span>
 				</p>
