@@ -1,6 +1,6 @@
 function like_add(post_id){
 	$.post('classes/like_add.php', {post_id:post_id}, function(data) {
-		if(data == 'success') {
+		if(data == "success") {
 			like_get(post_id);
 		} else {
 			alert(data);

@@ -3,7 +3,6 @@
 	
 	require_once 'classes/membership.php';
 	require_once 'classes/submit.php';
-	include 'classes/like_add.php';
 	membership::confirm();
 
 	ini_set('display_errors',1);
