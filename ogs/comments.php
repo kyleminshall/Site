@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	
-
 	require_once 'classes/membership.php';
 	membership::confirm();
 

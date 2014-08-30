@@ -20,7 +20,6 @@ class Membership
 	
 	static function confirm()
 	{
-		session_start();
 		if($_SESSION['status'] != 'authorized')
 		{
 			header("location: login.php");
