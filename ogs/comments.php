@@ -131,7 +131,7 @@
 					<input style="vertical-align:top;" type="submit" name="comment" value="Post">
 				</form>
 			  </td>';
-		$rep = "SELECT * FROM replies WHERE post='$post_number'";
+		$rep = "SELECT * FROM replies WHERE post='$info2->id'";
 		$replies = mysql_query($rep) or trigger_error(mysql_error())." ".$rep;
 		while($replies2 = mysql_fetch_object($replies)) 
   		echo '<tr>'; 
