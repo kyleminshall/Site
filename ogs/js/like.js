@@ -2,6 +2,7 @@ function like_add(post_id){
 	$.post('classes/like_add.php', {post_id:post_id}, function(data) {
 		if(data == "success") {
 			like_get(post_id);
+			like_update(post_id);
 		} else {
 			alert(data);
 		}
@@ -16,13 +17,11 @@ function like_get(post_id) {
 
 function like_update(post_id)
 {
-	$('.like_'+post_id).click(function(e) {
-	    if ($(this).html() == 'Like') {
-	        $(this).html('Unlike');
-	    }
-	    else {
-	        $(this).html('Like');
-	    }
-	    return false;
-	});
+    if ($(this).html() == 'Like') {
+        $(this).html('Unlike');
+    }
+    else {
+        $(this).html('Like');
+    }
+    return false;
 }

@@ -109,9 +109,9 @@
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;">
 				<p style="font-size:12px;padding:0;text-align:left">
-					<span id="like_button">
-						<a class="like_'.$post_number.'" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.');like_update('.$post_number.');return false;">Like</a>
-					</span>
+					<a style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.');like_update('.$post_number.');return false;">
+						<span id="like_'.$post_number.'">Like</span>
+					</a>
 				</p>
 			  </td>'; 
 		echo '</tr>';
