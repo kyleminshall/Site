@@ -123,14 +123,6 @@
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:left">Like</p></td>'; 
 		echo '</tr>';
-		echo '<tr style="background-color: #f6f6f6">';
-		echo '<td colspan="3" style="padding:5px">
-				<form style="margin:0;" name="like" action="" method="post">
-					<textarea name="reply" placeholder="Reply..." style="width:90%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea>
-					<input type="hidden" name="post" value="'.$post_number.'">
-					<input style="vertical-align:top;" type="submit" name="comment" value="Post">
-				</form>
-			  </td>';
 		$rep = "SELECT * FROM replies WHERE post='$info2->id'";
 		$replies = mysql_query($rep) or trigger_error(mysql_error())." ".$rep;
 		while($replies2 = mysql_fetch_object($replies)) 
@@ -138,7 +130,15 @@
   		echo '<tr>'; 
   		echo '<td colspan="3"> <p style="font-size:14px;color:000;margin:0">'.stripslashes($replies2->username).' : '.stripslashes($replies2->reply).'</p></td>'; 
   		echo '</tr>';
-		}	
+		}
+		echo '<tr style="background-color: #f6f6f6">';
+		echo '<td colspan="3" style="padding:5px">
+				<form style="margin:0;" name="like" action="" method="post">
+					<textarea name="reply" placeholder="Reply..." style="width:90%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea>
+					<input type="hidden" name="post" value="'.$post_number.'">
+					<input style="vertical-align:top;" type="submit" name="comment" value="Post">
+				</form>
+			  </td>';	
 		echo '</tr>';
 		echo '</table>';
 		echo '<br><br>';
