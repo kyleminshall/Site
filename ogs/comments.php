@@ -107,8 +107,8 @@
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;">
 				<p style="font-size:12px;padding:0;text-align:left">
-					<span id="like_button">
-						<a class="pushme" style="text-decoration:none;color:#1F80C9;" class="Like" href="#" onclick="like_add('.$post_number.'); return false;">Like
+					<a style="text-decoration:none;color:#1F80C9;" class="Like" href="#" onclick="like_add('.$post_number.'); return false;">
+						<span class="pushme" id="like_button">Like<span>
 						</a>
 					    <script>
 					        $(".pushme").click(function () {
