@@ -3,6 +3,7 @@
 	
 	require_once 'classes/membership.php';
 	require_once 'classes/submit.php';
+	include 'classes/like_add.php';
 	membership::confirm();
 
 	ini_set('display_errors',1);
@@ -99,7 +100,7 @@
 		$count = mysql_num_rows($replies);
 		echo '<td style="width:65%"><p style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
 		echo '<td style="width:30%;padding:0;"><p style="font-size:14px;color:000;text-align:right">Likes :<br>Comments :</p></td>'; 
-		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center">'.$info2->likes.'<br>'.$count.' </p></td>';
+		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center"><span id="article_'.$post_number.'_likes">0</span><br>'.$count.' </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
 		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
