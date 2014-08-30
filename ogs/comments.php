@@ -128,7 +128,7 @@
 		while($replies2 = mysql_fetch_object($replies)) 
 		{
   		echo '<tr style="background-color:#f6f6f6;">'; 
-  		echo '<td colspan="3"> <p style="font-size:14px;color:000;margin:0">'.stripslashes($replies2->username).' : '.stripslashes($replies2->reply).'</p></td>'; 
+  		echo '<td colspan="3"> <p style="font-size:14px;color:000;margin:0"><b>'.stripslashes($replies2->username).'</b> : '.stripslashes($replies2->reply).'</p></td>'; 
   		echo '</tr>';
 		}
 		echo '<tr style="background-color:#f6f6f6;border-top:1px solid black;">';
