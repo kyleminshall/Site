@@ -131,7 +131,7 @@
   		echo '<td colspan="3"> <p style="font-size:14px;color:000;margin:0">'.stripslashes($replies2->username).' : '.stripslashes($replies2->reply).'</p></td>'; 
   		echo '</tr>';
 		}
-		echo '<tr style="background-color: #f6f6f6">';
+		echo '<tr style="background-color: #f6f6f6">;border-top: 1px solid black;';
 		echo '<td colspan="3" style="padding:5px">
 				<form style="margin:0;" name="like" action="" method="post">
 					<textarea name="reply" placeholder="Reply..." style="width:90%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea>
