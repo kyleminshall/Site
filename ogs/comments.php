@@ -32,7 +32,7 @@
 	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
 	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
-	echo '<script type="text/javascript" src="js/like.js"></script>';
+	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
 
 	if(isset($_POST['submit'])) 
 	{ 
@@ -100,13 +100,13 @@
 		$count = mysql_num_rows($replies);
 		echo '<td style="width:65%"><p style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
 		echo '<td style="width:30%;padding:0;"><p style="font-size:14px;color:000;text-align:right">Likes :<br>Comments :</p></td>'; 
-		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center"><span id="article_'.$post_number.'_likes">0</span><br>'.$count.' </p></td>';
+		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center"><span id="post_'.$post_number.'_likes">0</span><br>'.$count.' </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
 		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes($info2->comment).'</p><br></td>'; 
 		echo '</tr>';
 		echo '<tr>'; 
-		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:left"><a style="text-decoration:none;color:#1F80C9;" class="Like" href="#" onclick="like_add('.$post_number.')">Like</a></p></td>'; 
+		echo '<td colspan="3" style="padding-left: 10px;"><p style="font-size:12px;padding:0;text-align:left"><span id="like_button"><a style="text-decoration:none;color:#1F80C9;" class="Like" href="#" onclick="like_add('.$post_number.')">Like</span></a></p></td>'; 
 		echo '</tr>';
 		while($replies2 = mysql_fetch_object($replies)) 
 		{

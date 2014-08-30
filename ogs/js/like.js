@@ -10,6 +10,6 @@ function like_add(post_id){
 
 function like_get(post_id) {
 	$.post('classes/like_get.php', {post_id:post_id}, function(data) {
-		$('#article_'+post_id+'_likes').text(data);
+		$('#post_'+post_id+'_likes').text(data);
 	});
 }
