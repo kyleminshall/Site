@@ -48,11 +48,11 @@
 			}
 		}
 		
-		static function check_comments($reply)
+		static function check_links($content)
 		{
 			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 			// The Text you want to filter for urls
-			$text = $reply;
+			$text = $content;
 			// Check if there is a url in the text
 			if(preg_match($reg_exUrl, $text, $url)) {
 			       // make the urls hyper links
