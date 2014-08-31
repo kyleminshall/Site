@@ -117,27 +117,9 @@
 		echo '</tr>';
 		while($replies2 = mysql_fetch_object($replies)) 
 		{
-			$reply = $replies2->reply;
-			
-			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-
-			// The Text you want to filter for urls
-			$text = $reply;
-
-			// Check if there is a url in the text
-			if(preg_match($reg_exUrl, $text, $url)) {
-
-			       // make the urls hyper links
-			       $reply = preg_replace($reg_exUrl, '<a href="'.$url[0].'" rel="nofollow">'.$url[0].'</a>', $text);
-
-			} else {
-
-			       // if no urls in the text just return the text
-			       $reply = $text;
-
-			}
 			$time = strtotime($replies2->date);
 			$replied = date("m/d/y \a\\t g:i A", $time);
+			$reply = submit::check_comments($replies2->reply);
   			echo '<tr style="background-color:#f6f6f6;">'; 
   			echo '<td colspan="3"> 
 					<p style="font-size:14px;color:000;margin:0">
