@@ -21,7 +21,7 @@ membership::confirm();
 		<div id="top">
 			<center>
 				<p>
-					Website Version : 0.2.1<br>
+					Website Version : 0.2.5<br>
 					The OG Social Network
 				</p>
 			</center>
@@ -32,7 +32,6 @@ membership::confirm();
 				<br>
 				- Bug Fixes (This site is young. Lots of bugs.)<br>
 				- Security enhancements (Prepared statements for SQL, XSS protection)<br>
-				- Detecting hyperlinks for commented/posted links.<br>
 				- Ability to delete posts<br>
 				- Ability to delete comments<br>
 				- Ability to edit posts (Not going to allow comments being edited)<br>
