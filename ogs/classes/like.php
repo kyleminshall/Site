@@ -1,6 +1,11 @@
 <?php
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
+	
+	if(!isset($_SESSION)) 
+	{ 
+		session_start(); 
+	} 
 
 	function exists($post_id)
 	{
