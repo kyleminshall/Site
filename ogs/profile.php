@@ -18,9 +18,14 @@ membership::confirm();
 	</head>
 	<body style="background-image: none;">
 		<div align="center">
+			<?php
+			$username = $_SESSION['username'];
+			$sql = "SELECT profile FROM OGs WHERE username='$username'";
+			$profile_pic = mysql_result($mysql, 0);
+			?>
 			<p>
 				Current profile picture:<br><br>
-				<img src="https://s3-us-west-1.amazonaws.com/kyleminshall/Hi.jpg" alt="Profile" height="20%" width="20%">
+				<img src="<?php echo $profile_pic ?>" alt="Profile" height="20%" width="20%">
 			</p>
 		</div><!-- end main --> 
 	</body>
