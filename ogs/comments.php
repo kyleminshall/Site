@@ -112,7 +112,7 @@
 		echo '<td colspan="3" style="padding-left: 10px;">
 				<p style="font-size:12px;padding:0;text-align:left">
 					<a id="like_'.$post_number.'" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.');return false;">
-						'.$button.'
+						Like
 					</a>
 				</p>
 			  </td>'; 
