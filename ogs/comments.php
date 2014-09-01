@@ -88,7 +88,6 @@
 	} // end else 
 	echo '<div align="center">';
 	echo '<br><br>';
-	$count = 1;
 	while($info2 = mysql_fetch_object($info)) 
 	{     
 		echo '<table style="border-collapse:collapse;table-layout:fixed;box-shadow: 0px 0px 5px #484848;" width="500px" cellpadding="10px">'; 
@@ -112,13 +111,12 @@
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;">
 				<p style="font-size:12px;padding:0;text-align:left">
-					<a class="like" id="'.$count.'" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.');changeText('.$count.');return false;">
+					<a class="like" id="like_'.$post_number.'" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.');changeText('.$post_number.');return false;">
 						'.$button.'
 					</a>
 				</p>
 			  </td>'; 
 		echo '</tr>';
-		$count++;
 		while($replies2 = mysql_fetch_object($replies)) 
 		{
 			$time = strtotime($replies2->date);
