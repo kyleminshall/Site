@@ -104,7 +104,7 @@
 		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center"><span id="post_'.$post_number.'_likes">0</span><br>'.$count.' </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
-		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.submit::auto_link_text($info2->comment).'</p><br></td>'; 
+		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes(submit::auto_link_text($info2->comment)).'</p><br></td>'; 
 		echo '</tr>';
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;">
@@ -119,7 +119,7 @@
 		{
 			$time = strtotime($replies2->date);
 			$replied = date("m/d/y \a\\t g:i A", $time);
-			$reply = submit::auto_link_text($replies2->reply);
+			$reply = stripslashes(submit::auto_link_text($replies2->reply));
   			echo '<tr style="background-color:#f6f6f6;">'; 
   			echo '<td colspan="3"> 
 					<p style="font-size:14px;color:000;margin:0">
