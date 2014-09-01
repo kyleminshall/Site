@@ -23,3 +23,8 @@ function changeText(idElement) {
         element.innerHTML = 'Like';
     }
 }
+
+function initialize(idElement, wch)
+{
+	document.getElementById('like_'+idElement).innerHTML=(wch?'Like':'Unlike');
+}
