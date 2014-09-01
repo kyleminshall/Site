@@ -20,7 +20,7 @@ membership::confirm();
 		<div align="center">
 			<p>
 				Current profile picture:<br><br>
-				<img src="https://s3-us-west-1.amazonaws.com/kyleminshall/Hi.jpg" alt="Profile" height="10%" width="10%">
+				<img src="https://s3-us-west-1.amazonaws.com/kyleminshall/Hi.jpg" alt="Profile" height="20%" width="20%">
 			</p>
 		</div><!-- end main --> 
 	</body>
