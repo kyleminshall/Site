@@ -65,7 +65,7 @@
 		           $text = substr($text, 0, $last) . "&hellip;";
 		       }
 
-		       return sprintf(\'<a rel="nofollow" href="%s">%s</a>\', $url, $text);
+		       return sprintf(<a rel="nofollow" href="%s">%s</a>, $url, $text);
 		   ');
 
 		   return preg_replace_callback($pattern, $callback, $text);
