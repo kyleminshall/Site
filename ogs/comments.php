@@ -28,6 +28,7 @@
 	echo '<head>';
 	echo '<title>Main Board</title>';
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
+	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
 	echo '</head>';
 	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
@@ -145,5 +146,4 @@
 	echo '</body>';
   	echo '<script src="js/expand.js" type="text/javascript" charset="utf-8"></script>';
   	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
-	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
 ?> 
