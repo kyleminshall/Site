@@ -36,7 +36,7 @@ membership::confirm();
 				Last session ended at :<br> <?php echo $last_login;?>
 			</p>
 			<p style="font-size:22px; text-decoration:none">
-				DON'T TOUCH THIS YET. -_____-
+				DON'T TOUCH THIS YET. -_____-<br>
 				<a style="text-decoration:none" href="profile.php"><button class="turquoise-flat-button">Profile</button></a>
 			</p>
 			<p style="font-size:22px; text-decoration:none">
