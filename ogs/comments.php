@@ -26,7 +26,7 @@
 	
 	$username = $_SESSION['username'];
 	echo '<head>';
-	echo '<title>Posts</title>';
+	echo '<title>Main Board</title>';
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
   	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
   	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
