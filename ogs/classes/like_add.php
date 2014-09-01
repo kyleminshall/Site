@@ -11,7 +11,7 @@
 			delete_like($post_id);
 		}
 		add_like($post_id);
-		echo "success";
+		echo 'success';
 	}
 	
 ?>
