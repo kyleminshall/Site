@@ -21,7 +21,7 @@ membership::confirm();
 			<?php
 			$username = $_SESSION['username'];
 			$sql = "SELECT profile FROM OGs WHERE username='$username'";
-			$profile_pic = mysql_result($mysql, 0);
+			$profile_pic = mysql_result($sql, 0);
 			?>
 			<p>
 				Current profile picture:<br><br>
