@@ -9,6 +9,9 @@
 		{
 			delete_like($post_id);
 		}
-		add_like($post_id);
+		else
+		{
+			add_like($post_id);
+		}
 	}
 ?>
