@@ -14,7 +14,8 @@ function like_get(post_id) {
 
 function changeText(idElement) {
     var element = document.getElementById('like_'+idElement);
-    if (element.innerHTML == 'Like' || element.innerHTML == ' Like ')
+	document.writeln(element.innerHTML);
+    if (element.innerHTML == 'Like')
 	{
     	element.innerHTML = 'Unlike';
     } 
