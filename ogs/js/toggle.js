@@ -1,9 +1,9 @@
 $(".like").click(function(e) {
-    if ($(this).html() == "Like") {
-        $(this).html("Unlike");
+    if ($(this).innerHTML() == "Like") {
+        $(this).innerHTML("Unlike");
     }
     else {
-        $(this).html("Like");
+        $(this).innerHTML("Like");
     }
     return false;
 });​
