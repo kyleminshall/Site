@@ -48,27 +48,54 @@
 			}
 		}
 		
-		function auto_link_text($text)
-		{
-		   // a more readably-formatted version of the pattern is on http://daringfireball.net/2010/07/improved_regex_for_matching_urls
-		   $pattern  = '(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
+		function auto_link_text($text) {
+		    $pattern  = '#\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))#';
+		    return preg_replace_callback($pattern, 'auto_link_text_callback', $text);
+		}
 
-		   $callback = create_function('$matches', '
-		       $url       = array_shift($matches);
-		       $url_parts = parse_url($url);
+		function auto_link_text_callback($matches) {
+		    $max_url_length = 50;
+		    $max_depth_if_over_length = 2;
+		    $ellipsis = '&hellip;';
 
-		       $text = parse_url($url, PHP_URL_HOST) . parse_url($url, PHP_URL_PATH);
-		       $text = preg_replace("/^www./", "", $text);
+		    $url_full = $matches[0];
+		    $url_short = '';
 
-		       $last = -(strlen(strrchr($text, "/"))) + 1;
-		       if ($last < 0) {
-		           $text = substr($text, 0, $last) . "&hellip;";
-		       }
+		    if (strlen($url_full) > $max_url_length) {
+		        $parts = parse_url($url_full);
+		        $url_short = $parts['scheme'] . '://' . preg_replace('/^www\./', '', $parts['host']) . '/';
 
-		       return sprintf(\'<a rel="nofollow" href="%s">%s</a>\', $url, $text);
-		   ');
+		        $path_components = explode('/', trim($parts['path'], '/'));
+		        foreach ($path_components as $dir) {
+		            $url_string_components[] = $dir . '/';
+		        }
 
-		   return preg_replace_callback($pattern, $callback, $text);
+		        if (!empty($parts['query'])) {
+		            $url_string_components[] = '?' . $parts['query'];
+		        }
+
+		        if (!empty($parts['fragment'])) {
+		            $url_string_components[] = '#' . $parts['fragment'];
+		        }
+
+		        for ($k = 0; $k < count($url_string_components); $k++) {
+		            $curr_component = $url_string_components[$k];
+		            if ($k >= $max_depth_if_over_length || strlen($url_short) + strlen($curr_component) > $max_url_length) {
+		                if ($k == 0 && strlen($url_short) < $max_url_length) {
+		                    // Always show a portion of first directory
+		                    $url_short .= substr($curr_component, 0, $max_url_length - strlen($url_short));
+		                }
+		                $url_short .= $ellipsis;
+		                break;
+		            }
+		            $url_short .= $curr_component;
+		        }
+
+		    } else {
+		        $url_short = $url_full;
+		    }
+
+		    return "<a rel=\"nofollow\" href=\"$url_full\">$url_short</a>";
 		}
 	}
 
