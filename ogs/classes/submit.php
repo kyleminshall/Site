@@ -55,7 +55,7 @@
 
 		static function auto_link_text_callback($matches) {
 		    $max_url_length = 100;
-		    $max_depth_if_over_length = 2;
+		    $max_depth_if_over_length = 3;
 		    $ellipsis = '&hellip;';
 
 		    $url_full = $matches[0];
