@@ -48,12 +48,12 @@
 			}
 		}
 		
-		function auto_link_text($text) {
+		static function auto_link_text($text) {
 		    $pattern  = '#\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))#';
 		    return preg_replace_callback($pattern, 'auto_link_text_callback', $text);
 		}
 
-		function auto_link_text_callback($matches) {
+		static function auto_link_text_callback($matches) {
 		    $max_url_length = 50;
 		    $max_depth_if_over_length = 2;
 		    $ellipsis = '&hellip;';
