@@ -1,3 +1,13 @@
+<?php
+
+require_once 'classes/membership.php';
+
+$con=mysql_connect("localhost","KyleM","Minshall1!");
+$db_selected = mysql_select_db('Site', $con);
+
+membership::confirm();
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
