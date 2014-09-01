@@ -28,8 +28,9 @@
 	echo '<head>';
 	echo '<title>Main Board</title>';
 	echo '<link rel="stylesheet" type="text/css" href="css/default.css">';
-  	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
+  	echo '<script src="js/expand.js" type="text/javascript" charset="utf-8"></script>';
   	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
+	echo '<script src="js/jquery-2.1.1.js" type="text/javascript" charset="utf-8"></script>';
 	echo '</head>';
 	echo '<body style="font-family:helvetica;background-image:none;">';
 	echo '<center><h3>Commenting as: '.$username.'</h3></center>';
@@ -72,7 +73,7 @@
 				<table width="500px" border="0" cellspacing="0" cellpadding="0"> 
 					<tr style="background-color: #f6f6f6"> 
 						<td>
-							<textarea name="comment" placeholder="Submit a post..." style="width:500px;resize:none;border:none;padding:10px;background:transparent;font-size:18px" rows="3" wrap="VIRTUAL"></textarea></textarea>
+							<textarea class='autoExpand' name="comment" placeholder="Submit a post..." style="width:500px;resize:none;border:none;padding:10px;background:transparent;font-size:18px" rows="3" wrap="VIRTUAL"></textarea></textarea>
 						</td> 
 					</tr> 
 					<tr align="right" style="background-color: #dddddd"> 

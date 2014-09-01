@@ -1,5 +1,5 @@
-<?php
-	
+<?php	
+
 	static function exists()
 	{
 		
