@@ -19,7 +19,8 @@ membership::confirm();
 	<body style="background-image: none;">
 		<div id="main">
 			<p>
-				Current profile picture:
+				Current profile picture:<br>
+				<img src="https://s3-us-west-1.amazonaws.com/kyleminshall/Hi.jpg" alt="Profile" height="200" width="200">
 			</p>
 		</div><!-- end main --> 
 	</body>
