@@ -20,7 +20,7 @@
 	{
 		$post_id = (int)$post_id;
 		$username = $_SESSION['username'];
-		return (mysql_result(mysql_query("SELECT COUNT(id) FROM likes WHERE username='$username' AND post='$post_id'") , 0) == 0) ? false : true;
+		return (mysql_result(mysql_query("SELECT COUNT(id) FROM likes WHERE username='$username' AND post='$post_id'"), 0) == 0) ? false : true;
 	}
 	
 	function like_count($post_id)
@@ -42,7 +42,7 @@
 		$post_id = (int)$post_id;
 		mysql_query("UPDATE posts SET likes = likes - 1 WHERE id='$post_id'");
 		$username = $_SESSION['username'];
-		mysql_query("DELETE FROM likes WHERE username='$username' AND post='$post_id')");
+		mysql_query("DELETE FROM likes WHERE username='$username' AND post='$post_id'");
 	}
 
 ?>
