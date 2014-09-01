@@ -133,7 +133,9 @@
 				<form style="margin:0;" name="like" action="" method="post">
 					<textarea name="reply" class=\'autoExpand\' placeholder="Reply..." style="width:100%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea>
 					<input type="hidden" name="post" value="'.$post_number.'">
-					<input style="vertical-align:top;align:right" type="submit" name="comment" value="Post">
+					<div align="right">
+					  <input style="vertical-align:top;align:right" type="submit" name="comment" value="Post">
+					</div>
 				</form>
 			  </td>';	
 		echo '</tr>';
