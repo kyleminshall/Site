@@ -26,7 +26,7 @@
 	function like_count($post_id)
 	{
 		$post_id = (int)$post_id;
-		return (int)mysql_result(mysql_query("SELECT COUNT(id) FROM posts WHERE id='$post_id'"), 0);
+		return (int)mysql_result(mysql_query("SELECT likes FROM posts WHERE id='$post_id'"), 0);
 	}
 	
 	function add_like($post_id)
