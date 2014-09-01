@@ -6,7 +6,10 @@
 	{ 
 		session_start(); 
 	} 
-
+	
+	$con=mysql_connect("localhost","KyleM","Minshall1!");
+	$db_selected = mysql_select_db("Site", $con);
+	
 	function exists($post_id)
 	{
 		$post_id = (int)$post_id;
