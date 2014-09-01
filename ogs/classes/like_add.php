@@ -1,7 +1,7 @@
 <?php
 	include 'like.php';
 	
-	if(isset($_POST['post_id'], $_SESSION['username']))
+	if(isset($_POST['post_id']))
 	{
 		$post_id = (int)$_POST['post_id'];
 		
