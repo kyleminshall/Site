@@ -119,7 +119,7 @@
 		{
 			$time = strtotime($replies2->date);
 			$replied = date("m/d/y \a\\t g:i A", $time);
-			$reply = submit::check_links($replies2->reply);
+			$reply = submit::auto_link_text($replies2->reply);
   			echo '<tr style="background-color:#f6f6f6;">'; 
   			echo '<td colspan="3"> 
 					<p style="font-size:14px;color:000;margin:0">
