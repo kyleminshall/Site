@@ -13,6 +13,5 @@
 		{
 			add_like($post_id);
 		}
-		echo "success";
 	}
 ?>

@@ -40,7 +40,7 @@
 	function delete_like($post_id)
 	{
 		$post_id = (int)$post_id;
-		mysql_query("UPDATE posts SET likes = likes - 1 WHERE post='$post_id'");
+		mysql_query("UPDATE posts SET likes = likes - 1 WHERE id='$post_id'");
 		$username = $_SESSION['username'];
 		mysql_query("DELETE FROM likes WHERE username='$username' AND post='$post_id')");
 	}
