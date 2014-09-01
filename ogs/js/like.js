@@ -24,7 +24,7 @@ function changeText(idElement) {
     }
 }
 
-function initialize(idElement, (bool)wch)
+function initialize(idElement)
 {
 	document.getElementById('like_'+idElement).innerHTML= (wch ? 'Like' : 'Unlike');
 	alert(document.getElementById('like_'+idElement).innerHTML= (wch ? 'Like' : 'Unlike'));
