@@ -50,7 +50,7 @@
 		
 		static function auto_link_text($text) {
 		    $pattern  = '#\b(([\w-]+://?|www[.])[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/)))#';
-		    return preg_replace_callback($pattern, array($this, 'auto_link_text_callback'), $text);
+		    return preg_replace_callback($pattern, array(get_class(), 'auto_link_text_callback'), $text);
 		}
 
 		static function auto_link_text_callback($matches) {
