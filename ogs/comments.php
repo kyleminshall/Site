@@ -111,8 +111,8 @@
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;">
 				<p style="font-size:12px;padding:0;text-align:left">
-					<a onload="initialize('.$post_number.');" id="like_'.$post_number.'" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.');return false;">
-						
+					<a id="like_'.$post_number.'" style="text-decoration:none;color:#1F80C9;" href="#" onclick="like_add('.$post_number.');return false;">
+						'.$button.'
 					</a>
 				</p>
 			  </td>'; 
@@ -150,5 +150,5 @@
 	echo '<br>';
 	echo '</body>';
   	echo '<script src="js/expand.js" type="text/javascript" charset="utf-8"></script>';
-  	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
+  	echo '<script src="js/like.js" type="text/javascript"></script>';
 ?> 

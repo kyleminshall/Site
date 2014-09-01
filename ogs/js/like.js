@@ -23,8 +23,3 @@ function changeText(idElement) {
         element.innerHTML = 'Like';
     }
 }
-
-function initialize(idElement)
-{
-	document.getElementById('like_'+idElement).innerHTML= 'Like';
-}
