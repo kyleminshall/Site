@@ -1,9 +1,11 @@
-$(".like").click(function(e) {
-    if ($(this).innerHTML() == "Like") {
-        $(this).innerHTML("Unlike");
+function changeText(idElement) {
+    var element = document.getElementById(idElement);
+    if (element.innerHTML === 'Like')
+	{
+    	element.innerHTML = 'Unlike';
+    } 
+    else 
+	{
+        element.innerHTML = 'Like';
     }
-    else {
-        $(this).innerHTML("Like");
-    }
-    return false;
-});​
+}
