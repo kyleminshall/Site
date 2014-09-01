@@ -26,5 +26,5 @@ function changeText(idElement) {
 
 function initialize(idElement, wch)
 {
-	document.getElementById('like_'+idElement).innerHTML=(wch?'Like':'Unlike');
+	document.getElementById('like_'+idElement).innerHTML= (wch ? 'Like' : 'Unlike');
 }
