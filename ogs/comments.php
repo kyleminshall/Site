@@ -150,5 +150,6 @@
 	echo '<br>';
 	echo '</body>';
   	echo '<script src="js/expand.js" type="text/javascript" charset="utf-8"></script>';
+	echo '<script src="js/toggle.js" type="text/javascript" charset="utf-8"></script>';
   	echo '<script src="js/like.js" type="text/javascript" charset="utf-8"></script>';
 ?> 
