@@ -48,20 +48,27 @@
 			}
 		}
 		
-		static function check_links($content)
+		function auto_link_text($text)
 		{
-			$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-			// The Text you want to filter for urls
-			$text = $content;
-			// Check if there is a url in the text
-			if(preg_match($reg_exUrl, $text, $url)) {
-			       // make the urls hyper links
-			       return preg_replace($reg_exUrl, '<a href="'.$url[0].'" rel="nofollow">'.$url[0].'</a> ', $text);
+		   // a more readably-formatted version of the pattern is on http://daringfireball.net/2010/07/improved_regex_for_matching_urls
+		   $pattern  = '(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))';
 
-			} else {
-			       // if no urls in the text just return the text
-			       return $text;
-			}
+		   $callback = create_function('$matches', '
+		       $url       = array_shift($matches);
+		       $url_parts = parse_url($url);
+
+		       $text = parse_url($url, PHP_URL_HOST) . parse_url($url, PHP_URL_PATH);
+		       $text = preg_replace("/^www./", "", $text);
+
+		       $last = -(strlen(strrchr($text, "/"))) + 1;
+		       if ($last < 0) {
+		           $text = substr($text, 0, $last) . "&hellip;";
+		       }
+
+		       return sprintf(\'<a rel="nofollow" href="%s">%s</a>\', $url, $text);
+		   ');
+
+		   return preg_replace_callback($pattern, $callback, $text);
 		}
 	}
 
