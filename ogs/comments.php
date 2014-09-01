@@ -98,9 +98,10 @@
 		$rep = "SELECT * FROM replies WHERE post='$info2->id'";
 		$replies = mysql_query($rep) or trigger_error(mysql_error())." ".$rep;
 		$count = mysql_num_rows($replies);
+		$likes = mysql_result(mysql_query("SELECT likes FROM posts WHERE id='$post_number'"),0);
 		echo '<td style="width:65%"><p style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
 		echo '<td style="width:30%;padding:0;"><p style="font-size:14px;color:000;text-align:right">Likes :<br>Comments :</p></td>'; 
-		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center"><span id="post_'.$post_number.'_likes">0</span><br>'.$count.' </p></td>';
+		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center"><span id="post_'.$post_number.'_likes">'.$likes.'</span><br>'.$count.' </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
 		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes(submit::auto_link_text($info2->comment)).'</p><br></td>'; 
