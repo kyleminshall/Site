@@ -131,11 +131,11 @@
 		echo '<tr style="background-color:#f6f6f6;border-top:1px solid black;">';
 		echo '<td colspan="3" style="padding:5px">
 				<form style="margin:0;" name="like" action="" method="post">
-					<textarea name="reply" class=\'autoExpand\' placeholder="Reply..." style="width:100%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical">
+					<textarea name="reply" class=\'autoExpand\' placeholder="Reply..." style="width:100%;resize:none;border:none;background:transparent;font-size:12px" rows="1" wrap="physical"></textarea>
 					<input type="hidden" name="post" value="'.$post_number.'">
 					<div align="right">
 					  <input style="vertical-align:top;align:right" type="submit" name="comment" value="Post">
-					</div></textarea>
+					</div>
 				</form>
 			  </td>';	
 		echo '</tr>';
