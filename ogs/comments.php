@@ -114,8 +114,7 @@
 		echo '<p style="font-size:12px;padding:0;text-align:left">';
 			while($people2 = mysql_fetch_object($people))
 			{
-				echo ''.$people2->username.'';
-				echo $people2 > 1 ? ', ' : '';
+				echo ''.$people2->username.', ';
 			}
 			$people2 = mysql_fetch_object($people);
 			$num = $people2 > 1 ? ' like this.' : 'likes this.';
