@@ -114,7 +114,7 @@
 		echo '<p style="font-size:12px;padding:0;text-align:left">';
 			while($people2 = mysql_fetch_object($people))
 			{
-				echo $people->username + ", ";
+				echo $people2->username + ", ";
 			}
 			echo ' like this.';
 			echo '</p>';
