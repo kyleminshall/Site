@@ -101,12 +101,24 @@
 		$likes = mysql_result(mysql_query("SELECT likes FROM posts WHERE id='$post_number'"),0);
 		$unlike = (mysql_result(mysql_query("SELECT COUNT(id) FROM likes WHERE username='$username' AND post='$post_number'") , 0) == 0) ? false : true;
 		$button = $unlike == true ?'Unlike':'Like';
+		$people = mysql_query("SELECT username FROM likes WHERE post='$post_number'");
 		echo '<td style="width:65%"><p style="font-size:18px;color:000"><b>'.stripslashes($info2->username).'</b><br><span style="font-size:12px;color:#494949;">'.$submitted.'</span></p></td>'; 
 		echo '<td style="width:30%;padding:0;"><p style="font-size:14px;color:000;text-align:right">Likes :<br>Comments :</p></td>'; 
 		echo '<td style="width:5%;padding:0;"><p style="font-size:14px;color:000;text-align:center"><span id="post_'.$post_number.'_likes">'.$likes.'</span><br>'.$count.' </p></td>';
 		echo '</tr>';
 		echo '<tr>'; 
 		echo '<td colspan="3"> <p style="font-size:18px;color:000">'.stripslashes(submit::auto_link_text($info2->comment)).'</p><br></td>'; 
+		echo '</tr>';
+		echo '<tr>';
+		echo '<td colspan="3" style="padding-left: 10px;">';
+		echo '<p style="font-size:12px;padding:0;text-align:left">';
+			while($people2 = mysql_fetch_object($people))
+			{
+				echo $people->username + ", ";
+			}
+			echo ' like this.';
+			echo '</p>';
+		echo '</td>';
 		echo '</tr>';
 		echo '<tr>'; 
 		echo '<td colspan="3" style="padding-left: 10px;">
