@@ -118,7 +118,7 @@
 			}
 			$people2 = mysql_fetch_object($people);
 			$num = $people2 > 1 ? ' like this.' : 'likes this.';
-			echo ' like this.';
+			echo $num;
 			echo '</p>';
 		echo '</td>';
 		echo '</tr>';
