@@ -116,7 +116,8 @@
 			{
 				echo ''.$people2->username.', ';
 			}
-			echo ' like this.';
+			$num = $people2->username > 1 ? ' like this.' : 'likes this.';
+			echo $num;
 			echo '</p>';
 		echo '</td>';
 		echo '</tr>';
