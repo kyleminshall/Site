@@ -112,9 +112,9 @@
 		echo '<tr>';
 		echo '<td colspan="3" style="padding-left: 10px;">';
 		echo '<p style="font-size:12px;padding:0;text-align:left">';
-			while($people)
+			while($people2 = $people)
 			{
-				echo ''.$people->username.', ';
+				echo ''.$people2->username.', ';
 			}
 			$num = $people->username > 1 ? ' like this.' : 'likes this.';
 			echo $num;
