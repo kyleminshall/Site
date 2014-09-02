@@ -86,7 +86,7 @@
 		<?php
 		echo '<hr width="50%" noshade>'; 
 	} // end else 
-	echo '<div align="center" style="display:inline-block;">';
+	echo '<div align="center">';
 	echo '<br><br>';
 	while($info2 = mysql_fetch_object($info)) 
 	{     
