@@ -1,6 +1,6 @@
 <?php 
 
-Header('Location: http://www.ilearn.ucr.edu');
+Header('Location: https://www.ilearn.ucr.edu');
 
 $con = mysqli_connect("localhost","KyleM","Minshall1!","Site");
 
