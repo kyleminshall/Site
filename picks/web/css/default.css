@@ -1,0 +1,40 @@
+.box {
+    background-color:#F2F2F2;
+    width: 250px;
+}
+
+.pick {
+    margin: 0;
+    padding: 20px 20px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#login{
+	text-align: center;
+	min-height: 330px;
+	width: 300px;
+	position: absolute;
+	left: 50%;
+	margin-left: -150px;
+	top: 50%;
+	margin-top: -215px;
+}
+
+#box {
+	background: #eee;
+	height: 100%;
+	padding: 40px 40px;
+	box-shadow: 0px 0px 2px #484848;
+}
+
+.login {
+    height: 35px;
+    width: 200px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}

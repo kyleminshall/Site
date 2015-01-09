@@ -1,0 +1,4 @@
+services:
+#    picks_pick.example:
+#        class: Picks\PickBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

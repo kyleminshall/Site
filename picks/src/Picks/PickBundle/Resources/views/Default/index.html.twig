@@ -1,0 +1,45 @@
+<head>
+    <title>{% block title %}Picks{% endblock %}</title>
+</head>
+{% block stylesheets %}
+    <link href="{{ asset ('css/default.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+<p>
+    Signed in as: <b>{{ name }}</b>
+</p>
+
+{% if picked == false %}
+<div class="box">
+    <form method="post" action="">
+        <p class="pick">
+            <span class="title">Saturday, Jan 10th, Game 1:</span><br>
+            <input type="radio" name="pick1" value="Baltimore Ravens">Baltimore Ravens<br>
+            <input type="radio" name="pick1" value="New England Patriots">New England Patriots<br>
+        </p>
+        <p class="pick">
+            <span class="title">Saturday, Jan 10th, Game 2:</span><br>
+            <input type="radio" name="pick2" value="Carolina Panthers">Carolina Panthers<br>
+            <input type="radio" name="pick2" value="Seattle Seahawks">Seattle Seahawks<br>
+        </p>
+        <p class="pick">
+            <span class="title">Sunday, Jan 11th, Game 1:</span><br>
+            <input type="radio" name="pick3" value="Dallas Cowboys">Dallas Cowboys<br>
+            <input type="radio" name="pick3" value="Greenbay Packers">Greenbay Packers<br>
+        </p>
+        <p class="pick">
+            <span class="title">Sunday, Jan 11th, Game 2:</span><br>
+            <input type="radio" name="pick4" value="Indianapolis Colts">Indianapolis Colts<br>
+            <input type="radio" name="pick4" value="Denver Broncos">Denver Broncos
+        </p>
+        <p class="pick">
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+</div>
+{% else %}
+    <span> You have successfully submitted your choices! </span>
+{% endif %}
+
+<p style="font-size:22px; text-decoration:none">
+    <a href="{{ path('logout') }}"><button>Log Out</button></a> <!-- Opens the logout.php to sign the user out of the site -->
+</p>
