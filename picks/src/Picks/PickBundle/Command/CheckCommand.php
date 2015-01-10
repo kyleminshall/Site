@@ -25,12 +25,12 @@ class CheckCommand extends ContainerAwareCommand
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT * FROM users WHERE picked = 1 AND notified = 0");
         $statement->execute();
-        $results = $statement->fetchAll();
-        if(count($results) == 3)
+        $results = $statement->fetchAll();  
+        if(count($results) >= 3)
         {
-            $output->writeln(True);
+            $output->writeln(1);
         } else {
-            $output->writeln(False);
+            $output->writeln(2);
         }
     }
 }

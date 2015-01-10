@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Output\BufferedOutput;
 use PickBundle\Entity\Picks;
 
 class MailCommand extends ContainerAwareCommand
@@ -22,10 +23,12 @@ class MailCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {      
         $command = $this->getApplication()->find('picks:check');
-
+        $output = new BufferedOutput();
         $returnCode = $command->run($input, $output);
         
-        if($returnCode == 0)
+        $outputText = $output->fetch();
+        
+        if($outputText == 1)
         {
             $em = $this->getContainer()->get('doctrine')->getManager();
             $connection = $em->getConnection();
