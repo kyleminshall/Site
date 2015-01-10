@@ -53,7 +53,7 @@ class DefaultController extends Controller
     }
     
     public function validate($email, $password, $session) {
-        $con=mysqli_connect("localhost","root","", "picks"); //Connect to database
+        $con=mysqli_connect("localhost","KyleM","Minshall1!", "picks"); //Connect to database
 		
         if(mysqli_connect_errno()) 
 		{
@@ -79,7 +79,7 @@ class DefaultController extends Controller
     }
     
     public function submit($pick1, $pick2, $pick3, $pick4, $session) {
-        $con=mysqli_connect("localhost","root","", "picks"); //Connect to database
+        $con=mysqli_connect("localhost","KyleM","Minshall1!", "picks"); //Connect to database
         
         if(mysqli_connect_errno()) 
 		{
@@ -94,7 +94,7 @@ class DefaultController extends Controller
     }
     
     public function picked($name) {
-        $con=mysqli_connect("localhost","root","", "picks"); //Connect to database
+        $con=mysqli_connect("localhost","KyleM","Minshall1!", "picks"); //Connect to database
         
         if(mysqli_connect_errno()) 
 		{
