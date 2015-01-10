@@ -48,7 +48,7 @@ class MailCommand extends ContainerAwareCommand
             $message = \Swift_Message::newInstance()
                     ->setSubject('Pick Results')
                     ->setFrom(array('kilenaitor@gmail.com' => 'Kyle Minshall'))
-                    ->setTo(array('kyleminshall@gmail.com' => 'Kyle Minshall', 'kilenaitor@gmail.com' => 'Scott Minshall'))
+                    ->setTo(array('Ian.O\'Donnell@xerox.com' => 'Ian O\'Donnell', 'sminshall@gmail.com' => 'Scott Minshall', 'bob.diaz@sbcglobal.net' => 'Bob Diaz'))
                     ->setBody($body)
             ;
             
