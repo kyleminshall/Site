@@ -23,14 +23,14 @@ class CheckCommand extends ContainerAwareCommand
     {        
         $em = $this->getContainer()->get('doctrine')->getManager();
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT * FROM users WHERE picked = 1");
+        $statement = $connection->prepare("SELECT * FROM users WHERE picked = 1 AND notified = 0");
         $statement->execute();
         $results = $statement->fetchAll();
         if(count($results) == 3)
         {
-            echo "True\n";
+            $output->writeln(True);
         } else {
-            echo "False\n";
+            $output->writeln(False);
         }
     }
 }

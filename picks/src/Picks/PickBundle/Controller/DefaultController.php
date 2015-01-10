@@ -53,22 +53,25 @@ class DefaultController extends Controller
     }
     
     public function validate($email, $password, $session) {
-        $con=mysqli_connect("localhost","KyleM","Minshall1!", "picks"); //Connect to database
+        $con = mysqli_connect("localhost","KyleM","Minshall1!", "picks"); //Connect to database
 		
         if(mysqli_connect_errno()) 
 		{
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
 		}
         
-        $query = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_query($con, $query) or trigger_error(mysqli_error()." ".$query);
-        $row = mysqli_fetch_assoc($result);
+        $stmt = $con->prepare("SELECT * FROM users WHERE email=?");
+        $stmt -> bind_param('s',$email);
         
-		if($password === $row['password']) //Check to see if their entered password matches the one from their table entry
+        $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
+        $rs = $stmt->get_result();
+        $row = $rs->fetch_all(MYSQLI_ASSOC);
+        
+		if($password === $row[0]['password']) //Check to see if their entered password matches the one from their table entry
 		{
 			mysqli_close($con);
             $session->set("authorized", true);
-            $session->set("name", $row['name']);
+            $session->set("name", $row[0]['name']);
             return true;
 		}
 		else
@@ -85,12 +88,17 @@ class DefaultController extends Controller
 		{
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
 		}
-        
         $name = $session->get("name", NULL);
-        $query = "INSERT INTO picks (`email`, `choices`) VALUES ('$name', '$pick1, $pick2, $pick3, $pick4')";
-        mysqli_query($con, $query) or trigger_error(mysqli_error($con)." ".$query);
-        $query = "UPDATE users SET picked=1 WHERE name='$name'";
-        mysqli_query($con, $query) or trigger_error(mysqli_error($con)." ".$query);
+        
+        $stmt = $con->prepare("INSERT INTO picks (`email`, `choices`) VALUES (?, '$pick1, $pick2, $pick3, $pick4')");
+        $stmt -> bind_param('s', $name);
+        
+        $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
+        
+        $stmt = $con->prepare("UPDATE users SET picked=1 WHERE name=?");
+        $stmt -> bind_param('s',$name);
+        
+        $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
     }
     
     public function picked($name) {
@@ -101,8 +109,12 @@ class DefaultController extends Controller
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
 		}
         
-        $query = "SELECT * FROM users WHERE name='$name' AND picked=0";
-        $result = mysqli_query($con, $query) or trigger_error(mysqli_error($con)." ".$query);
-        return mysqli_num_rows($result) < 1;
+        $stmt = $con->prepare("SELECT * FROM users WHERE name=? AND picked=0");
+        $stmt -> bind_param('s',$name);
+        
+        $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
+        $rs = $stmt->get_result();
+        
+        return mysqli_num_rows($rs) < 1;
     }
 }
