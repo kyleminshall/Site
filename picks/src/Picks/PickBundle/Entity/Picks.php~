@@ -1,0 +1,39 @@
+<?php
+
+namespace Picks\PickBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Picks
+ *
+ * @ORM\Table(name="picks")
+ * @ORM\Entity
+ */
+class Picks
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=256, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="choices", type="string", length=256, nullable=true)
+     */
+    private $choices;
+
+
+}
