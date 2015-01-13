@@ -12,8 +12,8 @@ class DefaultController extends Controller
     {
         $session = $this->getRequest()->getSession();
         
-    	if($_POST && !empty($_POST['pick1']) && !empty($_POST['pick2']) && !empty($_POST['pick3']) && !empty($_POST['pick4']))
-    		self::submit($_POST['pick1'], $_POST['pick2'], $_POST['pick3'], $_POST['pick4'], $session);
+    	if($_POST && !empty($_POST['pick3']) && !empty($_POST['pick4']))
+    		self::submit($_POST['pick3'], $_POST['pick4'], $session);
         
          
         if(!self::confirm($session))
@@ -82,7 +82,7 @@ class DefaultController extends Controller
 		}
     }
     
-    public function submit($pick1, $pick2, $pick3, $pick4, $session) {
+    public function submit($pick3, $pick4, $session) {
         $con=mysqli_connect("localhost","KyleM","Minshall1!", "picks"); //Connect to database
         
         if(mysqli_connect_errno()) 
@@ -91,7 +91,7 @@ class DefaultController extends Controller
 		}
         $name = $session->get("name", NULL);
         
-        $stmt = $con->prepare("INSERT INTO picks (`email`, `choices`) VALUES (?, '$pick1, $pick2, $pick3, $pick4')");
+        $stmt = $con->prepare("INSERT INTO picks (`email`, `choices`) VALUES (?, '$pick3, $pick4')");
         $stmt -> bind_param('s', $name);
         
         $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
