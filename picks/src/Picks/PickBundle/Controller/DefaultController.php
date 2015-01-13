@@ -64,6 +64,7 @@ class DefaultController extends Controller
         $stmt -> bind_param('s',$email);
         
         $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
+        $stmt->bind_result($name, $code);
         $rs = $stmt->get_result();
         $row = $rs->fetch_all(MYSQLI_ASSOC);
         
