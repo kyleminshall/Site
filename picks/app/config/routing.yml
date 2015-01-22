@@ -1,7 +1,0 @@
-picks_pick:
-    resource: "@PicksPickBundle/Resources/config/routing.yml"
-    prefix:   /
-
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation

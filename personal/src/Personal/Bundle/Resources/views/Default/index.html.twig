@@ -1,0 +1,38 @@
+{% block stylesheets %}
+    {% stylesheets 'bundles/personal/css/main.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+<div id="top-nav">
+	<p>
+        <a class="top" href="{{ path('game') }}">2048 Game</a>
+		<a class="top" href="{{ path('projects') }}">Projects</a>
+	</p>
+</div>
+<div class="wrapper">
+	<div id="body">
+		<p>
+			Hi! My name is Kyle Minshall. I am a first year Computer Science student <br> 
+			at the University of California, Riverside. 
+		</p>
+		<p>
+			I have been programming for almost seven years across a wide variety of languages including <br>
+			PHP and Symfony, Ruby on Rails, C++, Java, Objective-C, JavaScript, and CSS.
+		</p>
+		<p>
+			This site is just a glimpse at some of the work I have done. Feel free to look around and check things out! <br>
+            The projects page is a collection of the work I've done on my own for fun. 
+		</p>
+		<p>
+			If you'd like to get in touch with me, feel free to send me an email at <a href="mailto:kyleminshall@gmail.com">kyleminshall@gmail.com</a><br>
+			or click on any of the links below. I look forward to working with you!
+		</p>
+		<div id="links">
+			<p>
+				<a href="https://www.facebook.com/Kilenaitor">Facebook</a> &nbsp;&nbsp;
+				<a href="https://www.github.com/Kilenaitor">GitHub</a> &nbsp;&nbsp;
+				<a href="https://www.linkedin.com/in/kyleminshall">LinkedIn</a>
+			</p> 
+		</div>
+	</div>
+</div>

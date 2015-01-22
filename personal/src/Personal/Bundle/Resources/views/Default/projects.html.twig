@@ -1,0 +1,233 @@
+{% block stylesheets %}
+    {% stylesheets 'bundles/personal/css/projects.css'
+                   'bundles/personal/css/main.css'
+                   'bundles/personal/css/responsiveslides.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    {% javascripts '@PersonalBundle/Resources/public/js/jquery.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+<div id="top-nav">
+	<p>
+		<a class="top" href="/">Home</a>
+	</p>
+</div>
+<div class="wrapper">
+	<div id="top">
+		<p style="padding-top:100px;font-size:22px">
+			To see all of the project code, check out my
+            <a href="https://www.github.com/kyleminshall" target="_blank">GitHub.</a>
+		</p>
+	</div>
+    <div class="divider">
+    </div>
+    <div class="project">
+        <div class="title" align="center">
+            Troy High iPhone App
+        </div>
+        <div id="one_left">
+            <ul class="rslides1">
+                {% image '@PersonalBundle/Resources/public/images/1.PNG' %}
+                    <img src="{{ asset_url }}" width="300" height="500" alt="News">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/2.PNG' %}
+                    <img src="{{ asset_url }}" width="300" height="500" alt="About">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/3.PNG' %}
+                     <img src="{{ asset_url }}" width="300" height="500" alt="Classes">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/4.PNG' %}
+                    <img src="{{ asset_url }}" width="300" height="500" alt="Aeries">
+                {% endimage %}
+            </ul>
+        </div>
+        <div id="one_right">
+            <p>
+                The official iPhone app for <a href="http://www.troyhigh.com">Troy High School</a>.
+            </p>
+            <p>
+                Four tabs of information tailored to students' needs with quick access and easy of use in mind.<br>
+            </p>
+            <p>
+                First tab, News, is a feed of all recent school announcements. Updates on every app launch or manually if you pull down on the list.
+            </p>
+            <p>
+                Second tab, Info, is a collection of a bunch of information that students might need to know about the school, most notably
+                a list of all of the bell schedules, to know when certain periods start and end, and a campus map for easily finding classes.
+            </p>
+            <p>
+                Third tab, Classes, is a collection of all teachers and classes for students to easily access homework and assignments.
+            </p>
+            <p>
+                Fourth tab, Aeries, is an in-app link to the Aeries Browser Interface (ABI) for students to easily check grades.<br>
+            </p>
+            <p>
+                Written entirely in Objective-C. Compatible with iOS 6.0+<br><br>
+                Downloaded over 1000 times! 
+            </p>
+        </div>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="project">
+        <div class="title" align="center">
+            Private Social Network
+        </div>
+        <div id="two_left">
+            <ul class="rslides2">
+                {% image '@PersonalBundle/Resources/public/images/5.PNG' %}
+                    <img src="{{ asset_url}}">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/6.PNG' %}
+                    <img src="{{ asset_url}}">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/7.PNG' %}
+                    <img src="{{ asset_url}}">
+                {% endimage %}
+            </ul>
+        </div>
+        <div id="two_right">
+            <p>
+                Project to learn Symfony2 with PHP.
+            </p>
+            <p>
+                Numerous features, standard to those of a social network.<br>
+                <ul style="line-height:28px">
+                    <li>Posting to a main board.</li>
+                    <li>Commenting on posts.</li>
+                    <li>Liking or deleting posts.</li>
+                    <li>Adding a profile picture.</li>
+                    <li>Recent activity ticker.</li>
+                    <li>Notifications on posts.</li>
+                    <li>@User Mentions and Notifications.</li>
+                    <li>Integration with Yo! for mobile notifications.</li>
+                </ul>
+            </p>
+            <p>
+                Built using Symfony2 in PHP, Twig, HTML, CSS, and Javascript.
+            </p>
+            <p>
+                Hosted on an Amazon EC2 LAMP server.<br>
+                Database is MySQL. 
+            </p>
+        </div>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="project">
+        <div class="title" align="center">
+            Jump! iOS Vertical Platformer
+        </div>
+        <div id="one_left">
+            <ul class="rslides3">
+                {% image '@PersonalBundle/Resources/public/images/8.PNG' %}
+                    <img src="{{ asset_url }}" width="300" height="500" alt="News">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/9.PNG' %}
+                    <img src="{{ asset_url }}" width="300" height="500" alt="About">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/10.PNG' %}
+                     <img src="{{ asset_url }}" width="300" height="500" alt="Classes">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/11.PNG' %}
+                    <img src="{{ asset_url }}" width="300" height="500" alt="Aeries">
+                {% endimage %}
+            </ul>
+        </div>
+        <div id="three_right">
+            <p>
+                Jump! is a physics-based game built in Apple's Swift programming language.<br>
+            </p>
+            <p>
+                The goal of the game is to get the highest score possible by successfully passing through as many
+                posts to get as high as you possibly can. One point is awarded for every successful pass-through.
+            </p>
+            <p>
+                Built entirely out of Swift and Apple's GameKit/SpriteKit engine, the game includes multiple features such as
+                realistic physics, GameCenter integration, and iAd integration.
+            </p>
+            <p>
+                <br>
+                Written entirely in Swift! Compatible with iOS 8.0+<br><br>
+            </p>
+        </div>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="project">
+        <div class="title" align="center">
+            2048 &mdash; Chemistry Edition!
+        </div>
+        <div id="four_left">
+            <ul class="rslides4">
+                {% image '@PersonalBundle/Resources/public/images/2048/1.PNG' %}
+                    <img src="{{ asset_url }}" width="500px">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/2048/2.PNG' %}
+                    <img src="{{ asset_url }}">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/2048/3.PNG' %}
+                    <img src="{{ asset_url }}">
+                {% endimage %}
+                {% image '@PersonalBundle/Resources/public/images/2048/4.PNG' %}
+                    <img src="{{ asset_url }}">
+                {% endimage %}
+            </ul>
+        </div>
+        <div id="one_right">
+            <p>
+                Based on the super popular 2048 Tile game (Which, FYI, was based on a game called Three's)!<br>
+            </p>
+            <p>
+                Forked from an existing project by James Donnelly, I made some modifications 
+                that I thought were necessary editions to really make the game special.
+            </p>
+            <p>
+                Written in JavaScript and HTML, it's a brower based game that even works superbly on mobile.
+            </p>
+            <p>
+                Try it out <a href="{{ path('game') }}">here!</a>
+            </p>
+        </div>
+    </div>
+    <div class="divider">
+    </div>
+</div>
+<script>
+  $(function() {
+      $(".rslides1").responsiveSlides({
+          pager: true,
+          fade: 500,
+          maxwidth: 300
+      });
+  });
+  $(function() {
+      $(".rslides2").responsiveSlides({
+          pager: true,
+          fade: 500,
+          maxwidth: 800
+      });
+  });
+  $(function() {
+      $(".rslides3").responsiveSlides({
+          pager: true,
+          fade: 500,
+          maxwidth: 800
+      });
+  });
+  $(function() {
+      $(".rslides4").responsiveSlides({
+          pager: true,
+          fade: 500,
+          maxwidth: 1000
+      });
+  });
+</script>
+{% block javascripts2 %}
+    {% javascripts '@PersonalBundle/Resources/public/js/responsiveslides.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

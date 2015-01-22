@@ -1,0 +1,31 @@
+home:
+    path:     /
+    defaults: { _controller: PersonalBundle:Default:index }
+
+projects:
+    path:   /projects
+    defaults: { _controller: PersonalBundle:Default:projects }
+    
+game:
+    path:   /game
+    defaults: { _controller: PersonalBundle:Default:game }
+
+gmail:
+    path:   /gmail
+    defaults: { _controller: PersonalBundle:Default:gmail }
+    
+facebook:
+    path:   /example
+    defaults: { _controller: PersonalBundle:Default:facebook }
+    
+picks:
+    path:   /picks
+    defaults: { _controller: PersonalBundle:Picks:index }
+
+picks_login:
+    path:   /picks/login
+    defaults: { _controller: PersonalBundle:Picks:login }
+
+picks_logout:
+    path:   /picks/logout
+    defaults: { _controller: PersonalBundle:Picks:logout }
