@@ -1,0 +1,28 @@
+{% block stylesheets %}
+    {% stylesheets 'bundles/personal/css/picks/default.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+<html lang="en" class="no-js">
+	<head>
+        <title>{% block title %}Dining Hall Mail{% endblock %}</title>
+	</head>
+	<body>
+		<div id="login">
+			<div id="box">
+                <p style="font-size: 18px;font-family: Helvetica">
+                    Sign up for an email every morning of the Dining Hall menu for the day.
+                </p>
+				<form method="post" action="">
+					<p style="font-size: 18px;font-family: Helvetica">
+						<input class="login" id="Email" name="email" type="text" placeholder="Email" ><br><br>
+                        <input type="checkbox" name="hall[]" value="1"> Lothian &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="hall[]" value="2"> A&I </br></br>
+						<button type="submit" name="submit" class="login button">Submit</button>
+					</p>
+				</form>
+                {% if message is defined %}<h4 class='alert' style="font-family: Helvetica; font-size: 18px">{{ message }}</h4>{% endif %}
+			</div>
+		</div><!-- end login -->
+	</body>
+</html>

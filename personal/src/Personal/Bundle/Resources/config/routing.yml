@@ -29,3 +29,7 @@ picks_login:
 picks_logout:
     path:   /picks/logout
     defaults: { _controller: PersonalBundle:Picks:logout }
+    
+menu:
+    path:   /menu
+    defaults: { _controller: PersonalBundle:Default:menu }

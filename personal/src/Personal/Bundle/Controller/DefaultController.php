@@ -68,4 +68,30 @@ class DefaultController extends Controller
         
         return $this->render('PersonalBundle:Default:facebook.html.twig');
     }
+    
+    public function menuAction()
+    {
+        if(isset($_POST['email']) && isset($_POST['hall']))
+        {
+            $total = 0;
+            $hall = $_POST['hall'];
+            $email = $_POST['email'];
+            foreach($hall as &$value) {
+                $total += intval($value);
+            }
+            $con = mysqli_connect('localhost', 'KyleM', 'Minshall1!', 'Site');
+            
+            if(mysqli_connect_errno()) {
+                printf("Connect failed: %s\n", mysqli_connect_error());
+                exit();
+            }
+            
+            $stmt = $con->prepare("INSERT INTO lists (`email`, `hall`) VALUES (?, '$total')");
+            $stmt -> bind_param('s', $email);
+            
+            $result = $stmt->execute();
+            return $this->render('PersonalBundle:Default:menu.html.twig', array('message' => "Submission successful!"));
+        }
+        return $this->render('PersonalBundle:Default:menu.html.twig');
+    }
 }
