@@ -38,7 +38,7 @@ try:
     smtpserver.ehlo()
     smtpserver.starttls()
     smtpserver.ehlo()
-    smtpserver.login('kilenaitor@gmail.com', 'Minshall1')
+    smtpserver.login('kilenaitor@gmail.com', 'NICE TRY. NO PASSWORD FOR YOU.')
     smtpserver.sendmail(sender, receivers, message.encode('utf-8').strip())
     
 except Exception as e:
