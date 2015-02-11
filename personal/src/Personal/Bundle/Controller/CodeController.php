@@ -16,7 +16,7 @@ class CodeController extends Controller
          if($_POST && isset($_POST['code']))
              $output = self::evaluate($_POST['code'], $_POST['type'], $_POST['name']);
          
-         $output['pass'] = ($output['output'] === "Hello World");
+         $output['pass'] = (str_replace('\n', '', $output['output']) === "Hello World");
 
          if(isset($output))
              return $this->render('PersonalBundle:Code:index.html.twig', array('output' => $output['output'], 'code' => $output['code'], 'pass' => $output['pass']));
