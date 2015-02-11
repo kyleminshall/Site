@@ -42,7 +42,7 @@
         {% if output is defined %}
             <div name="output">
                 <p>
-                    {% if pass %}
+                    {% if pass and "Hello World" in output %}
                         <strong>Output:</strong>&nbsp;{{ output }}
                         <p style="color:#00cd00">
                             Success!
