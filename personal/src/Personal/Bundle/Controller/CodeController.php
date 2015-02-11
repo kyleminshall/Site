@@ -109,6 +109,7 @@ class CodeController extends Controller
                     $output = stream_get_contents($pipes[2]);
                 else {
                     $output = stream_get_contents($pipes[1]);
+                    if($output === "Hello World")
                     $pass = true;
                 }
                 fclose($pipes[1]);
