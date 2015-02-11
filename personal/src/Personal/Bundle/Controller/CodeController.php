@@ -15,9 +15,11 @@ class CodeController extends Controller
 
          if($_POST && isset($_POST['code']))
              $output = self::evaluate($_POST['code'], $_POST['type'], $_POST['name']);
+         
+         $pass = trim(preg_replace('/\s\s+/', ' ', $output['output'])) === "Hello World";
 
          if(isset($output))
-             return $this->render('PersonalBundle:Code:index.html.twig', array('output' => $output['output'], 'code' => $output['code'], 'pass' => (str_replace('\n', '', $output['output']) === "Hello World")));
+             return $this->render('PersonalBundle:Code:index.html.twig', array('output' => $output['output'], 'code' => $output['code'], 'pass' => $pass));
          else
              return $this->render('PersonalBundle:Code:index.html.twig');
     }
@@ -74,7 +76,6 @@ class CodeController extends Controller
     
     public function evaluate($code, $type, $name)
     {
-        $pass = false;
         $date = date("Ymdhms");
         $file_name = $date.".cpp";
         chdir("/opt/files");
@@ -109,7 +110,6 @@ class CodeController extends Controller
                     $output = stream_get_contents($pipes[2]);
                 else {
                     $output = stream_get_contents($pipes[1]);
-                    $pass = true;
                 }
                 fclose($pipes[1]);
                 proc_close($process);
@@ -123,6 +123,6 @@ class CodeController extends Controller
         if(file_exists('test.out'))
             unlink('test.out');
         
-        return array('output' => $output, 'code' => $code, 'pass' => $pass);;
+        return array('output' => $output, 'code' => $code);
     }
 }
