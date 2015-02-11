@@ -78,6 +78,7 @@ class CodeController extends Controller
         $date = date("Ymdhms");
         $file_name = $date.".cpp";
         chdir("/opt/files");
+        error_log(getcwd());
         $myfile = fopen($file_name, 'w');
         $header = "#include <iostream>\nusing namespace std;\n\n";
         $main = "\n\nint main()\n{\n\t".$name.";\n}";
