@@ -33,3 +33,15 @@ picks_logout:
 menu:
     path:   /menu
     defaults: { _controller: PersonalBundle:Default:menu }
+
+compiler:
+    path:   /code
+    defaults: { _controller: PersonalBundle:Code:code }
+
+compiler_login:
+    path:   /code/login
+    defaults: { _controller: PersonalBundle:Code:login }
+    
+compiler_logout:
+    path:   /code/logout
+    defaults: { _controller: PersonalBundle:Code:logout }

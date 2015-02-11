@@ -3,11 +3,10 @@ import email
 import sys, json
 from bs4 import BeautifulSoup
 from bs4 import SoupStrainer
-from collections import OrderedDict
 import urllib2
 
-url = "http://138.23.12.141/foodpro/shortmenu.asp?sName=University+of+California%2C+Riverside+Dining+Services&locationNum=03&locationName=A+-+I+Residential+Restaurant&naFlag=1"
-page=urllib2.urlopen(url)
+url = urllib2.Request("http://138.23.12.141/foodpro/shortmenu.asp?sName=University+of+California%2C+Riverside+Dining+Services&locationNum=03&locationName=A+-+I+Residential+Restaurant&naFlag=1")
+page = urllib2.urlopen(url)
 soup = BeautifulSoup(page.read())
 
 menu = ""

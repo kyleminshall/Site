@@ -64,6 +64,13 @@
     position: absolute;
 }
 
+#four_left {
+    float:left;
+    width: 500px;
+    height: 500px;
+    padding: 0 100px;
+}
+
 .rslides {
     position: relative;
     list-style: none;
