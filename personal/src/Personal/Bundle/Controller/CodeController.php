@@ -110,7 +110,7 @@ class CodeController extends Controller
                 else {
                     $output = stream_get_contents($pipes[1]);
                     if($output === "Hello World")
-                    $pass = true;
+                        $pass = true;
                 }
                 fclose($pipes[1]);
                 proc_close($process);
