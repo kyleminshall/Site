@@ -38,6 +38,10 @@ compiler:
     path:   /code
     defaults: { _controller: PersonalBundle:Code:code }
 
+compiler_problem:
+    path:   /code/p{problem}
+    defaults: { _controller: PersonalBundle:Code:problem }
+
 compiler_login:
     path:   /code/login
     defaults: { _controller: PersonalBundle:Code:login }

@@ -38,3 +38,30 @@
     text-align: center;
     margin-top: 10px;
 }
+
+.area {
+    border: 1px solid black;
+    width: 500px;
+    padding: 10px;
+}
+
+#textbox {
+    width:400px;
+    resize:none;
+    font-size:12px;
+    border:none;
+    margin-left: 25px; 
+}
+
+table, th, td{
+   border: 1px solid black;
+}
+
+td {
+    padding: 5px;
+    text-align: center;
+}
+
+a {
+    text-decoration:none;
+}

@@ -1,20 +1,6 @@
-$.fn.selectRange = function(start, end) {
-    if(!end) end = start; 
-    return this.each(function() {
-        if (this.setSelectionRange) {
-            this.focus();
-            this.setSelectionRange(start, end);
-        } else if (this.createTextRange) {
-            var range = this.createTextRange();
-            range.collapse(true);
-            range.moveEnd('character', end);
-            range.moveStart('character', start);
-            range.select();
-        }
-    });
-};
-
-$('textarea').selectRange(20);
+$(document).ready(function(){
+    $('textarea').autosize();    
+});
 
 $(document).delegate('#textbox', 'keydown', function(e) {
   var keyCode = e.keyCode || e.which;
