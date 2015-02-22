@@ -5,20 +5,28 @@
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
-        <title>{% block title %}Coding Bat Ripoff{% endblock %}</title>
+        <title>{% block title %}Coding Bat C++{% endblock %}</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	</head>
 	<body style="font-family:Helvetica">
-        <div name="logout" style="display:inline-block;float:right;">
+		<div class="user">
+			<span>
+				Logged in as<br>
+				<span id="email">{{ email }}</span> 
+			</span>
+			<p style="margin-bottom:0">
+		        <a href={{ path("compiler_logout") }}>
+		            <button class="logout">Logout</button>
+		        </a>
+			</p>
+		</div>
+        <div name="logout" style="display:inline-block;float:right;padding-right: 10px">
             <a href={{ path("compiler") }}>
-                <button class="login" style="width:80px;height:40px">Home</button>
-            </a>
-            <a href={{ path("compiler_logout") }}>
-                <button class="login" style="width:80px;height:40px">Logout</button>
+                <button class="login" style="width:80px;height:40px;">Home</button>
             </a>
         </div>
         <div name="header">
-            <h2>CodingBat (Ripoff)</h2>
+            <h2>CodingBat C++</h2>
         </div>
         <div name="description">
             <p>

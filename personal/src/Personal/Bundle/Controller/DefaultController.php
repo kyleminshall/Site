@@ -94,4 +94,9 @@ class DefaultController extends Controller
         }
         return $this->render('PersonalBundle:Default:menu.html.twig');
     }
+	
+	public function privacyAction()
+	{
+		return $this->render('PersonalBundle:Default:privacy.html.twig');
+	}
 }

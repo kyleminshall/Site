@@ -5,15 +5,17 @@
 {% endblock %}
 <html lang="en" class="no-js">
 	<head>
-        <title>{% block title %}Login{% endblock %}</title>
+        <title>{% block title %}Register{% endblock %}</title>
 	</head>
 	<body style="font-family:Helvetica">
 		<div id="login">
 			<div id="box">
 				<form method="post" action="">
 					<p>
+						<input class="login" id="email" name="email" type="text" placeholder="{{ email }}"><br>
 						<input class="login" id="Username" name="username" type="text" placeholder="Username" ><br> <!-- Username input box -->
 						<input class="login" id="Password" name="password" type="password" placeholder="Password"><br> <!-- Password input box -->
+						<input class="login" id="Password" name="password_conf" type="password" placeholder="Confirm Password"><br> <!-- Password input box -->
 						<button type="submit" name="submit" class="login button">Login</button> <!-- Login (submit) button -->
 					</p>
 					<span id="teacher">

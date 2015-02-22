@@ -23,22 +23,34 @@
 		        </a>
 			</p>
 		</div>
-		{% if teacher %}
-	        <div name="logout" style="display:inline-block;float:right;padding-right: 10px">
-	            <a href={{ path("teacher_admin") }}>
-	                <button class="login" style="width:80px;height:40px;">Settings</button>
-	            </a>
-	        </div>
-		{% endif %}
+        <div name="logout" style="display:inline-block;float:right;padding-right: 10px">
+            <a href={{ path("compiler") }}>
+                <button class="login" style="width:80px;height:40px;">Home</button>
+            </a>
+        </div>
 	    <div name="header">
 	        <h2>CodingBat C++</h2>
+			<h3>Admin Console</h3>
 	    </div>
-		<div class="content">
-		    {% for title in titles %}
+		<div class="students">
+			<p>
+				<button onclick="showStudent()">Add Student</button>
+			</p>
+			<h4>Current students:</h4>
+		    {% for student in students %}
 		        <span class="problem">
-		            {{ loop.index }}.&nbsp;<a href={{ path("compiler_problem", { 'problem': ids[loop.index0] }) }}>{{ title }}</a>
+		            {{ loop.index }}.&nbsp;{{ student.email }}&nbsp;|&nbsp;"{{ student.username }}"</a>
 				</span>
 		    {% endfor %}
+		</div>
+		<div class="add_students">
+			<div id="student_form">
+				<form action="">
+					<span>Enter student email:</span>
+					<input class="login" id="Email" name="email" type="text" placeholder="email"><br
+					<button type="submit" name="submit" class="login button">Login</button> <!-- Login (submit) button -->
+				</form>
+			</div>
 		</div>
 	</body>
     {% block javascripts %}

@@ -21,11 +21,11 @@ class CodeController extends Controller
          $ids = array();
          
          while($row = $result->fetch_assoc()) {
-             array_push($titles, $row['title']);
-             array_push($ids, $row['id']);
+             $titles[] = $row['title'];
+             $ids[] = $row['id'];
          }
              
-         return $this->render('PersonalBundle:Code:index.html.twig', array('titles' => $titles, 'ids' => $ids));
+         return $this->render('PersonalBundle:Code:index.html.twig', array('titles' => $titles, 'ids' => $ids, 'email' => $session->get('username'), 'teacher' => $session->get('teacher', false)));
     }
     
     public function loginAction()
@@ -42,6 +42,21 @@ class CodeController extends Controller
         else
             return $this->render('PersonalBundle:Code:login.html.twig');
     }
+	
+	public function login_teacherAction()
+	{
+        $session = $this->getRequest()->getSession();
+         
+     	if($_POST && !empty($_POST['username']) && !empty($_POST['password']))
+     		$response = self::validate_teacher($_POST['username'], $_POST['password'], $session);
+        
+        if(isset($response) && $response)
+            return $this->redirect($this->generateUrl('compiler'));
+        else if(isset($response))
+            return $this->render('PersonalBundle:Code:login_teacher.html.twig', array('error' => "Wrong username or password"));
+        else
+            return $this->render('PersonalBundle:Code:login_teacher.html.twig');
+	}
 
     
     public function problemAction($problem)
@@ -89,14 +104,42 @@ class CodeController extends Controller
         
         if(isset($return))
             return $this->render('PersonalBundle:Code:problem.html.twig', 
-                    array('title' => $title, 'prompt' => $prompt, 'method' => $method, 'tests' => explode(' ', $test), 'expected' => explode(',', $output), 'output' => $error, 'code' => $return['code'], 'pass' => $pass, 'inputs' => $inputs));
+                    array('title' => $title, 'prompt' => $prompt, 'method' => $method, 'tests' => explode(' ', $test), 'expected' => explode(',', $output), 'output' => $error, 'code' => $return['code'], 'pass' => $pass, 'inputs' => $inputs, 'email' => $session->get('username')));
         else
             return $this->render('PersonalBundle:Code:problem.html.twig', 
-                            array('title' => $title, 'prompt' => $prompt, 'method' => $method));
+                            array('title' => $title, 'prompt' => $prompt, 'method' => $method, 'email' => $session->get('username')));
         
     }
+	
+	public function adminAction()
+	{
+		$session = $this->getRequest()->getSession();
+		if(!$session->get('teacher',false))
+			return $this->redirect($this->generateUrl('compiler_login'));
+		
+		$students = self::getStudents($session->get('id'));
+		
+		return $this->render('PersonalBundle:Code:admin.html.twig', array('email' => $session->get('username'), 'teacher' => $session->get('teacher', false), 'students' => $students));
+	}
+	
+	public function getStudents($id)
+	{
+		$con = self::connect();
+        if(mysqli_connect_errno()) 
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		
+		$stmt = $con->prepare("SELECT email, username FROM users WHERE teacher=?");
+		$stmt->bind_param('i', $id);
+		
+		$result = $stmt->execute() or trigger_error(mysqli_error());
+		$rs = $stmt->get_result();
+		
+		$students = $rs->fetch_all(MYSQLI_ASSOC);
+		return $students;
+	}
     
-    public function validate($username, $password, $session) {
+    public function validate($username, $password, $session) 
+	{
         $con = self::connect();
 		
         if(mysqli_connect_errno()) 
@@ -104,7 +147,7 @@ class CodeController extends Controller
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
 		}
         
-        $stmt = $con->prepare("SELECT * FROM code WHERE username=?");
+        $stmt = $con->prepare("SELECT * FROM users WHERE username=?");
         $stmt -> bind_param('s',$username);
         
         $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
@@ -115,6 +158,8 @@ class CodeController extends Controller
 		{
 			mysqli_close($con);
             $session->set("authorized", true);
+			$session->set("username", $username);
+			$session->set("id", $row[0]['id']);
             return true;
 		}
 		else
@@ -123,6 +168,46 @@ class CodeController extends Controller
 			return false;
 		}
     }
+	
+    public function validate_teacher($username, $password, $session) 
+	{
+        $con = self::connect();
+		
+        if(mysqli_connect_errno()) 
+		{
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
+		}
+        
+        $stmt = $con->prepare("SELECT * FROM teachers WHERE username=?");
+        $stmt -> bind_param('s',$username);
+        
+        $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
+        $rs = $stmt->get_result();
+        $row = $rs->fetch_all(MYSQLI_ASSOC);
+        
+		if($password === $row[0]['password']) //Check to see if their entered password matches the one from their table entry
+		{
+			mysqli_close($con);
+            $session->set("authorized", true);
+			$session->set("username", $username);
+			$session->set("id", $row[0]['id']);
+			$session->set("teacher", true);
+            return true;
+		}
+		else
+		{
+			mysqli_close($con);
+			return false;
+		}
+    }
+	
+	public function signupAction()
+	{
+		$con = self::connect();
+		
+        if(mysqli_connect_errno()) 
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
+	}
     
     public function logoutAction() 
     {
@@ -141,7 +226,7 @@ class CodeController extends Controller
         chdir("/opt/files");
         error_log(getcwd());
         $myfile = fopen($file_name, 'w');
-        $header = "#include <iostream>\n#include <cmath>\nusing namespace std;\n\n";
+        $header = "#include <iostream>\n#include <cmath>\n#include <vector>\nusing namespace std;\n\n";
         $dec = $method."\n{\n";
         $end = "}\n";
         $main = "\n\nint main()\n{\n";
@@ -160,8 +245,8 @@ class CodeController extends Controller
            1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
            2 => array("pipe", "w")   // stderr is a pipe to write to
         );
-        
-        $proc = proc_open('g++ -fno-gnu-keywords -Dasm=prohibited -D__asm__=prohibited '.$file_name.' -o test.out;', $descriptorspec, $pipes);
+        $logger = $this->get('logger');
+        $proc = proc_open('g++ -fno-gnu-keywords -Dasm=prohibited -D__asm__=prohibited --std=c++11 '.$file_name.' -o test.out;', $descriptorspec, $pipes);
         $return = "Compiler Error: ".stream_get_contents($pipes[2]);
         if(file_exists('test.out')) {
             proc_close($proc);
@@ -179,7 +264,9 @@ class CodeController extends Controller
                 }   
                 else {
                     $out = stream_get_contents($pipes[1]);
+					$logger->info($out);
                     $out = preg_replace('/[\r\n]+/', ',', $out);
+					$logger->info($out);
                     $pass = self::compare(rtrim($out, ","), $output);
                     $values = explode(',', $out);
                     $return = "";
@@ -208,11 +295,11 @@ class CodeController extends Controller
         $compare = explode(',', $compare);
         
         for($i = 0; $i < count($initial); $i++) {
-            array_push($result, (preg_replace('/[\r\n]+/', '', $initial[$i]) === $compare[$i]) ? "true" : "false");
+            $result[] = (preg_replace('/[\r\n]+/', '', $initial[$i]) === $compare[$i]) ? "true" : "false";
         }
         return $result;
     }
-    
+	
     public function connect()
     {
         return mysqli_connect("localhost","KyleM","Minshall1!", "Site"); //Connect to database

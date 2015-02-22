@@ -45,7 +45,23 @@ compiler_problem:
 compiler_login:
     path:   /code/login
     defaults: { _controller: PersonalBundle:Code:login }
+
+teacher_login:
+    path:   /code/teacher
+    defaults: { _controller: PersonalBundle:Code:login_teacher }
+
+teacher_admin:
+    path:   /teacher
+    defaults: { _controller: PersonalBundle:Code:admin }
+
+compiler_register:
+    path:   /code/signup
+    defaults: { _controller: PersonalBundle:Code:signup }
     
 compiler_logout:
     path:   /code/logout
     defaults: { _controller: PersonalBundle:Code:logout }
+
+privacy:
+    path:   /privacy
+    defaults: { _controller: PersonalBundle:Default:privacy }
