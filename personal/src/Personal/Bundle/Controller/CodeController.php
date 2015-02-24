@@ -8,6 +8,8 @@ class CodeController extends Controller
 {
     public function codeAction()
     {
+		 $logger = $this->get('logger');
+		
          $session = $this->getRequest()->getSession();
          
          if(!($session->get("authorized", false)))
@@ -19,11 +21,23 @@ class CodeController extends Controller
          
          $titles = array();
          $ids = array();
-         
+		 
          while($row = $result->fetch_assoc()) {
-             $titles[] = $row['title'];
+             $titles[$row['title']] = false;
              $ids[] = $row['id'];
          }
+		 
+		 if(!$session->get('teacher'))
+		 {
+			 $result = mysqli_query($con, "SELECT title FROM progress LEFT JOIN users ON progress.user_id = users.id LEFT JOIN problems ON problem_id = problems.id");
+		 	while($row = $result->fetch_assoc()) {
+				 $titles[$row['title']] = true;
+		 	}
+		}
+		 
+		 $logger->info(print_r($titles, true));
+ 		 $logger->info(sizeof($titles));
+		 $logger->info(sizeof($ids));
              
          return $this->render('PersonalBundle:Code:index.html.twig', array('titles' => $titles, 'ids' => $ids, 'email' => $session->get('username'), 'teacher' => $session->get('teacher', false)));
     }
@@ -61,7 +75,6 @@ class CodeController extends Controller
     
     public function problemAction($problem)
     {
-        $logger = $this->get('logger');
         $session = $this->getRequest()->getSession();
         if(!($session->get("authorized", false)))
             return $this->redirect($this->generateUrl('compiler_login'));
@@ -72,16 +85,16 @@ class CodeController extends Controller
         $stmt -> bind_param('s',$problem);
         
         $result = $stmt->execute() or trigger_error(mysqli_error());
-        $rs = $stmt->get_result();
-        $row = $rs->fetch_all(MYSQLI_ASSOC);
-        $row = $row[0];
+        $rs 	= $stmt->get_result();
+        $row 	= $rs->fetch_all(MYSQLI_ASSOC);
+        $row 	= $row[0];
         
-        $title = $row['title'];
-        $prompt = $row['prompt'];
-        $method = $row['method'];
-        $test = $row['test'];
-        $output = $row['output'];
-        $timeout = $row['timeout'];
+        $title 		= $row['title'];
+        $prompt 	= $row['prompt'];
+        $method		= $row['method'];
+        $test 		= $row['test'];
+        $output		= $row['output'];
+        $timeout	= $row['timeout'];
         
         if($_POST && isset($_POST['code']))
             $return = self::evaluate($_POST['code'], $method, $test, $output, $timeout);
@@ -101,13 +114,28 @@ class CodeController extends Controller
         else {
             $inputs = $return['input'];
         }
+		if(empty($result['all']))
+			$all = false;
+		else
+			$all = true;
+		$stmt->close();
         
-        if(isset($return))
+        if(isset($return)) {
+			if($all && !$session->get('teacher')) {
+				$id = $session->get('id');
+				$query = "INSERT INTO progress (`user_id`, `problem_id`) VALUES ('$id', '$problem')";
+				$stmt = $con->prepare($query);
+				$stmt->execute();
+			}
             return $this->render('PersonalBundle:Code:problem.html.twig', 
-                    array('title' => $title, 'prompt' => $prompt, 'method' => $method, 'tests' => explode(' ', $test), 'expected' => explode(',', $output), 'output' => $error, 'code' => $return['code'], 'pass' => $pass, 'inputs' => $inputs, 'email' => $session->get('username')));
+                    array('title' => $title, 'prompt' => $prompt, 'method' => $method, 'tests' => explode(' ', $test), 
+					'expected' => explode(',', $output), 'output' => $error, 'code' => $return['code'], 'pass' => $pass, 
+					'inputs' => $inputs, 'email' => $session->get('username'), 'teacher' => $session->get('teacher',false)));
+		}
         else
             return $this->render('PersonalBundle:Code:problem.html.twig', 
-                            array('title' => $title, 'prompt' => $prompt, 'method' => $method, 'email' => $session->get('username')));
+                            array('title' => $title, 'prompt' => $prompt, 'method' => $method, 'email' => $session->get('username'), 
+							'teacher' => $session->get('teacher',false)));
         
     }
 	
@@ -119,7 +147,7 @@ class CodeController extends Controller
 		
 		$students = self::getStudents($session->get('id'));
 		
-		return $this->render('PersonalBundle:Code:admin.html.twig', array('email' => $session->get('username'), 'teacher' => $session->get('teacher', false), 'students' => $students));
+		return $this->render('PersonalBundle:Code:admin.html.twig', array('email' => $session->get('username'), 'teacher' => $session->get('teacher', false), 'students' => $students, 'id' => $session->get('id')));
 	}
 	
 	public function getStudents($id)
@@ -128,7 +156,7 @@ class CodeController extends Controller
         if(mysqli_connect_errno()) 
 		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		
-		$stmt = $con->prepare("SELECT email, username FROM users WHERE teacher=?");
+		$stmt = $con->prepare("SELECT id, email, username FROM users WHERE teacher=?");
 		$stmt->bind_param('i', $id);
 		
 		$result = $stmt->execute() or trigger_error(mysqli_error());
@@ -203,10 +231,78 @@ class CodeController extends Controller
 	
 	public function signupAction()
 	{
-		$con = self::connect();
+		if($_GET && empty($_GET['key']))
+			return $this->render('PersonalBundle:Code:signup.html.twig', array('email' => "test", 'error' => true, 'message' => "Missing permission key"));
 		
-        if(mysqli_connect_errno()) 
-		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
+		if($_POST && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_GET['key']))
+		{
+			$con = self::connect();
+			
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			$key = $_GET['key'];
+			
+	        if(mysqli_connect_errno()) 
+			  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
+			
+			$query = "SELECT * FROM users WHERE username=?";
+			$stmt = $con->prepare($query);
+			$stmt->bind_param('s', $username);
+			$stmt->execute();
+			$stmt->store_result();
+			if($stmt->num_rows > 0)
+				return $this->render('PersonalBundle:Code:signup.html.twig', array('email' => $email, 'error' => false, 'message' => "Username has already been taken"));
+			$stmt->close();
+			$query = "SELECT teacher,email FROM permission WHERE `key`=?";
+			$stmt = $con->prepare($query);
+			$stmt->bind_param('s', $key);
+			$stmt->execute();
+			$rs = $stmt->get_result();
+			$row = $rs->fetch_all(MYSQLI_ASSOC);
+			$teacher = $row[0]['teacher'];
+			$email = $row[0]['email'];
+			
+			$query = "INSERT INTO users (`email`,`username`, `password`, `teacher`) VALUES ('$email', ?, ?, '$teacher')";
+			$stmt = $con->prepare($query);
+			$stmt->bind_param('ss', $username, $password);
+			$rs = $stmt->execute();
+			$stmt->close();
+			$stmt = $con->prepare("UPDATE permission SET used=1 WHERE `key`='$key'");
+			$stmt->execute();
+			return $this->redirect($this->generateUrl('compiler'));
+		}
+		
+		if($_GET && !empty($_GET['key']))
+		{
+			$key = $_GET['key'];
+			$con = self::connect();
+		
+	        if(mysqli_connect_errno()) 
+			  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
+			
+			$query = "SELECT email FROM permission WHERE `key`=? AND used=0";
+			$stmt = $con->prepare($query);
+			$stmt -> bind_param('s', $key);
+			
+			$result = $stmt->execute();
+	        $rs = $stmt->get_result();
+	        $row = $rs->fetch_all(MYSQLI_ASSOC);
+			
+			if(empty($row)) {
+				$email = "Email";
+				$error = true;
+				return $this->render('PersonalBundle:Code:signup.html.twig', array('email' => $email, 'error' => true, 'message' => "Invalid permission key."));
+			}
+			else
+				$email = $row[0]['email'];
+			
+			$stmt->close();
+			$con->close();
+			
+			return $this->render('PersonalBundle:Code:signup.html.twig', array('email' => $email, 'error' => false));
+		}
+		
+		return $this->render('PersonalBundle:Code:signup.html.twig', array('email' => "Email", 'error' => true, 'message' => "There was an error processing your request. Please try again."));
 	}
     
     public function logoutAction() 
@@ -222,7 +318,7 @@ class CodeController extends Controller
         $values = "";
         $date = date("Ymdhms");
         $file_name = $date.".cpp";
-        $test = explode(' ', $test);
+        $test = explode(' ', test);
         chdir("/opt/files");
         error_log(getcwd());
         $myfile = fopen($file_name, 'w');
@@ -267,7 +363,9 @@ class CodeController extends Controller
 					$logger->info($out);
                     $out = preg_replace('/[\r\n]+/', ',', $out);
 					$logger->info($out);
-                    $pass = self::compare(rtrim($out, ","), $output);
+					$compare = self::compare(rtrim($out, ","), $output);
+                    $pass = $compare['result'];
+					$all = $compare['all'];
                     $values = explode(',', $out);
                     $return = "";
                 }
@@ -283,21 +381,25 @@ class CodeController extends Controller
         if(file_exists('test.out'))
             unlink('test.out');
         
-        return array('output' => $return, 'code' => $code, 'pass' => $pass, 'input' => $values);
+        return array('output' => $return, 'code' => $code, 'pass' => $pass, 'input' => $values, 'all' => $all);
     }
     
     public function compare($initial, $compare)
     {
-        $logger = $this->get('logger');
+		$counter = 0;
         $result = array();
         
         $initial = explode(',', $initial);
         $compare = explode(',', $compare);
         
-        for($i = 0; $i < count($initial); $i++) {
+        for($i = 0; $i < count($initial); $i++) 
+		{
+			$initial[$i] === $compare[$i] ? $counter++ : '';
             $result[] = (preg_replace('/[\r\n]+/', '', $initial[$i]) === $compare[$i]) ? "true" : "false";
         }
-        return $result;
+		
+		$all = ($counter == sizeof($compare));
+        return array('result' => $result, 'all' => $all);
     }
 	
     public function connect()

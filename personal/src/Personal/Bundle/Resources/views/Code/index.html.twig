@@ -34,9 +34,9 @@
 	        <h2>CodingBat C++</h2>
 	    </div>
 		<div class="content">
-		    {% for title in titles %}
+		    {% for key,value in titles %}
 		        <span class="problem">
-		            {{ loop.index }}.&nbsp;<a href={{ path("compiler_problem", { 'problem': ids[loop.index0] }) }}>{{ title }}</a>
+		            {{ loop.index }}.&nbsp;<a class="problem" {% if value %}style="color:#00B137"{% endif %} href={{ path("compiler_problem", { 'problem': ids[loop.index0] }) }}>{{ key }}</a>
 				</span>
 		    {% endfor %}
 		</div>

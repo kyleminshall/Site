@@ -62,6 +62,18 @@ compiler_logout:
     path:   /code/logout
     defaults: { _controller: PersonalBundle:Code:logout }
 
+student_signup:
+    path:   /code/teacher/signup
+    defaults: { _controller: PersonalBundle:Code:teacherRegister }
+
 privacy:
     path:   /privacy
     defaults: { _controller: PersonalBundle:Default:privacy }
+    
+ajax_enroll:
+    path:   /ajax/enroll
+    defaults: { _controller: PersonalBundle:Ajax:addStudent }
+    
+ajax_progress:
+    path:   /ajax/progress
+    defaults: { _controller: PersonalBundle:Ajax:progress }

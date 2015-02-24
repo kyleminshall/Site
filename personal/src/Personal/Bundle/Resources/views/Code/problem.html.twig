@@ -13,6 +13,9 @@
 			<span>
 				Logged in as<br>
 				<span id="email">{{ email }}</span> 
+				{% if teacher %}
+					<br><i>Teacher</i>
+				{% endif %}
 			</span>
 			<p style="margin-bottom:0">
 		        <a href={{ path("compiler_logout") }}>
@@ -28,7 +31,7 @@
         <div name="header">
             <h2>CodingBat C++</h2>
         </div>
-        <div name="description">
+        <div class="description">
             <p>
                 Add your code to the function below and when you think it's ready, click submit and see if your input works!<br>
                 All libraries necessary to complete the task at hand will be included already.<br>
@@ -42,7 +45,56 @@
                 {% if prompt is defined %}{{prompt}}{% else %}"Prompt goes here!"{% endif %}
             </p>
         </div>
-        <div name="code">
+		<div class="output">
+	        {% if output is defined %}
+	            {% if output %}
+	            <div name="output">
+	                <p>
+	                    <p style="color:#ff0000">
+	                        Oops. Something's not quite right.
+	                    </p>
+	                    <p>
+	                        {{ output }}
+	                    </p>
+	                </p>
+	            </div>
+	            {% endif %}
+	        {% endif %}
+	        {% if pass is defined %}
+	            {% if pass %}
+	                <strong>Output:</strong><br>
+	                <table style="width:300px">
+	                    <tr>
+	                        <td>Test</td>
+	                        <td>Expected</td>
+	                        <td>Output</td>
+	                        <td>&nbsp;</td>
+	                    </tr>
+	                    <div name="output">
+	                        <p>
+	                            {% set num = 0 %}
+	                            {% set success = 0 %}
+	                            {% for test in tests %}
+	                                {% set num = num + 1 %}
+	                                    <tr>
+	                                        <td width="auto">{{ test }}</td>
+	                                        <td width="auto">{{ expected[loop.index0] }}</td>
+	                                        <td width="auto">{{ inputs[loop.index0] }}</td>
+	                                        <td style="width:30px;background-color:#{% if pass[loop.index0] == "true" %}33CC33{% set success = success + 1 %}{% else %}ff0000{% endif %}">&nbsp;</td>
+	                                    </tr>
+	                            {% endfor %}
+	                        </p>
+	                    </div>
+	                </table>
+	                {% if num == success %}
+	                    <p style="color:#00cd00">
+	                        All Clear!
+	                    </p>
+	                {% endif %}
+	            {% endif %}
+	        {% endif %}
+		</div>
+        <div class="code">
             <form name="codeform" action="" method="POST">
                 <div class="area">
                     <label>{% if method is defined %}{{ method }}{% else %}"Method goes here!"{% endif %}</label><br>
@@ -55,53 +107,6 @@
                 <input type="submit" value="Run!" class="login">
             </form>
         </div>
-        {% if output is defined %}
-            {% if output %}
-            <div name="output">
-                <p>
-                    <p style="color:#ff0000">
-                        Oops. Something's not quite right.
-                    </p>
-                    <p>
-                        {{ output }}
-                    </p>
-                </p>
-            </div>
-            {% endif %}
-        {% endif %}
-        {% if pass is defined %}
-            {% if pass %}
-                <strong>Output:</strong><br>
-                <table style="width:300px">
-                    <tr>
-                        <td>Test</td>
-                        <td>Expected</td>
-                        <td>Output</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <div name="output">
-                        <p>
-                            {% set num = 0 %}
-                            {% set success = 0 %}
-                            {% for test in tests %}
-                                {% set num = num + 1 %}
-                                    <tr>
-                                        <td width="auto">{{ test }}</td>
-                                        <td width="auto">{{ expected[loop.index0] }}</td>
-                                        <td width="auto">{{ inputs[loop.index0] }}</td>
-                                        <td style="width:30px;background-color:#{% if pass[loop.index0] == "true" %}33CC33{% set success = success + 1 %}{% else %}ff0000{% endif %}">&nbsp;</td>
-                                    </tr>
-                            {% endfor %}
-                        </p>
-                    </div>
-                </table>
-                {% if num == success %}
-                    <p style="color:#00cd00">
-                        All Clear!
-                    </p>
-                {% endif %}
-            {% endif %}
-        {% endif %}
 	</body>
     {% block javascripts %}
         {% javascripts 'bundles/personal/js/code.js'

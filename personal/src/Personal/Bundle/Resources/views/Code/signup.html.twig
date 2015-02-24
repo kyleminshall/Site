@@ -12,17 +12,15 @@
 			<div id="box">
 				<form method="post" action="">
 					<p>
-						<input class="login" id="email" name="email" type="text" placeholder="{{ email }}"><br>
+						<input class="login" id="email" name="email" type="text" placeholder="{{ email }}" readonly="readonly"><br>
 						<input class="login" id="Username" name="username" type="text" placeholder="Username" ><br> <!-- Username input box -->
 						<input class="login" id="Password" name="password" type="password" placeholder="Password"><br> <!-- Password input box -->
-						<input class="login" id="Password" name="password_conf" type="password" placeholder="Confirm Password"><br> <!-- Password input box -->
-						<button type="submit" name="submit" class="login button">Login</button> <!-- Login (submit) button -->
+						{% if not error %}
+							<button type="submit" name="submit" class="login button">Signup</button> <!-- Login (submit) button -->
+						{% endif %}
 					</p>
-					<span id="teacher">
-						Teacher? Click&nbsp;<a href="{{ path('teacher_login') }}">here.</a>
-					</span>
 				</form>
-                {% if error is defined %}<h4 class='alert'>{{ error }}</h4>{% endif %}
+                {% if error or message is defined %}<h4 class='alert'>{{ message }}</h4>{% endif %}
 			</div>
 		</div><!-- end login -->
 	</body>
