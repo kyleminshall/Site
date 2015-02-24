@@ -39,7 +39,7 @@ class MenuCommand extends ContainerAwareCommand
         }
         
         $param = escapeshellarg(json_encode($jsonData));
-        $final = shell_exec('/usr/local/bin/python /Users/Kilenaitor/Desktop/Site/personal/src/Personal/Bundle/Resources/public/lothian.py ' . $param);
+        $final = shell_exec('/usr/bin/python /var/www/html/personal/src/Personal/Bundle/Resources/public/lothian.py ' . $param);
         
         error_log($final);
         
@@ -54,7 +54,7 @@ class MenuCommand extends ContainerAwareCommand
         }
         
         $param = escapeshellarg(json_encode($jsonData));
-        $final = shell_exec('/usr/local/bin/python /Users/Kilenaitor/Desktop/Site/personal/src/Personal/Bundle/Resources/public/ai.py ' . $param);
+        $final = shell_exec('/usr/bin/python /var/www/html/personal/src/Personal/Bundle/Resources/public/ai.py ' . $param);
         
         error_log($final);
     }
