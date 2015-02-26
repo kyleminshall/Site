@@ -1,0 +1,27 @@
+{% block stylesheets %}
+    {% stylesheets 'bundles/personal/css/picks/default.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+<html lang="en" class="no-js">
+	<head>
+        <title>{% block title %}Login{% endblock %}</title>
+	</head>
+	<body style="font-family:Helvetica">
+		<div id="login">
+			<div id="box">
+				<form method="post" action="">
+					<span id="teacher" style="font-size:18px">
+						Admin Login
+					</span>
+					<p>
+						<input class="login" id="Username" name="username" type="text" placeholder="Username" ><br> <!-- Username input box -->
+						<input class="login" id="Password" name="password" type="password" placeholder="Password"><br> <!-- Password input box -->
+						<button type="submit" name="submit" class="login button">Login</button> <!-- Login (submit) button -->
+					</p>
+				</form>
+                {% if error is defined %}<h4 class='alert'>{{ error }}</h4>{% endif %}
+			</div>
+		</div><!-- end login -->
+	</body>
+</html>

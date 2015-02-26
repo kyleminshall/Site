@@ -1,0 +1,32 @@
+{% block stylesheets %}
+    {% stylesheets 'bundles/personal/css/picks/default.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+<html lang="en" class="no-js">
+	<head>
+        <title>{% block title %}Register{% endblock %}</title>
+	</head>
+	<body style="font-family:Helvetica">
+		<div id="login">
+			<div id="box">
+				<form method="post" action="">
+					<p>
+						<input class="login" id="email" name="email" type="text" placeholder="{{ email }}" readonly="readonly"><br>
+						{% if key is defined %}
+							<input class="login" id="key" name="key" type="text" placeholder="{{ key }}" value="{{ key }}"><br>
+						{% else %}
+							<input class="login" id="key" name="key" type="text" placeholder="Permission Key"><br>
+						{% endif %}
+						<input class="login" id="Username" name="username" type="text" placeholder="Username" ><br> <!-- Username input box -->
+						<input class="login" id="Password" name="password" type="password" placeholder="Password"><br> <!-- Password input box -->
+						{% if not error %}
+							<button type="submit" name="submit" class="login button">Signup</button> <!-- Login (submit) button -->
+						{% endif %}
+					</p>
+				</form>
+                {% if error or message is defined %}<h4 class='alert'>{{ message }}</h4>{% endif %}
+			</div>
+		</div><!-- end login -->
+	</body>
+</html>

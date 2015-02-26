@@ -1,3 +1,8 @@
+@font-face {
+     font-family: Myriad-Set-Pro;
+     src: url('../../fonts/Myriad Set Pro/MyriadSetPro-Thin.ttf'); 
+}
+
 .box {
     background-color:#F2F2F2;
     width: 250px;
@@ -113,18 +118,18 @@ a {
 }
 
 .list {
-	line-height: 25px;
 }
 
 .student {
-	
+	color:#2095FD;
+	cursor: pointer;
 }
 
 .student:hover {
-	color:#2095FD;
+	color:#2BB0FA;
 }
 
-.add_students {
+.add_students, .add_teacher, .add_problem {
 	position: fixed;
 	display: block;
 	z-index: 25;
@@ -138,7 +143,7 @@ a {
 	transition: opacity 400ms ease-in;
 }
 
-#student_form {
+#student_form, #teacher_form, #problem_form {
 	text-align: center;
 	z-index: 50;
 	width: 300px;
@@ -194,6 +199,7 @@ a {
 	-moz-box-shadow: 1px 1px 3px #000;
 	-webkit-box-shadow: 1px 1px 3px #000;
 	box-shadow: 1px 1px 3px #000;
+	cursor: pointer;
 }
 
 .close:hover {
@@ -218,5 +224,38 @@ a {
 	 width: 50%;
 	 display: inline-block;
 	 float: left;
+ }
+ 
+ .delete {
+	 height: 30px;
+	 font-size: 16px;
+	 color: #fff;
+	 border: 0;
+	 background-color: #F9434A;
+	 margin: 5px;
+	 cursor: pointer;
+ }
+ 
+ .delete:hover {
+	 background-color: #e73e44;
+ }
+ 
+ .delete:active {
+	 background-color: #cd373d;
+ }
+ 
+ .teachers {
+	 display: inline-block;
+	 width: auto;
+	 float: left;
+	 padding: 10px;
+	 padding-right: 100px;
+ }
+ 
+ .problems {
+	 display: inline-block;
+	 width: auto;
+	 float: left;
+	 padding: 10px;
  }
  

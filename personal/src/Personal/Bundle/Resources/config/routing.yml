@@ -1,3 +1,30 @@
+admin_login:
+    path:   /login
+    host:   "admin.{domain}"
+    defaults:
+         _controller: PersonalBundle:Admin:login
+         domain: kyleminshall.dev
+    requirements:
+         domain: kyleminshall.com|kyleminshall.dev
+        
+admin_home:
+    path:   /
+    host:   "admin.{domain}"
+    defaults:
+         _controller: PersonalBundle:Admin:index
+         domain: kyleminshall.dev
+    requirements:
+         domain: kyleminshall.com|kyleminshall.dev
+
+admin_logout:
+    path:   /logout
+    host:   "admin.{domain}"
+    defaults:
+         _controller: PersonalBundle:Admin:logout
+         domain: kyleminshall.dev
+    requirements:
+         domain: kyleminshall.com|kyleminshall.dev
+        
 home:
     path:     /
     defaults: { _controller: PersonalBundle:Default:index }
@@ -50,6 +77,10 @@ teacher_login:
     path:   /code/teacher
     defaults: { _controller: PersonalBundle:Code:login_teacher }
 
+teacher_signup:
+    path:   /code/teacher_signup
+    defaults:  { _controller: PersonalBundle:Code:teacher_signup}
+
 teacher_admin:
     path:   /teacher
     defaults: { _controller: PersonalBundle:Code:admin }
@@ -73,7 +104,24 @@ privacy:
 ajax_enroll:
     path:   /ajax/enroll
     defaults: { _controller: PersonalBundle:Ajax:addStudent }
+    methods: [POST]
     
 ajax_progress:
     path:   /ajax/progress
     defaults: { _controller: PersonalBundle:Ajax:progress }
+    methods: [GET]
+    
+ajax_delete:
+    path:   /ajax/delete
+    defaults: { _controller: PersonalBundle:Ajax:delete }
+    methods: [DELETE]
+
+ajax_teacher:
+    path:   /ajax/teacher
+    defaults: { _controller: PersonalBundle:Ajax:teacher }
+    methods: [POST]
+
+ajax_problem:
+    path:   /ajax/problem
+    defaults: { _controller: PersonalBundle:Ajax:problem }
+    methods: [POST]

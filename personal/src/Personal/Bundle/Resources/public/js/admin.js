@@ -22,11 +22,11 @@ $(document).delegate('#textbox', 'keydown', function(e) {
 });
 
 $(".add").click(function(){
-    $(".add_students").toggle();
+    $(".add_teacher").toggle();
 });
 
 $(".close").click(function() {
-	$(".add_students").hide();
+	$(".add_teacher").hide();
 });
 
 $("#enroll").submit(function() {
@@ -34,7 +34,7 @@ $("#enroll").submit(function() {
 	if($("#Email").val() == '')
 		$("#result").html("Please enter an email!");
 	else {
-		var url = location.origin+'/ajax/enroll';
+		var url = location.origin+'/ajax/teacher';
 	
 		$("#loading").show();
 		$("#submit").hide();
@@ -64,60 +64,51 @@ $("#enroll").submit(function() {
 	return false;
 })
 
-$(".student").click(function() {
-	$(".student_progress").toggle();
-	$("#loading2").show();
-	$(".line").after("<button title=\"Delete\" id=\"delete_"+this.id+"\" name=\"delete\" class=\"delete\">Delete Student</button>");
-	
-	var url = location.origin+'/ajax/progress';
-	
-	$.ajax({
-		type: "GET",
-		url: url,
-		dataType: 'json',
-		data: { id : this.id },
-		success: function(response)
-		{
-			$("#loading2").hide();
-			if(response.length == 0)
-				$(".placeholder").after("<p class='completed'> User has not completed any problems. </p>");
-			else {
-				for(var k in response) {
-					$(".placeholder").after("<p class='completed'>"+response[k].title+"</p>");
-				}
-			}
-		}
-	})
-})
+$("#add_problem").click(function(){
+    $(".add_problem").toggle();
+});
 
 $("#close2").click(function() {
-	$( ".completed" ).remove();
-	$( ".delete" ).remove();
-	$(".student_progress").hide();
-})
+	$(".add_problem").hide();
+});
 
-$("body").on('click','.delete', function() {
-	if(confirm("Are you sure you want to delete this student?\n\nThis will remove all traces of them from the website including all progress and account details.")) 
-	{
+$("#problem").submit(function() {
+	
+	if($("#Title").val() == '')
+		$("#result2").html("Please enter a title.");
+	else if($("#Prompt").val() == '')
+		$("#result2").html("Please enter a prompt.");
+	else if($("#Method").val() == '')
+		$("#result2").html("Please enter the method.");
+	else if($("#Test").val() == '')
+		$("#result2").html("Please enter at least one test.");
+	else if($("#Output").val() == '')
+		$("#result2").html("Please enter expected output.");
+	else {
+	
 		$("#loading2").show();
-		$(".delete").hide();
-		var id = (this.id).substring(7);
-		var url = location.origin+'/ajax/delete'
+		$("#submit2").hide();
+	
+		var url = location.origin+'/ajax/problem';
+	
 		$.ajax({
-			type: "DELETE",
+			type: "POST",
 			url: url,
 			dataType: 'json',
-			data: { id : id},
+			data: $("#problem").serialize(),
 			success: function(response)
 			{
-				console.log(response);
 				$("#loading2").hide();
-				$(".delete").show();
+				$("#submit2").show();
 				var json = JSON.stringify(response);
 				json = JSON.parse(json);
 				if(json.status == 200) {
-					$("#"+id).remove();
 					$("#result2").html(""+json.message);
+					$("#Title").val('');
+					$("#Prompt").val('');
+					$("#Method").val('');
+					$("#Test").val('');
+					$("#Output").val('');
 				}
 				else if(json.status != 200) {
 					$("#result2").html(""+json.message);
@@ -125,4 +116,9 @@ $("body").on('click','.delete', function() {
 			}
 		})
 	}
-})
+	return false;
+});
+
+$("#close2").click(function() {
+	$(".add_problem").hide();
+});

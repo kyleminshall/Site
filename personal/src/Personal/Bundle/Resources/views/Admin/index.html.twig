@@ -12,10 +12,8 @@
 		<div class="user">
 			<span>
 				Logged in as<br>
-				<span id="email">{{ email }}</span> 
-				{% if teacher %}
-					<br><i>Teacher</i>
-				{% endif %}
+				<span id="email">{{ username }}</span> 
+				<br><i>Admin</i>
 			</span>
 			<p style="margin-bottom:0">
 		        <a href={{ path("compiler_logout") }}>
@@ -25,32 +23,44 @@
 		</div>
         <div name="logout" style="display:inline-block;float:right;padding-right: 10px">
             <a href={{ path("compiler") }}>
-                <button class="login" style="width:100px;height:40px;">Problems</button>
+                <button class="login" style="width:80px;height:40px;">Home</button>
             </a>
         </div>
 	    <div name="header">
 	        <h2>CodingBat C++</h2>
 			<h3>Admin Console</h3>
 	    </div>
-		<div class="students">
-			<h4>Current students:</h4>
-			Click on a student to see their progress.<br><br>
+		<div class="teachers">
+			<h4>Current teachers:</h4>
 			<div class="list">
-			    {% for student in students %}
+			    {% for teacher in teachers %}
 					<p>
-						{{ loop.index }}.<span title="{{ student.username }}" id="{{ student.id }}" class="student">&nbsp;{{ student.email }}&nbsp;|&nbsp;{{ student.username }}</span>
+						{{ loop.index }}.<span title="{{ teacher.username }}" id="{{ teacher.id }}" class="student">&nbsp;{{ teacher.email }}&nbsp;|&nbsp;{{ teacher.username }}</span>
 					</p>
 			    {% endfor %}
 			</div>
 			<p>
-				<button class="add">Add Student</button>
+				<button class="add">Add Teacher</button>
 			</p>
 		</div>
-		<div class="add_students" style="display: none">
-			<div id="student_form">
+		<div class="problems">
+			<h4>Current problems:</h4>
+			<div class="list">
+			    {% for problem in problems %}
+					<p>
+						{{ loop.index }}.<span title="{{ problem.title }}" class="student">&nbsp;{{ problem.title }}&nbsp;|&nbsp;{{ problem.method }}</span>
+					</p>
+			    {% endfor %}
+			</div>
+			<p>
+				<button id="add_problem">Add Problem</button>
+			</p>
+		</div>
+		<div class="add_teacher" style="display: none">
+			<div id="teacher_form">
 				<a title="Close" class="close" id="close1">X</a>
 				<form id="enroll">
-					<br><span>Enter student email:</span><br>
+					<br><span>Enter teacher email:</span><br>
 					<input class="login" id="Email" name="email" type="text" placeholder="Email"><br>
 					<input type="hidden" name="id" value="{{ id }}">
 					<button id="submit" type="submit" name="submit" class="login button">Add</button> <!-- Login (submit) button -->
@@ -61,23 +71,27 @@
 				<span id="result"></span>
 			</div>
 		</div>
-		<div class="student_progress" style="display: none">
-			<div id="progress_content">
-				<h4>Completed Problems:</h4>
-				<a title="Close" class="close" id="close2" >X</a>
-				<div class="progress_container">
-					<div class="placeholder"></div>
-				</div>
-				<hr class="line">
+		<div class="add_problem" style="display: none">
+			<div id="problem_form">
+				<a title="Close" class="close" id="close2">X</a>
+				<form id="problem">
+					<br><span>Enter problem details:</span><br>
+					<input class="login" id="Title" name="title" type="text" placeholder="Title"><br>
+					<input class="login" id="Prompt" name="prompt" type="text" placeholder="Prompt"><br>
+					<input class="login" id="Method" name="method" type="text" placeholder="Method"><br>
+					<input class="login" id="Test" name="test" type="text" placeholder="Test"><br>
+					<input class="login" id="Output" name="output" type="text" placeholder="Output"><br>
+					<button id="submit2" type="submit" name="submit" class="login button">Add</button> <!-- Login (submit) button -->
+				</form>
 				{% image '@PersonalBundle/Resources/public/images/257.gif' %}
 				    <img id="loading2" src="{{ asset_url }}" alt="Example" style="display: none"/>
-				{% endimage %}<br>
+				{% endimage %}
 				<span id="result2"></span>
 			</div>
 		</div>
 	</body>
     {% block javascripts %}
-        {% javascripts 'bundles/personal/js/code.js'%}
+        {% javascripts 'bundles/personal/js/admin.js'%}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endblock %}
