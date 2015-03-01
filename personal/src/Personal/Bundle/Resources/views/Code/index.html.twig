@@ -33,11 +33,20 @@
 	    <div name="header">
 	        <h2>CodingBat C++</h2>
 	    </div>
-		<div class="content">
-		    {% for key,value in titles %}
-		        <span class="problem">
-		            {{ loop.index }}.&nbsp;<a class="problem" {% if value %}style="color:#00B137"{% endif %} href={{ path("compiler_problem", { 'problem': ids[loop.index0] }) }}>{{ key }}</a>
-				</span>
+		<div class="content" style="width: 70%">
+		    {% for key,value in problems %}
+
+				<p class="category">
+					<span style="font-size: 22px;">{{ key }}</span><br>
+					{% set titles  = value['titles'] %}
+					{% set ids  = value['ids'] %}
+
+					{% for key,value in titles %}
+						<span class="problem">
+							{{ loop.index }}.&nbsp;<a class="problem" {% if value %}style="color:#00B137"{% endif %} href={{ path("compiler_problem", { 'problem' : ids[loop.index0] }) }}>{{ key }}</a>
+						</span>
+					{% endfor %}<br>
+				</p>
 		    {% endfor %}
 		</div>
 	</body>

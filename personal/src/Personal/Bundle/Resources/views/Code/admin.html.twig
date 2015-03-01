@@ -46,6 +46,20 @@
 				<button class="add">Add Student</button>
 			</p>
 		</div>
+		<div class="problems">
+			<h4>My problems:</h4>
+			<div class="list">
+			    {% for problem in problems %}
+					<p>
+						{{ loop.index }}.<span title="{{ problem.title }}">&nbsp;{{ problem.title }}&nbsp;|&nbsp;{{ problem.method }}</span>
+					</p>
+			    {% endfor %}
+			</div>
+			<p>
+				<button id="add_problem">Add Problem</button><br><br>
+				<span style="font-size:12px;margin-top:15px">Note: Problems created by teachers are only visible to their students<br> and will be put under a category named "Custom"</span>
+			</p>
+		</div>
 		<div class="add_students" style="display: none">
 			<div id="student_form">
 				<a title="Close" class="close" id="close1">X</a>
@@ -73,6 +87,24 @@
 				    <img id="loading2" src="{{ asset_url }}" alt="Example" style="display: none"/>
 				{% endimage %}<br>
 				<span id="result2"></span>
+			</div>
+		</div>
+		<div class="add_problem" style="display: none">
+			<div id="problem_form">
+				<a title="Close" class="close" id="close3">X</a>
+				<form id="problem">
+					<br><span>Enter problem details:</span><br>
+					<input class="login" id="Title" name="title" type="text" placeholder="Title"><br>
+					<input class="login" id="Prompt" name="prompt" type="text" placeholder="Prompt"><br>
+					<input class="login" id="Method" name="method" type="text" placeholder="Method"><br>
+					<input class="login" id="Test" name="test" type="text" placeholder="Test"><br>
+					<input class="login" id="Output" name="output" type="text" placeholder="Output"><br>
+					<button id="submit2" type="submit" name="submit" class="login button">Add</button> <!-- Login (submit) button -->
+				</form>
+				{% image '@PersonalBundle/Resources/public/images/257.gif' %}
+				    <img id="loading3" src="{{ asset_url }}" alt="Example" style="display: none"/>
+				{% endimage %}
+				<span id="result3"></span>
 			</div>
 		</div>
 	</body>

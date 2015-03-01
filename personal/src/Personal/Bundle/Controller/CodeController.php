@@ -11,36 +11,52 @@ class CodeController extends Controller
 		 $logger = $this->get('logger');
 		
          $session = $this->getRequest()->getSession();
+		 if($session->get('teacher', false))
+			 $teacher = $session->get('id');
+		 else
+			 $teacher = $session->get('teacher_id', 0);
          
          if(!($session->get("authorized", false)))
              return $this->redirect($this->generateUrl('compiler_login'));
          
          $con = self::connect();
-         
-         $result = mysqli_query($con, "SELECT id,title FROM problems");
-         
-         $titles = array();
-         $ids = array();
 		 
-         while($row = $result->fetch_assoc()) {
-             $titles[$row['title']] = false;
-             $ids[] = $row['id'];
-         }
+		 $problems = array();
 		 
-		 if(!$session->get('teacher'))
+		 $categories = array();
+		 $result = mysqli_query($con, "SELECT category FROM problems GROUP BY category ORDER BY sorting ASC");
+		 
+		 while($row = $result->fetch_assoc()) {
+			 $categories[] = $row['category'];
+		 }
+		 
+		 $id = $session->get('id');
+		 $temp = mysqli_fetch_all(mysqli_query($con, "SELECT title FROM progress LEFT JOIN problems ON problem_id = problems.id WHERE user_id=$id"), MYSQLI_ASSOC);
+		 $done = array();
+		 
+		 foreach($temp as $key => $value)
+			 $done[] = $value['title'];
+		 
+		 foreach($categories as $category)
 		 {
-			 $id = $session->get('id');
-			 $result = mysqli_query($con, "SELECT title FROM progress LEFT JOIN problems ON problem_id = problems.id WHERE user_id=$id");
-		 	while($row = $result->fetch_assoc()) {
-				 $titles[$row['title']] = true;
-		 	}
-		}
+	         $titles = array();
+	         $ids = array();
+			 
+	         $result = mysqli_query($con, "SELECT id,title,category,teacher FROM problems WHERE (teacher=0 OR teacher=$teacher) AND category='$category'");
 		 
-		 $logger->info(print_r($titles, true));
- 		 $logger->info(sizeof($titles));
-		 $logger->info(sizeof($ids));
+	         while($row = $result->fetch_assoc()) 
+			 {
+				 if(in_array($row['title'], $done) && !$session->get('teacher', false))
+					 $titles[$row['title']] = true;
+				 else
+					 $titles[$row['title']] = false;
+	             $ids[] = $row['id'];
+	         }
+			 $category = ucfirst($category);
+			 $problems[$category] = array('titles' => $titles, 'ids' => $ids);
+		 }
              
-         return $this->render('PersonalBundle:Code:index.html.twig', array('titles' => $titles, 'ids' => $ids, 'email' => $session->get('username'), 'teacher' => $session->get('teacher', false)));
+         return $this->render('PersonalBundle:Code:index.html.twig', array('problems' => $problems, 'email' => $session->get('username'), 'teacher' => $session->get('teacher', false)));
     }
     
     public function loginAction()
@@ -150,8 +166,9 @@ class CodeController extends Controller
 			return $this->redirect($this->generateUrl('compiler_login'));
 		
 		$students = self::getStudents($session->get('id'));
+		$problems = self::getProblems($session->get('id'));
 		
-		return $this->render('PersonalBundle:Code:admin.html.twig', array('email' => $session->get('username'), 'teacher' => $session->get('teacher', false), 'students' => $students, 'id' => $session->get('id')));
+		return $this->render('PersonalBundle:Code:admin.html.twig', array('email' => $session->get('username'), 'teacher' => $session->get('teacher', false), 'students' => $students, 'id' => $session->get('id'), 'problems' => $problems));
 	}
 	
 	public function getStudents($id)
@@ -168,6 +185,23 @@ class CodeController extends Controller
 		
 		$students = $rs->fetch_all(MYSQLI_ASSOC);
 		return $students;
+	}
+	
+	public function getProblems($id)
+	{
+		$con = self::connect();
+		
+        if(mysqli_connect_errno()) 
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		
+		$stmt = $con->prepare("SELECT title, method FROM problems WHERE teacher=$id");
+		
+		$result = $stmt->execute() or trigger_error(mysqli_error());
+		$rs = $stmt->get_result();
+		
+		$problems = $rs->fetch_all(MYSQLI_ASSOC);
+		
+		return $problems;
 	}
     
     public function validate($username, $password, $session) 
@@ -192,6 +226,7 @@ class CodeController extends Controller
             $session->set("authorized", true);
 			$session->set("username", $username);
 			$session->set("id", $row[0]['id']);
+			$session->set("teacher_id", $row[0]['teacher']);
             return true;
 		}
 		else

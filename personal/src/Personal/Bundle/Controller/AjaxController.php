@@ -95,7 +95,7 @@ class AjaxController extends Controller
 		
 			$con = self::connect();
 		
-			$query = "SELECT title FROM progress INNER JOIN problems ON problem_id = problems.id WHERE user_id=?";
+			$query = "SELECT title,finished FROM progress INNER JOIN problems ON problem_id = problems.id WHERE user_id=?";
 			$stmt = $con->prepare($query);
 			$stmt->bind_param('i',$id);
 			$result = $stmt->execute();
@@ -197,15 +197,47 @@ class AjaxController extends Controller
 			{
 				$con = self::connect();
 				
-				$title 	= $_POST['title'];
-				$prompt = $_POST['prompt'];
-				$method = $_POST['method'];
-				$test 	= $_POST['test'];
-				$output = $_POST['output'];
+				$title 		= $_POST['title'];
+				$prompt 	= $_POST['prompt'];
+				$method 	= $_POST['method'];
+				$test 		= $_POST['test'];
+				$output 	= $_POST['output'];
+				$category	= $_POST['category'];
 			
-				$query = "INSERT INTO problems (`title`, `prompt`, `method`, `test`, `output`) VALUES (?,?,?,?,?)";
+				$query	= "INSERT INTO problems (`title`, `prompt`, `method`, `test`, `output`, `category`) VALUES (?,?,?,?,?,?)";
+				$stmt 	= $con->prepare($query);
+				$stmt->bind_param('ssssss', $title, $prompt, $method, $test, $output, $category);
+				$stmt->execute();
+			
+				$result	= $stmt->affected_rows > 0;
+			
+				if($result)
+					return new JsonResponse(array('status' => 200, 'message' => "Problem added!"));
+				else
+					return new JsonResponse(array('status' => 400, 'message' => "Bad input."));
+			} 
+			catch(Exception $e)
+			{
+				return new JsonResponse(array('status' => 400, 'message' => $e->getMessage()));
+			}
+		}
+		else if($session->get('teacher', false))
+		{
+			try 
+			{
+				$con = self::connect();
+				
+				$title 		= $_POST['title'];
+				$prompt 	= $_POST['prompt'];
+				$method 	= $_POST['method'];
+				$test 		= $_POST['test'];
+				$output 	= $_POST['output'];
+				$category	= "custom";
+				$teacher	= $session->get('id');
+			
+				$query = "INSERT INTO problems (`title`, `prompt`, `method`, `test`, `output`, `category`, `teacher`) VALUES (?,?,?,?,?,?,?)";
 				$stmt = $con->prepare($query);
-				$stmt->bind_param('sssss', $title, $prompt, $method, $test, $output);
+				$stmt->bind_param('ssssssi', $title, $prompt, $method, $test, $output, $category, $teacher);
 				$stmt->execute();
 			
 				$result = $stmt->affected_rows > 0;
