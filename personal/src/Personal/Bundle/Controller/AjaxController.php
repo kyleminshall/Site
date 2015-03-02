@@ -12,9 +12,8 @@ class AjaxController extends Controller
 	public function addStudentAction()
 	{
 		$session = $this->getRequest()->getSession();
-		if($this->get('teacher', false))
+		if($session->get('teacher', false))
 		{
-			
 			$generator = new SecureRandom();
 			$random = $generator->nextBytes(16);
 		
@@ -59,7 +58,7 @@ class AjaxController extends Controller
 				$rs = $stmt->get_result();
 				$row = $rs->fetch_all(MYSQLI_ASSOC);
 				$teach = $row[0]['email'];
-				$link = "http://localhost:8000/code/signup"."?key=".$key;
+				$link = "http://kyleminshall.com/code/signup"."?key=".$key;
 
 				$mailer = $this->get('swiftmailer.mailer.coding');
 			
