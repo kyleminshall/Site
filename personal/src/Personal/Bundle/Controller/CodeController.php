@@ -463,10 +463,12 @@ class CodeController extends Controller
             if($status['running']) {
                 proc_terminate($process);
                 $return = "Error: Process took to long. Check for any infinite loops.";
+                $all = false;
             } 
             else {
                 if(!empty(stream_get_contents($pipes[2]))) {
                     $return = stream_get_contents($pipes[2]);
+                    $all = false;
                 }   
                 else {
                     $out = stream_get_contents($pipes[1]);
@@ -485,6 +487,7 @@ class CodeController extends Controller
         }
         else {
             proc_close($proc);
+            $all = false;
         }
         if(file_exists($file_name))
             unlink($file_name);
