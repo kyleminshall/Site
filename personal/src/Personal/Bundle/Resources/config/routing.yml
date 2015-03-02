@@ -1,30 +1,3 @@
-admin_login:
-    path:   /login
-    host:   "admin.{domain}"
-    defaults:
-         _controller: PersonalBundle:Admin:login
-         domain: kyleminshall.dev
-    requirements:
-         domain: kyleminshall.com|kyleminshall.dev
-        
-admin_home:
-    path:   /
-    host:   "admin.{domain}"
-    defaults:
-         _controller: PersonalBundle:Admin:index
-         domain: kyleminshall.dev
-    requirements:
-         domain: kyleminshall.com|kyleminshall.dev
-
-admin_logout:
-    path:   /logout
-    host:   "admin.{domain}"
-    defaults:
-         _controller: PersonalBundle:Admin:logout
-         domain: kyleminshall.dev
-    requirements:
-         domain: kyleminshall.com|kyleminshall.dev
-        
 home:
     path:     /
     defaults: { _controller: PersonalBundle:Default:index }
@@ -96,6 +69,19 @@ compiler_logout:
 student_signup:
     path:   /code/teacher/signup
     defaults: { _controller: PersonalBundle:Code:teacherRegister }
+
+admin_login:
+    path:   /admin/login
+    host:   "admin.{domain}"
+    defaults: { _controller: PersonalBundle:Admin:login }
+        
+admin_home:
+    path:   /admin
+    defaults: { _controller: PersonalBundle:Admin:index }
+
+admin_logout:
+    path:   /admin/logout
+    defaults: { _controller: PersonalBundle:Admin:logout }
 
 privacy:
     path:   /privacy
