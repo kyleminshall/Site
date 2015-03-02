@@ -72,7 +72,6 @@ student_signup:
 
 admin_login:
     path:   /admin/login
-    host:   "admin.{domain}"
     defaults: { _controller: PersonalBundle:Admin:login }
         
 admin_home:
