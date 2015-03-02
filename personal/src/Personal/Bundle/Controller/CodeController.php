@@ -219,8 +219,9 @@ class CodeController extends Controller
         $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
         $rs = $stmt->get_result();
         $row = $rs->fetch_all(MYSQLI_ASSOC);
+        $hash = $row[0]['password'];
         
-		if($password === $row[0]['password']) //Check to see if their entered password matches the one from their table entry
+		if(password_verify($password, $hash)) //Check to see if their entered password matches the one from their table entry
 		{
 			mysqli_close($con);
             $session->set("authorized", true);
@@ -251,8 +252,9 @@ class CodeController extends Controller
         $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
         $rs = $stmt->get_result();
         $row = $rs->fetch_all(MYSQLI_ASSOC);
+        $hash = $row[0]['password'];
         
-		if($password === $row[0]['password']) //Check to see if their entered password matches the one from their table entry
+		if(password_verify($password, $hash)) //Check to see if their entered password matches the one from their table entry
 		{
 			mysqli_close($con);
             $session->set("authorized", true);
@@ -292,6 +294,7 @@ class CodeController extends Controller
 			if($stmt->num_rows > 0)
 				return $this->render('PersonalBundle:Code:signup.html.twig', array('email' => $email, 'error' => false, 'message' => "Username has already been taken"));
 			$stmt->close();
+            
 			$query = "SELECT teacher,email FROM permission WHERE `key`=?";
 			$stmt = $con->prepare($query);
 			$stmt->bind_param('s', $key);
@@ -300,6 +303,7 @@ class CodeController extends Controller
 			$row = $rs->fetch_all(MYSQLI_ASSOC);
 			$teacher = $row[0]['teacher'];
 			$email = $row[0]['email'];
+            $password = password_hash($password, PASSWORD_DEFAULT);
 			
 			$query = "INSERT INTO users (`email`,`username`, `password`, `teacher`) VALUES ('$email', ?, ?, '$teacher')";
 			$stmt = $con->prepare($query);
@@ -373,6 +377,7 @@ class CodeController extends Controller
 			$rs = $stmt->get_result();
 			$row = $rs->fetch_all(MYSQLI_ASSOC);
 			$email = $row[0]['email'];
+            $password = password_hash($password, PASSWORD_DEFAULT);
 			
 			$query = "INSERT INTO teachers (`email`,`username`, `password`) VALUES ('$email', ?, ?)";
 			$stmt = $con->prepare($query);
