@@ -198,3 +198,11 @@ $("#problem").submit(function() {
 $("#close3").click(function() {
 	$(".add_problem").hide();
 });
+
+$("#login_button").click(function() {
+	$(".login_modal").toggle();
+})
+
+$(".close").click(function() {
+	$(".login_modal").hide();
+})
