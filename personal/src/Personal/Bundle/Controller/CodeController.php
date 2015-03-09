@@ -6,62 +6,91 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CodeController extends Controller
 {
+    /*
+    Landing page for the website as well as the index page for all the code problems once you are logged in.
+    
+    First checks for a post request to see if you submitted a login. If you did, it verifies your info and then shows the index page.
+    If you are not authorized, it shows you the splash page. If your post request was not successful, it redirects you to the login page and asks you to try again.
+    Teachers also get redirected to the teacher login page. 
+    */
     public function codeAction()
     {
 		 $logger = $this->get('logger');
 		
          $session = $this->getRequest()->getSession();
-		 if($session->get('teacher', false))
-			 $teacher = $session->get('id');
-		 else
-			 $teacher = $session->get('teacher_id', 0);
+         
+         if($_POST && !empty($_POST['username']) && !empty($_POST['password']))
+         {
+             $response = self::validate($_POST['username'], $_POST['password'], $session);	//Validate the user when they click submit on the login
+    
+             if(isset($response) && $response)
+             {
+                 goto authorized; //http://xkcd.com/292/
+                                  //This is a totally fine use for it. authorized is on line 35
+             }  
+             else if(isset($response))
+                 return $this->render('PersonalBundle:Code:login.html.twig', array('error' => "Wrong username or password"));
+             else
+                 return $this->redirect($this->generateUrl('compiler_login'));
+         }
          
          if(!($session->get("authorized", false)))
-             return $this->redirect($this->generateUrl('compiler_login'));
-         
-         $con = self::connect();
-		 
-		 $problems = array();
-		 
-		 $categories = array();
-		 $result = mysqli_query($con, "SELECT category FROM problems GROUP BY category ORDER BY sorting ASC");
-		 
-		 while($row = $result->fetch_assoc()) {
-			 $categories[] = $row['category'];
-		 }
-		 
-		 $id = $session->get('id');
-		 $temp = mysqli_fetch_all(mysqli_query($con, "SELECT title FROM progress LEFT JOIN problems ON problem_id = problems.id WHERE user_id=$id"), MYSQLI_ASSOC);
-		 $done = array();
-		 
-		 foreach($temp as $key => $value)
-			 $done[] = $value['title'];
-		 
-		 foreach($categories as $category)
-		 {
-	         $titles = array();
-	         $ids = array();
-			 
-	         $result = mysqli_query($con, "SELECT id,title,category,teacher FROM problems WHERE (teacher=0 OR teacher=$teacher) AND category='$category'");
-		 
-	         while($row = $result->fetch_assoc()) 
-			 {
-				 if(in_array($row['title'], $done) && !$session->get('teacher', false))
-					 $titles[$row['title']] = true;
-				 else
-					 $titles[$row['title']] = false;
-	             $ids[] = $row['id'];
-	         }
-			 $category = ucfirst($category);
-			 $problems[$category] = array('titles' => $titles, 'ids' => $ids);
-		 }
+             return $this->render('PersonalBundle:Code:landing.html.twig');
+         else 
+         {    
+             //Update the goto statement comment as necessary to show where this is. 
+             authorized:
              
-         return $this->render('PersonalBundle:Code:index.html.twig', array('problems' => $problems, 'email' => $session->get('username'), 'teacher' => $session->get('teacher', false)));
-    }
+    		 if($session->get('teacher', false))
+    			 $teacher = $session->get('id');
+    		 else
+    			 $teacher = $session->get('teacher_id', 0);
+        
+             $con = self::connect();
+ 
+             $problems = array();
+ 
+             $categories = array();
+             $result = mysqli_query($con, "SELECT category FROM problems GROUP BY category ORDER BY sorting ASC");
+ 
+             while($row = $result->fetch_assoc()) {
+                 $categories[] = $row['category'];
+             }
+ 
+             $id = $session->get('id');
+             $temp = mysqli_fetch_all(mysqli_query($con, "SELECT title FROM progress LEFT JOIN problems ON problem_id = problems.id WHERE user_id=$id"), MYSQLI_ASSOC);
+             $done = array();
+ 
+             foreach($temp as $key => $value)
+                 $done[] = $value['title'];
+ 
+             foreach($categories as $category)
+             {
+                 $titles = array();
+                 $ids = array();
+	 
+                 $result = mysqli_query($con, "SELECT id,title,category,teacher FROM problems WHERE (teacher=0 OR teacher=$teacher) AND category='$category'");
+ 
+                 while($row = $result->fetch_assoc()) 
+                 {
+                     if(in_array($row['title'], $done) && !$session->get('teacher', false))
+                         $titles[$row['title']] = true;
+                     else
+                         $titles[$row['title']] = false;
+                     $ids[] = $row['id'];
+                 }
+                 $category = ucfirst($category);
+                 $problems[$category] = array('titles' => $titles, 'ids' => $ids);
+             }
+             return $this->render('PersonalBundle:Code:index.html.twig', array('problems' => $problems, 'email' => $session->get('username'), 'teacher' => $session->get('teacher', false)));
+         }
+     }
     
     public function loginAction()
     {
         $session = $this->getRequest()->getSession();
+        if($session->get("authorized", false))
+            return $this->redirect($this->generateUrl('compiler'));
          
      	if($_POST && !empty($_POST['username']) && !empty($_POST['password']))
      		$response = self::validate($_POST['username'], $_POST['password'], $session);	//Validate the user when they click submit on the login
@@ -219,6 +248,12 @@ class CodeController extends Controller
         $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
         $rs = $stmt->get_result();
         $row = $rs->fetch_all(MYSQLI_ASSOC);
+        if(!isset($row[0]))
+        {
+            mysqli_close($con);
+            return false;
+        }
+        
         $hash = $row[0]['password'];
         
 		if(password_verify($password, $hash)) //Check to see if their entered password matches the one from their table entry
@@ -252,6 +287,11 @@ class CodeController extends Controller
         $result = $stmt->execute() or trigger_error(mysqli_error()." ".$query);
         $rs = $stmt->get_result();
         $row = $rs->fetch_all(MYSQLI_ASSOC);
+        if(!isset($row[0]))
+        {
+            mysqli_close($con);
+            return false;
+        }
         $hash = $row[0]['password'];
         
 		if(password_verify($password, $hash)) //Check to see if their entered password matches the one from their table entry
@@ -350,6 +390,9 @@ class CodeController extends Controller
 	
 	public function teacher_signupAction()
 	{	
+		if($_GET && empty($_GET['key']))
+			return $this->render('PersonalBundle:Code:teacher_signup.html.twig', array('email' => "", 'error' => true, 'message' => "Missing permission key"));
+		
 		if($_POST && !empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['key']))
 		{
 			$con = self::connect();
@@ -391,40 +434,43 @@ class CodeController extends Controller
 			return $this->redirect($this->generateUrl('login_teacher'));
 		}
 	
-		$key = $_GET['key'];
-		$con = self::connect();
+		if($_GET && !empty($_GET['key']))
+		{
+    		$key = $_GET['key'];
+    		$con = self::connect();
 	
-        if(mysqli_connect_errno()) 
-		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
+            if(mysqli_connect_errno()) 
+    		  echo "Failed to connect to MySQL: " . mysqli_connect_error(); //If that fails, display an error (obviously)
 		
-		$query = "SELECT email FROM pem WHERE `key`=? AND used=0";
-		$stmt = $con->prepare($query);
-		$stmt -> bind_param('s', $key);
+    		$query = "SELECT email FROM pem WHERE `key`=? AND used=0";
+    		$stmt = $con->prepare($query);
+    		$stmt -> bind_param('s', $key);
 		
-		$result = $stmt->execute();
-        $rs = $stmt->get_result();
-        $row = $rs->fetch_all(MYSQLI_ASSOC);
+    		$result = $stmt->execute();
+            $rs = $stmt->get_result();
+            $row = $rs->fetch_all(MYSQLI_ASSOC);
 		
-		if(empty($row)) {
-			$email = "Email";
-			$error = true;
-			return $this->render('PersonalBundle:Code:teacher_signup.html.twig', array('email' => $email, 'key' => $key, 'error' => true, 'message' => "Invalid permission key."));
-		}
-		else
-			$email = $row[0]['email'];
+    		if(empty($row)) {
+    			$email = "Email";
+    			$error = true;
+    			return $this->render('PersonalBundle:Code:teacher_signup.html.twig', array('email' => $email, 'key' => $key, 'error' => true, 'message' => "Invalid permission key."));
+    		}
+    		else
+    			$email = $row[0]['email'];
 		
-		$stmt->close();
-		$con->close();
+    		$stmt->close();
+    		$con->close();
 		
-		return $this->render('PersonalBundle:Code:teacher_signup.html.twig', array('email' => $email, 'key' => $key, 'error' => false));
-		
+    		return $this->render('PersonalBundle:Code:teacher_signup.html.twig', array('email' => $email, 'key' => $key, 'error' => false));
+        }
+        return $this->render('PersonalBundle:Code:teacher_signup.html.twig', array('email' => "Email", 'error' => true, 'message' => "There was an error processing your request. Please try again."));
 	}
     
     public function logoutAction() 
     {
         $session = $this->getRequest()->getSession();
         $session->clear();
-        return $this->redirect($this->generateUrl('compiler_login'));
+        return $this->redirect($this->generateUrl('compiler'));
     }
     
     public function evaluate($code, $method, $test, $output, $timeout)
