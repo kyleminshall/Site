@@ -74,7 +74,7 @@
                                 </div>
                                 <input type="hidden" value="void" name="type">
                                 <input type="hidden" value="basicTest()" name="name"><br>
-                                <input type="submit" value="Run!" class="button tiny">
+                                <input type="submit" value="Build and Run" class="button tiny">
                             </form>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                 	                                        <td width="auto">{{ test }}</td>
                 	                                        <td width="auto">{{ expected[loop.index0] }}</td>
                 	                                        <td width="auto">{{ inputs[loop.index0] }}</td>
-                	                                        <td style="width:30px;background-color:#{% if pass[loop.index0] == "true" %}33CC33{% set success = success + 1 %}{% else %}ff0000{% endif %}">&nbsp;</td>
+                	                                        <td style="width:30px;background-color:#{% if pass[loop.index0] == "true" %}33CC33{% set success = success + 1 %}{% else %}F20003{% endif %}">&nbsp;</td>
                 	                                    </tr>
                 	                            {% endfor %}
                 	                        </p>

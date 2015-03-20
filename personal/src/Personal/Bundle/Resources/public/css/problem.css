@@ -62,6 +62,10 @@ body {
     line-height: 18px;
 }
 
+textarea {
+    width: 90%;
+}
+
 .code {
  width: 80%;
 }
@@ -76,7 +80,6 @@ body {
 }
 
 .area {
-    width: 500px;
 }
 
 label {

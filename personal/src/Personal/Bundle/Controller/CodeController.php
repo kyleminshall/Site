@@ -22,7 +22,7 @@ class CodeController extends Controller
          if($_POST && !empty($_POST['username']) && !empty($_POST['password']))
          {
              $response = self::validate($_POST['username'], $_POST['password'], $session);	//Validate the user when they click submit on the login
-    
+
              if(isset($response) && $response)
              {
                  goto authorized; //http://xkcd.com/292/
