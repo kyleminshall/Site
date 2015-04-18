@@ -85,6 +85,10 @@ admin_logout:
 privacy:
     path:   /privacy
     defaults: { _controller: PersonalBundle:Default:privacy }
+
+media:
+    path:   /media
+    defaults: { _controller: PersonalBundle:Default:media }
     
 ajax_enroll:
     path:   /ajax/enroll

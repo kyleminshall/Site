@@ -99,4 +99,9 @@ class DefaultController extends Controller
 	{
 		return $this->render('PersonalBundle:Default:privacy.html.twig');
 	}
+    
+    public function mediaAction()
+    {
+        return $this->render('PersonalBundle:Default:media.html.twig');
+    }
 }
