@@ -1,0 +1,110 @@
+html {
+    background: url(../images/20.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#login{
+	text-align: center;
+	min-height: 330px;
+	width: 300px;
+	position: absolute;
+	left: 50%;
+	margin-left: -150px;
+	top: 50%;
+	margin-top: -215px;
+}
+
+#box {
+	background: #FFF;
+	height: 100%;
+	padding: 40px 40px;
+    /*-webkit-box-shadow: inset 0px 0px 5px 1px rgba(84,84,84,1);
+    -moz-box-shadow: inset 0px 0px 5px 1px rgba(84,84,84,1);
+    box-shadow: inset 0px 0px 5px 1px rgba(84,84,84,1);*/
+    border-radius: 10px;
+    box-shadow: 0 0 10px #333;
+}
+
+.login-button {
+    box-sizing: content-box;
+    height: 35px;
+    width: 200px;
+    background-color: #2D6CC1;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    transform: translateY(-3px);
+    -ms-transform: translateY(-3px); /* IE 9 */
+    -webkit-transform: translateY(-3px); /* Safari */
+    border-bottom: 3px solid #F2AB00;
+    margin-bottom: -3px;
+}
+
+.login-button:active {
+    background-color: #174075;
+}
+
+.login-button:target {
+    background-color: #174075;
+}
+
+#email {
+	padding-top: 5px;
+    border: none;
+    border-bottom: 1px solid #ACACAC;
+    text-align: left;
+    height: 35px;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
+    color: #8c8c8c;
+}
+
+#email:focus {
+    outline-width: 0;
+}
+
+.title {
+    font-size: 26px;
+}
+
+.selections {
+    font-size: 18px; 
+    text-align: left
+}
+
+.credits {
+    position: absolute;
+    bottom: 10px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    line-height: 18px;
+}
+
+@keyframes beat {
+    from {
+        font-size: 16px;
+    }
+    to {
+        font-size: 18px;
+    }
+}
+
+.heart {
+    animation-duration: 1s;
+    animation-name: beat;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}

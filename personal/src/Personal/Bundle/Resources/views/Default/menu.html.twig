@@ -1,6 +1,7 @@
 {% block stylesheets %}
-    {% stylesheets 'bundles/personal/css/picks/default.css' filter='cssrewrite' %}
+    {% stylesheets 'bundles/personal/css/menu.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet' type='text/css'>
     {% endstylesheets %}
 {% endblock %}
 <html lang="en" class="no-js">
@@ -10,19 +11,21 @@
 	<body>
 		<div id="login">
 			<div id="box">
-                <p style="font-size: 18px;font-family: Helvetica">
-                    Sign up for an email every morning of the Dining Hall menu for the day.
+                <p class="title">
+                    Daily Dining&nbsp;Hall Menu
                 </p>
 				<form method="post" action="">
-					<p style="font-size: 18px;font-family: Helvetica">
-						<input class="login" id="Email" name="email" type="text" placeholder="Email" ><br><br>
-                        <input type="checkbox" name="hall[]" value="1"> Lothian &nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" name="hall[]" value="2"> A&I </br></br>
-						<button type="submit" name="submit" class="login button">Submit</button>
+					<input class="login" id="Email" name="email" type="text" placeholder="Email"><br><br>
+					<p class='selections'>
+                        <label><input type="checkbox" name="hall[]" value="1"> Lothian Dining Hall</label><br>
+                        <label><input type="checkbox" name="hall[]" value="2"> A&I Dining Hall</label></br>
+                        <label><input type="checkbox" name="hall[]" value="10"> Market at Glen Mor</label></br></br>
 					</p>
+					<button type="submit" name="submit" class="login-button">Submit</button>
 				</form>
                 {% if message is defined %}<h4 class='alert' style="font-family: Helvetica; font-size: 18px">{{ message }}</h4>{% endif %}
 			</div>
 		</div><!-- end login -->
+        <span class='credits'>Made with <span class='heart'>♥</span> in Riverside, CA</span>
 	</body>
 </html>
