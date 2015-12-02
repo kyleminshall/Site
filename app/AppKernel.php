@@ -16,7 +16,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new AppBundle\AppBundle(),
             new Personal\Bundle\PersonalBundle(),
         );
 
@@ -34,4 +33,10 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
-}
+    
+    public function __construct($environment, $debug) {
+        parent::__construct($environment, $debug);
+        // get rid of Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone
+        date_default_timezone_set( 'America/Los_Angeles' );
+    }
+}   
