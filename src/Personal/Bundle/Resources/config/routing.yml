@@ -34,54 +34,6 @@ menu:
     path:   /menu
     defaults: { _controller: PersonalBundle:Default:menu }
 
-compiler:
-    path:   /code
-    defaults: { _controller: PersonalBundle:Code:code }
-
-compiler_problem:
-    path:   /code/p{problem}
-    defaults: { _controller: PersonalBundle:Code:problem }
-
-compiler_login:
-    path:   /code/login
-    defaults: { _controller: PersonalBundle:Code:login }
-
-teacher_login:
-    path:   /code/teacher
-    defaults: { _controller: PersonalBundle:Code:login_teacher }
-
-teacher_signup:
-    path:   /code/teacher_signup
-    defaults:  { _controller: PersonalBundle:Code:teacher_signup}
-
-teacher_admin:
-    path:   /teacher
-    defaults: { _controller: PersonalBundle:Code:admin }
-
-compiler_register:
-    path:   /code/signup
-    defaults: { _controller: PersonalBundle:Code:signup }
-    
-compiler_logout:
-    path:   /code/logout
-    defaults: { _controller: PersonalBundle:Code:logout }
-
-student_signup:
-    path:   /code/teacher/signup
-    defaults: { _controller: PersonalBundle:Code:teacherRegister }
-
-admin_login:
-    path:   /admin/login
-    defaults: { _controller: PersonalBundle:Admin:login }
-        
-admin_home:
-    path:   /admin
-    defaults: { _controller: PersonalBundle:Admin:index }
-
-admin_logout:
-    path:   /admin/logout
-    defaults: { _controller: PersonalBundle:Admin:logout }
-
 privacy:
     path:   /privacy
     defaults: { _controller: PersonalBundle:Default:privacy }
@@ -89,28 +41,3 @@ privacy:
 media:
     path:   /media
     defaults: { _controller: PersonalBundle:Default:media }
-    
-ajax_enroll:
-    path:   /ajax/enroll
-    defaults: { _controller: PersonalBundle:Ajax:addStudent }
-    methods: [POST]
-    
-ajax_progress:
-    path:   /ajax/progress
-    defaults: { _controller: PersonalBundle:Ajax:progress }
-    methods: [GET]
-    
-ajax_delete:
-    path:   /ajax/delete
-    defaults: { _controller: PersonalBundle:Ajax:delete }
-    methods: [DELETE]
-
-ajax_teacher:
-    path:   /ajax/teacher
-    defaults: { _controller: PersonalBundle:Ajax:teacher }
-    methods: [POST]
-
-ajax_problem:
-    path:   /ajax/problem
-    defaults: { _controller: PersonalBundle:Ajax:problem }
-    methods: [POST]

@@ -51,9 +51,20 @@
     overflow-y: scroll;
 }
 
-.columns {
-    padding-top: 40px;
-    padding-left: 20px;
+#new_test {
+    margin-left: 50%;
+}
+
+#new_test:hover {
+    color: #00B314;
+}
+
+#remove_test {
+    margin-left: 50%;
+}
+
+#remove_test:hover {
+    color: #C91619;
 }
 
 .completed {

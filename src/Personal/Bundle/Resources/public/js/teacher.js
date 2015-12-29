@@ -128,6 +128,8 @@ $("#problem").submit(function() {
 		$("#submit3").hide();
 	
 		var url = location.origin+'/ajax/problem';
+        
+        console.log($("#problem").serialize())
 	
 		$.ajax({
 			type: "POST",
@@ -141,15 +143,18 @@ $("#problem").submit(function() {
 				var json = JSON.stringify(response);
 				json = JSON.parse(json);
 				if(json.status == 200) {
+                    console.log(json);
 					$("#result3").html(""+json.message);
 					$("#Title").val('');
 					$("#Prompt").val('');
 					$("#Method").val('');
 					$("#Test").val('');
 					$("#Output").val('');
+                    $(".test_row_added").remove();
 				}
 				else if(json.status != 200) {
 					$("#result3").html(""+json.message);
+                    console.log(json.message);
 				}
 			},
             failure: function(response)
@@ -162,4 +167,17 @@ $("#problem").submit(function() {
 		})
 	}
 	return false;
+});
+
+$("#new_test").click(function() {
+    var new_row = "<div class='row test_row_added'><div class='large-4 columns'><label style='text-align:left'>Test<input class='login' id='Test' name='test[]' type='text' placeholder='add(1,2)'></label></div><div class='large-4 columns'><label style='text-align:left'>Expected Output<input class='login' id='Output' name='output[]' type='text' placeholder='3'></label></div><div class='large-2 columns'><label>Hidden<select id='Hidden' name='hidden[]'><option value='0' selected>No</option><option value='1'>Yes</option></select></label></div><div class='large-2 columns'><label style='text-align:left' id='remove_test_button'><br><i class='fa fa-minus' id='remove_test' style='font-size: 25px'></i></label></div></div>";
+    $("#test_row").after(new_row);
+});
+
+$(document).on('click', '#remove_test', function() {
+    $(this).parent().parent().parent().remove();
+});
+
+$('#add_problem').bind('closed', function() {
+    $(".test_row_added").remove();
 });
