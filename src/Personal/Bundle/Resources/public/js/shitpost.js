@@ -6,7 +6,6 @@ $("#convert-button").click(function() {
     var spaceRE = /\s+/g;
     
     var result = raw.replace(punctRE, '').replace(spaceRE, ' ');
-    result = result.toLowerCase();
     result = result.replace(/./g, "$& ")
     
     $('#result').val(result);
