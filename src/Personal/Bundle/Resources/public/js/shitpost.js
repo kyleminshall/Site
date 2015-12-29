@@ -9,5 +9,5 @@ $("#convert-button").click(function() {
     result = result.toLowerCase();
     result = result.replace(/./g, "$& ")
     
-    alert(result);
+    $('#result').val(result);
 })
