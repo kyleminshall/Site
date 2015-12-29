@@ -104,4 +104,9 @@ class DefaultController extends Controller
     {
         return $this->render('PersonalBundle:Default:media.html.twig');
     }
+    
+    public function shitpostAction()
+    {
+        return $this->render('PersonalBundle:Default:shitpost.html.twig')
+    }
 }

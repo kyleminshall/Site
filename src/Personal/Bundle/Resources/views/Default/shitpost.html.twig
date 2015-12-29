@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shitpost Converter {% endblock %}
+    
+{% block body %}
+    <div class='raw_text_area_div'>
+        <label> Enter shitpost:<br />
+            <textarea id="raw_text">This is where the raw text is going to go.</textarea>
+        </label>
+    </div>
+    
+    <div class="result_text_area_div">
+        <label> Result:<br />
+            <textarea id="result">Result will go here</textarea>
+        </label>
+    </div>
+    
+{% endblock %}

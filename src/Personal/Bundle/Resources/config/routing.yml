@@ -41,3 +41,7 @@ privacy:
 media:
     path:   /media
     defaults: { _controller: PersonalBundle:Default:media }
+    
+shitpost:
+    path:   /shitpost
+    defaults: { _controller: PersonalBundle:Default:shitpost }
