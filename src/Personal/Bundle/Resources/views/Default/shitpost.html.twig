@@ -1,18 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Shitpost Converter {% endblock %}
+{% block head %}
+    {% block title %}Shitpost Converter {% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/normalize.min.css" />
+        {% stylesheets 'bundles/personal/css/shitpost.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    {% endblock %}
+{% endblock %}
     
 {% block body %}
-    <div class='raw_text_area_div'>
-        <label> Enter shitpost:<br />
-            <textarea id="raw_text">This is where the raw text is going to go.</textarea>
-        </label>
+    
+    <div class='row'>
+        <h1>Shitpost Converter</h1>
     </div>
     
-    <div class="result_text_area_div">
-        <label> Result:<br />
-            <textarea id="result">Result will go here</textarea>
-        </label>
+    <div class='row'>
+        <div class='raw_text_area_div'>
+            <label> Enter raw shitpost:
+                <textarea id="raw_text" placeholder="Lorel Ipsum"></textarea>
+            </label>
+        </div>
+        <button class='button small' id="convert-button">Convert</button>
     </div>
     
+    <div class='row'>
+        <div class="result_text_area_div">
+            <label> Result:
+                <textarea id="result" placeholder="l o r e l  i p s u m"></textarea>
+            </label>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js" />
+    
+    {% block javascripts %}
+        {% javascripts 'bundles/personal/js/shitpost.js'%}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
 {% endblock %}
