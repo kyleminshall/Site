@@ -107,6 +107,6 @@ class DefaultController extends Controller
     
     public function shitpostAction()
     {
-        return $this->render('PersonalBundle:Default:shitpost.html.twig')
+        return $this->render('PersonalBundle:Default:shitpost.html.twig');
     }
 }
