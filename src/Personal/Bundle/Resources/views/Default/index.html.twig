@@ -1,15 +1,11 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/normalize.min.css" />
-    <link rel="stylehseet" href="https://code.jquery.com/jquery-2.1.4.min.js" />
     {% stylesheets 'bundles/personal/css/main.css' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-{% javascripts 'bundles/personal/js/jquery.flexverticalcenter.js' %}
-    <script src="{{ asset_url }}"></script>
-{% endjavascripts %}
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
@@ -57,9 +53,4 @@
 	</div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js" />
-    <script>
-  	$(document).ready(function() {
-   	  $('#body').flexVerticalCenter();
-  	});
-    </script>
 </div>
