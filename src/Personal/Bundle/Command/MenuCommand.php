@@ -9,6 +9,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\BufferedOutput;
 
+include('database.php');
+
 class MenuCommand extends ContainerAwareCommand
 {   
     protected function configure()
@@ -21,7 +23,7 @@ class MenuCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {      
-        $con = mysqli_connect('localhost', 'KyleM', 'Minshall1!', 'Site');
+        $con = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
         
         if(mysqli_connect_errno()) {
             printf("Connect failed: $s\n", mysqli_connect_error());
@@ -39,7 +41,7 @@ class MenuCommand extends ContainerAwareCommand
         }
         
         $param = escapeshellarg(json_encode($jsonData));
-        $final = shell_exec('/usr/local/bin/python /Users/Kilenaitor/Desktop/Site/personal/src/Personal/Bundle/Resources/public/lothian.py ' . $param);
+        $final = shell_exec('/usr/bin/python /var/www/Site/src/Personal/Bundle/Resources/public/lothian.py  ' . $param);
         
         error_log($final);
         
@@ -54,7 +56,7 @@ class MenuCommand extends ContainerAwareCommand
         }
         
         $param = escapeshellarg(json_encode($jsonData));
-        $final = shell_exec('/usr/local/bin/python /Users/Kilenaitor/Desktop/Site/personal/src/Personal/Bundle/Resources/public/ai.py ' . $param);
+        $final = shell_exec('/usr/bin/python /var/www/Site/src/Personal/Bundle/Resources/public/ai.py ' . $param);
         
         error_log($final);
         
@@ -69,7 +71,7 @@ class MenuCommand extends ContainerAwareCommand
         }
         
         $param = escapeshellarg(json_encode($jsonData));
-        $final = shell_exec('/usr/local/bin/python /Users/Kilenaitor/Desktop/Site/personal/src/Personal/Bundle/Resources/public/market.py ' . $param);
+        $final = shell_exec('/usr/bin/python /var/www/Site/src/Personal/Bundle/Resources/public/market.py ' . $param);
         
         error_log($final);
     }

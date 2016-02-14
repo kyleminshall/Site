@@ -3,11 +3,13 @@ import email
 import sys, json
 from bs4 import BeautifulSoup
 from bs4 import SoupStrainer
+from db_config import *
 import urllib2
+import lxml
 
 url = "http://138.23.12.141/foodpro/shortmenu.asp?sName=University+of+California%2C+Riverside+Dining+Services&locationNum=02&locationName=Lothian+Residential+Restaurant&naFlag=1"
 page = urllib2.urlopen(url)
-soup = BeautifulSoup(page.read())
+soup = BeautifulSoup(page.read(), "lxml")
 
 menu = ""
 
@@ -22,7 +24,7 @@ for td in container.find_all('td', recursive=False):
 
 #print menu
 
-sender = 'kilenaitor@gmail.com'
+sender = EMAIL
 receivers = json.loads(sys.argv[1])
 
 message = """From: Lothian Menu <from@fromdomain.com>
@@ -37,9 +39,10 @@ try:
     smtpserver.ehlo()
     smtpserver.starttls()
     smtpserver.ehlo()
-    smtpserver.login('kilenaitor@gmail.com', 'NICE TRY. NO PASSWORD FOR YOU.')
+    smtpserver.login(EMAIL, PASS)
     smtpserver.sendmail(sender, receivers, message.encode('utf-8').strip())
     
 except Exception as e:
     print e
     print "Error: unable to send email"
+

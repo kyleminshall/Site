@@ -4,6 +4,8 @@ namespace Personal\Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+include('database.php');
+
 class DefaultController extends Controller
 {
     public function indexAction()
@@ -25,7 +27,7 @@ class DefaultController extends Controller
     {
         if(isset($_POST['Email']) && isset($_POST['Passwd']))
         {
-            $con=mysqli_connect("localhost","KyleM","Minshall1!","Site");
+            $con = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 
             if (mysqli_connect_errno()) 
             {
@@ -49,7 +51,7 @@ class DefaultController extends Controller
     {
         if(isset($_POST['email']) && isset($_POST['pass']))
         {
-            $con=mysqli_connect("localhost","KyleM","Minshall1!","Site");
+            $con=mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 
             if (mysqli_connect_errno()) 
             {
@@ -79,7 +81,7 @@ class DefaultController extends Controller
             foreach($hall as &$value) {
                 $total += intval($value);
             }
-            $con = mysqli_connect('localhost', 'KyleM', 'Minshall1!', 'Site');
+            $con = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
             
             if(mysqli_connect_errno()) {
                 printf("Connect failed: %s\n", mysqli_connect_error());

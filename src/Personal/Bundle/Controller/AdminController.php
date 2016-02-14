@@ -7,6 +7,8 @@ use Symfony\Component\Security\Core\Util\SecureRandom;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+include('database.php');
+
 class AdminController extends Controller
 {
 	public function indexAction()
@@ -113,6 +115,6 @@ class AdminController extends Controller
 	
     public function connect()
     {
-        return mysqli_connect("localhost","KyleM","Minshall1!", "Site"); //Connect to database
+        return mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB); //Connect to database
     }
 }

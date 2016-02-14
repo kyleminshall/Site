@@ -3,6 +3,7 @@ import email
 import sys, json
 from bs4 import BeautifulSoup
 from bs4 import SoupStrainer
+from db_config import *
 import urllib2
 
 url = urllib2.Request("http://138.23.12.141/foodpro/shortmenu.asp?sName=University+of+California%2C+Riverside+Dining+Services&locationNum=03&locationName=A+-+I+Residential+Restaurant&naFlag=1")
@@ -22,7 +23,7 @@ for td in container.find_all('td', recursive=False):
 
 #print menu
 
-sender = 'kilenaitor@gmail.com'
+sender = EMAIL
 receivers = json.loads(sys.argv[1])
 
 message = """From: A&I Menu <from@fromdomain.com>
@@ -37,7 +38,7 @@ try:
     smtpserver.ehlo()
     smtpserver.starttls()
     smtpserver.ehlo()
-    smtpserver.login('kilenaitor@gmail.com', 'NICE TRY. NO PASSWORD FOR YOU.')
+    smtpserver.login(EMAIL, PASS)
     smtpserver.sendmail(sender, receivers, message.encode('utf-8').strip())
     
 except Exception as e:
