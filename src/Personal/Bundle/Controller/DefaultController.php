@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/../../../../vendor/google/apiclient/src');
 require_once 'Google/Client.php';
+require_once "Google/Service/Calendar.php";
     
 include('database.php');
 include('secrets.php');
@@ -130,7 +131,7 @@ class DefaultController extends Controller
                 echo $msg;
             }
             
-            $client = new Google_Client();
+            $client = self::getClient();
             $service = new Google_Service_Calendar($client);
             
             $default_start_string = "Y-m-d\T17:00:00-07:00";    // 5 PM
