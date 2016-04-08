@@ -34,7 +34,7 @@ shitpost:
     path:   /shitpost
     defaults: { _controller: PersonalBundle:Default:shitpost }
 
-duty:
+lothian:
     path:   /lothian
     defaults: { _controller: PersonalBundle:Default:lothian }
     methods: [POST]
