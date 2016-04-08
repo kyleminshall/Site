@@ -6,8 +6,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-require_once 'google-api-php-client/autoload.php'; 
     
 include('database.php');
 include('secrets.php');
@@ -130,7 +128,7 @@ class DefaultController extends Controller
             }
             
             $client = self::getClient();
-            $service = new Google_Service_Calendar($client);
+            $service = new \Google_Service_Calendar($client);
             
             $default_start_string = "Y-m-d\T17:00:00-07:00";    // 5 PM
             $default_end_string = "Y-m-d\T18:00:00-07:00";      // 6 PM
@@ -171,7 +169,7 @@ class DefaultController extends Controller
      * @return Google_Client the authorized client object
      */
     function getClient() {
-        $client = new Google_Client();
+        $client = new \Google_Client();
         $client->setApplicationName('Slack Google Calendar');
         $client->setScopes('Google_Service_Calendar::CALENDAR_READONLY');
         $client->setAuthConfigFile(CLIENT_SECRET_PATH);
