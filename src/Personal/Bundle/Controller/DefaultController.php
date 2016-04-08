@@ -174,7 +174,7 @@ class DefaultController extends Controller
         $client->setScopes('Google_Service_Calendar::CALENDAR_READONLY');
         $client->setAccessType('offline');
 
-        $accessToken = getAccessToken();
+        $accessToken = self::getAccessToken();
         $client->setAccessToken($accessToken);
 
         // Refresh the token if it's expired.
