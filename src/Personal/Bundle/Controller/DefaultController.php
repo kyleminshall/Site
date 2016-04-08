@@ -118,7 +118,7 @@ class DefaultController extends Controller
     public function lothianAction()
     {   
         if(isset($_POST) && isset($_POST['command']) && isset($_POST['token'])) {
-            if($token !== "kytAx7z4AnLpKEzZZSMSMQoY"){ 
+            if($token != "kytAx7z4AnLpKEzZZSMSMQoY"){ 
                 $msg = "The token for the slash command doesn't match. Check your script.";
                 die($msg);
                 echo $msg;
