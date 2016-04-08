@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 set_include_path(get_include_path() . PATH_SEPARATOR . '../../../../vendor/google/apiclient/src');
-require_once 'Google/Client.php'
+require_once 'Google/Client.php';
     
 include('database.php');
 include('secrets.php');
