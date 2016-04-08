@@ -7,8 +7,9 @@ error_reporting(E_ALL);
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-require_once __DIR__.'/../../../../vendor/autoload.php';
-
+set_include_path(get_include_path() . PATH_SEPARATOR . '../../../../vendor/google/apiclient/src');
+require_once 'Google/Client.php'
+    
 include('database.php');
 include('secrets.php');
 
