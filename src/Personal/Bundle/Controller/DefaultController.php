@@ -7,7 +7,8 @@ error_reporting(E_ALL);
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-require_once __DIR__ . '/../../../../vendor/autoload.php';
+include '../../../../vendor/google/apiclient/src/Google/Client.php';
+include '../../../../vendor/google/apiclient/src/Google/Service/Calendar.php';
     
 include('database.php');
 include('secrets.php');
