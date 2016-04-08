@@ -172,7 +172,6 @@ class DefaultController extends Controller
         $client = new \Google_Client();
         $client->setApplicationName('Slack Google Calendar');
         $client->setScopes('Google_Service_Calendar::CALENDAR_READONLY');
-        $client->setAuthConfigFile(CLIENT_SECRET_PATH);
         $client->setAccessType('offline');
 
         $accessToken = getAccessToken();
