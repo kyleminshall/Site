@@ -6,6 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
     
 include('database.php');
 include('secrets.php');
@@ -154,13 +155,14 @@ class DefaultController extends Controller
             $results = $service->events->listEvents($calendarId, $optParams);
 
             if (count($results->getItems()) === 0) {
-              print "Nothing found for that day.\n";
+                print "Nothing found for that day.\n";
             } else {
-              foreach ($results->getItems() as $event) {
-                  $duty = $event->summary;
-                  printf("*%s* is on duty.", $duty);
-              }
+                foreach ($results->getItems() as $event) {
+                    $duty = $event->summary;
+                    printf("*%s* is on duty.\n", $duty);
+                }
             }
+            return new Response();
         }
     }
     
@@ -173,15 +175,23 @@ class DefaultController extends Controller
         $client->setApplicationName('Slack Google Calendar');
         $client->setScopes('Google_Service_Calendar::CALENDAR_READONLY');
         $client->setDeveloperKey(DEVELOPER_KEY);
+        $client->setClientId(CLIENT_ID);
+        $client->setClientSecret(CLIENT_SECRET);
+        $client->setAccessType('offline');
 
-        if(!isset($accessToken))
-            $accessToken = self::getAccessToken();
-        $client->setAccessToken($accessToken);
+        if(!isset($accessToken)) {
+            $rawAccessToken = self::getAccessToken();
+            $client->setAccessToken($rawAccessToken);
+        } else {
+            $rawToken = self::getAccessToken();
+            $client->setAccessToken($rawToken);
+            $token = json_decode($rawToken);
+            $accessToken = $token->access_token;
+        }
 
         // Refresh the token if it's expired.
         if ($client->isAccessTokenExpired()) {
-            $client->refreshToken($client->getRefreshToken());
-            $accessToken = $client->getAccessToken();
+            $client->refreshToken(REFRESH_TOKEN);
         }
         return $client;
     }
@@ -206,9 +216,10 @@ class DefaultController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $tokenReturn = curl_exec($ch);
-        $token = json_decode($tokenReturn);
-        $accessToken = $token->access_token;
-        return $accessToken;
+        return $tokenReturn;
+//        $token = json_decode($tokenReturn);
+//        $accessToken = $token->access_token;
+//        return $accessToken;
     }
     
 }
