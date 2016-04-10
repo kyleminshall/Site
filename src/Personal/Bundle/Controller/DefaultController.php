@@ -135,12 +135,12 @@ class DefaultController extends Controller
             $default_end_string = "Y-m-d\T18:00:00-07:00";      // 6 PM
             $command = $_POST['command'];
             
-            $date_given = isset($_POST['text']);
+            $date_given = isset($_POST['text']) && $_POST['text'] !== '';
             
-            $start_time = isset($_POST['text']) 
+            $start_time = $date_given
                     ? date($default_start_string, strtotime($_POST['text'])) 
                     : date($default_start_string);
-            $end_time = isset($_POST['text'])
+            $end_time = $date_given
                     ? date($default_end_string, strtotime($_POST['text'])) 
                     : date($default_end_string);
             
